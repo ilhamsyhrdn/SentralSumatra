@@ -18,15 +18,13 @@ export function CategorySection() {
           <div className="order-1 lg:order-2 lg:pl-12">
             <h2 className="mb-6">KENAPA MEMILIH KAMI?</h2>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              AJProduct menyediakan produk berkualitas tinggi dengan harga terjangkau. Susu segar kami 
-              diproduksi langsung dari peternakan pilihan, sabun alami dibuat dengan bahan organik tanpa 
-              bahan kimia berbahaya, dan es kristal kami diproduksi dengan air murni yang higienis.
+              Diocca menghadirkan produk susu murni berkualitas premium tanpa tambahan gula dan tanpa bahan pengawet. Susu kami diproses secara higienis dari peternakan pilihan, sehingga aman dan menyehatkan untuk seluruh keluarga. Produk Diocca telah tersertifikasi dan teruji, memberikan rasa asli dan manfaat terbaik setiap hari.
             </p>
             <p className="text-gray-600 mb-8 leading-relaxed">
-              Semua produk kami telah tersertifikasi dan aman untuk keluarga Anda.
+              Pilih Diocca untuk kualitas, rasa, dan keamanan terbaik bagi keluarga Anda.
             </p>
             <Button className="bg-black text-white hover:bg-gray-800 px-8">
-              LIHAT SEMUA PRODUK
+              <a href="/products" className="block w-full h-full text-white no-underline">LIHAT SEMUA PRODUK</a>
             </Button>
           </div>
         </div>

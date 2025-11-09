@@ -1,4 +1,4 @@
-import { ShoppingCart, Search, Menu, User } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { useState } from "react";
@@ -46,10 +46,10 @@ export function Header({ currentPage, onNavigate, onOpenSearch, onOpenCart, onOp
             >
               <img 
                 src="/gambarProduct/Logo.jpg" 
-                alt="AJ Product Logo" 
+                alt="Diocca Logo" 
                 className="h-10 w-10 object-contain rounded-full"
               />
-              <span className="font-semibold">AJProduction</span>
+              <span className="font-semibold">DIOCCA</span>
             </Link>
           </div>
 
@@ -68,31 +68,8 @@ export function Header({ currentPage, onNavigate, onOpenSearch, onOpenCart, onOp
             ))}
           </nav>
 
-          {/* Right Icons */}
-          <div className="flex items-center space-x-2 lg:space-x-4">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="hidden lg:flex"
-              onClick={onOpenSearch}
-            >
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={onOpenProfile}
-            >
-              <User className="h-5 w-5" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={onOpenCart}
-            >
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
-          </div>
+          {/* Right icons removed per user request */}
+          <div className="flex items-center space-x-2 lg:space-x-4"></div>
         </div>
       </div>
 
@@ -115,15 +92,6 @@ export function Header({ currentPage, onNavigate, onOpenSearch, onOpenCart, onOp
                 {item.label}
               </Link>
             ))}
-            <button
-              onClick={() => {
-                onOpenSearch();
-                setMobileMenuOpen(false);
-              }}
-              className="text-left py-2 hover:text-gray-600 transition-colors"
-            >
-              SEARCH
-            </button>
           </nav>
         </SheetContent>
       </Sheet>
