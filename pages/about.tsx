@@ -36,7 +36,7 @@ export default function AboutPage() {
         chip="Tentang kami"
         title="Tumbuh dari Jambi,"
         accent="melayani Sumatra."
-        description="Sentral Sumatra adalah induk usaha yang menaungi lima unit — dari es kristal hingga bahan kimia — dengan satu komitmen: produk berkualitas yang terjangkau."
+        description="Sentral Sumatra adalah induk usaha yang menaungi lima unit, mulai dari es kristal sampai bahan kimia. Komitmen kami tetap sama, yaitu menghadirkan produk berkualitas dengan harga terjangkau."
         aside={
           <div className="grid h-full min-h-[26rem] grid-cols-2 grid-rows-2 gap-2 sm:gap-3">
             <div className="relative row-span-2 overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
@@ -69,8 +69,9 @@ export default function AboutPage() {
             <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari komitmen sederhana.</h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                Berdiri sejak 2019 di Kota Jambi, kami lahir dari satu tekad: menyediakan produk berkualitas tinggi yang
-                terjangkau untuk setiap keluarga — produk sehari-hari yang aman, higienis, sehat, dan bisa diandalkan.
+                Kami berdiri sejak 2019 di Kota Jambi dengan tekad sederhana, yaitu menyediakan produk berkualitas yang
+                harganya terjangkau untuk setiap keluarga. Produk yang dipakai sehari-hari harus aman, higienis, dan bisa
+                diandalkan.
               </p>
               <p>
                 Melalui <strong className="font-semibold text-ink">AJ Kristal</strong>,{" "}

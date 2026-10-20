@@ -30,14 +30,14 @@ export default function ProductsPage() {
     <>
       <Seo
         title="Produk & Unit Usaha"
-        description="Jelajahi produk Sentral Sumatra: es kristal & es serut AJ Kristal, sabun Batanghari River, susu Diocca, serta Sentral Plastik dan Sentral Kimia yang segera hadir."
+        description="Jelajahi produk Sentral Sumatra, mulai dari es kristal dan es serut AJ Kristal, sabun Batanghari River, susu Diocca, sampai Sentral Plastik dan Sentral Kimia yang segera hadir."
       />
 
       <PageIntro
         chip="Produk kami"
         title="Lima unit,"
         accent="beragam kebutuhan."
-        description="Setiap unit memiliki dashboard sendiri berisi detail produk, harga, dan cara pemesanan. Pilih yang Anda butuhkan."
+        description="Setiap unit punya halaman sendiri berisi detail produk, harga, dan cara pemesanan. Pilih yang Anda butuhkan."
         aside={
           <div className="grid h-full min-h-[20rem] grid-cols-2 gap-2 sm:gap-3">
             {STORES.map((s, i) => (

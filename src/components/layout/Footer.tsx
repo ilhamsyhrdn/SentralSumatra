@@ -22,7 +22,7 @@ export function Footer() {
             <SentralWordmark light />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/80">
-            Es kristal, sabun, susu, plastik, dan kimia — dari Kota Jambi untuk Sumatra.
+            Es kristal, sabun, susu, plastik, dan kimia dari Kota Jambi untuk Sumatra.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (

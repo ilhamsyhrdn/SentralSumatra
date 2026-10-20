@@ -23,8 +23,8 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { icon: ShoppingBasket, title: "Pilih produk & ukuran", description: "Tentukan jenis sabun dan kemasan: 5 L, 550 ml, atau 120 ml." },
-  { icon: MessageCircle, title: "Chat admin", description: "Klik tombol pesan — format pesanan otomatis terisi sesuai pilihan." },
+  { icon: ShoppingBasket, title: "Pilih produk & ukuran", description: "Tentukan jenis sabun dan ukuran kemasan, ada 5 L, 550 ml, dan 120 ml." },
+  { icon: MessageCircle, title: "Chat admin", description: "Klik tombol pesan, format pesanan langsung terisi sesuai pilihan Anda." },
   { icon: PackageCheck, title: "Konfirmasi & terima", description: "Admin mengonfirmasi stok, total harga, dan pengiriman atau pengambilan." },
 ];
 
@@ -38,7 +38,7 @@ export default function BatanghariRiverPage() {
   return (
     <>
       <Seo
-        title="Batanghari River — Sabun & Pembersih Rumah Tangga"
+        title="Sabun dan Pembersih Rumah Tangga Batanghari River"
         description="Sabun cuci baju, sabun cuci piring, pembersih lantai, dan pewangi pakaian Batanghari River produksi Jambi. Kemasan 5 L, 550 ml, dan 120 ml mulai Rp 2.000."
       />
 
@@ -53,8 +53,8 @@ export default function BatanghariRiverPage() {
               <WordsReveal text="Bersih maksimal," /> <WordsReveal text="wangi tahan lama." delay={0.18} className="text-mint" />
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed 2xl:max-w-2xl 2xl:text-xl text-white/85">
-              Sabun cuci baju, cuci piring, pembersih lantai, dan pewangi pakaian berkualitas dengan harga hemat — mengangkat
-              noda membandel sambil menjaga kelembutan kain.
+              Sabun cuci baju, cuci piring, pembersih lantai, dan pewangi pakaian berkualitas dengan harga hemat. Noda
+              membandel terangkat dan kain tetap lembut.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
               <a href="#produk" className="btn press bg-white text-ink hover:bg-mint">
@@ -129,7 +129,7 @@ export default function BatanghariRiverPage() {
           <SectionHead
             chip="Produk"
             title="Pilih produk & ukurannya."
-            description="Klik ukuran kemasan untuk melihat harga, lalu pesan — format pesanan otomatis terisi."
+            description="Klik ukuran kemasan untuk melihat harga, lalu tekan pesan. Format pesanan langsung terisi."
           />
           <Stagger className="mt-10 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {SOAP_LINES.map((line) => (

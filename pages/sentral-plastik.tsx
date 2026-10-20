@@ -9,15 +9,15 @@ export default function SentralPlastikPage() {
     <ComingSoonStore
       store={getStore("sentral-plastik")}
       scene={CupScene}
-      seoDescription="Sentral Plastik segera hadir di Kota Jambi: cup gelas, tutup gelas, pipet, dan plastik laundry untuk kedai minuman, UMKM kuliner, dan usaha laundry."
+      seoDescription="Sentral Plastik segera hadir di Kota Jambi dengan cup gelas, tutup gelas, pipet, dan plastik laundry untuk kedai minuman, UMKM kuliner, dan usaha laundry."
       title={["Kemasan rapi,", "usaha makin laris."]}
-      heroText="Cup gelas, tutup gelas, pipet, dan plastik laundry dengan harga bersahabat — partner kemasan untuk kedai minuman, UMKM kuliner, hingga usaha laundry di Jambi."
+      heroText="Cup gelas, tutup gelas, pipet, dan plastik laundry dengan harga bersahabat. Cocok untuk kedai minuman, UMKM kuliner, sampai usaha laundry di Jambi."
       aboutTitle="Partner kemasan untuk usaha Anda."
       aboutImage={{ src: "/stock/cups-business.jpg", alt: "Pelaku usaha menyiapkan minuman dalam cup plastik" }}
       featureImage={{ src: "/stock/cups-boba.jpg", alt: "Empat minuman boba dalam cup plastik bening" }}
       aboutParagraphs={[
         "Sentral Plastik adalah unit usaha Sentral Sumatra yang fokus pada kemasan plastik sekali pakai. Banyak pelaku usaha di Jambi membutuhkan pasokan kemasan yang stabil, lengkap, dan terjangkau.",
-        "Mulai dari gelas untuk minuman kekinian, tutupnya, pipet, sampai plastik pembungkus cucian — semuanya ingin kami hadirkan di satu tempat agar Anda bisa fokus mengembangkan usaha.",
+        "Mulai dari gelas untuk minuman kekinian, tutupnya, pipet, sampai plastik pembungkus cucian, semuanya ingin kami sediakan di satu tempat. Jadi Anda bisa lebih fokus mengembangkan usaha.",
       ]}
       points={[
         "Pilihan ukuran lengkap dan saling cocok antara cup dan tutupnya",
@@ -35,7 +35,7 @@ export default function SentralPlastikPage() {
         {
           icon: CupSoda,
           name: "Cup Gelas",
-          description: "Gelas plastik bening untuk minuman dingin — es teh, kopi susu, hingga jus.",
+          description: "Gelas plastik bening untuk minuman dingin seperti es teh, kopi susu, dan jus.",
           items: ["Cup PP", "Cup PET", "Berbagai ukuran"],
         },
         {

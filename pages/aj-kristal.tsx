@@ -67,8 +67,8 @@ export default function AjKristalPage() {
   return (
     <>
       <Seo
-        title="AJ Kristal — Es Kristal & Es Serut Kota Jambi"
-        description="AJ Kristal: es kristal Rp 10.000 dan es serut Rp 11.000 per bungkus untuk minuman. Dijamin bersih, tahan lama, harga terbaik, dan gratis antar se-Kota Jambi."
+        title="Es Kristal dan Es Serut AJ Kristal"
+        description="AJ Kristal menjual es kristal Rp 10.000 dan es serut Rp 11.000 per bungkus untuk minuman. Dijamin bersih, tahan lama, harga terbaik, dan gratis antar se-Kota Jambi."
       />
 
       {/* Hero */}
@@ -82,8 +82,8 @@ export default function AjKristalPage() {
               <WordsReveal text="Es bersih," /> <WordsReveal text="dingin lebih lama." delay={0.18} className="text-mint" />
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed 2xl:max-w-2xl 2xl:text-xl text-white/85">
-              AJ Kristal menyediakan es kristal dan es serut untuk minuman: dijamin bersih, tahan lama, dengan harga
-              terbaik. Pengantaran gratis ke seluruh Kota Jambi.
+              AJ Kristal menyediakan es kristal dan es serut untuk minuman. Kebersihannya dijamin, esnya tahan lama, dan
+              harganya terbaik. Pengantaran gratis ke seluruh Kota Jambi.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
               <a href="#produk" className="btn press bg-white text-ink hover:bg-mint">
@@ -129,7 +129,7 @@ export default function AjKristalPage() {
           <SectionHead
             chip="Produk"
             title="Dua pilihan es untuk minuman."
-            description="Harga per bungkus. Atur jumlahnya, lalu pesan; format pesanan otomatis terisi."
+            description="Harga per bungkus. Atur jumlahnya lalu klik pesan, format pesanan langsung terisi di WhatsApp."
           />
           <Stagger className="mt-10 grid gap-3 md:grid-cols-2">
             {ICE_PRODUCTS.map((p) => (
@@ -362,7 +362,7 @@ function IceCard({ product }: { product: IceProduct }) {
               <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
                 <span className="mt-3 flex items-center gap-2 rounded-2xl bg-leaf-soft px-4 py-3 text-sm font-semibold text-leaf-ink">
                   <Gift className="size-4 shrink-0" />
-                  Promo agen: beli 10 dapat bonus 1 kantong
+                  Beli 10 bungkus dapat bonus 1 kantong
                 </span>
               </motion.p>
             )}

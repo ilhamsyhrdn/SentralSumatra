@@ -19,7 +19,7 @@ export const SENTRAL_VALUES = [
   {
     icon: Factory,
     title: "Produksi Lokal",
-    description: "Diproduksi di Jambi — mendukung ekonomi daerah dan lebih dekat dengan pelanggan Sumatra.",
+    description: "Diproduksi di Jambi untuk mendukung ekonomi daerah dan lebih dekat dengan pelanggan di Sumatra.",
   },
 ];
 

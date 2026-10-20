@@ -28,7 +28,7 @@ const SOCIAL_PILLS = [
 
 const INFO = [
   { icon: MapPin, label: "Alamat", value: CONTACT.addressLines.join(", "), href: CONTACT.mapsLink, wide: true },
-  { icon: Phone, label: "WhatsApp utama · es, pengaduan & lainnya", value: CONTACT.phoneDisplay, href: `https://wa.me/${CONTACT.wa}` },
+  { icon: Phone, label: "WhatsApp utama (es, pengaduan, dan lainnya)", value: CONTACT.phoneDisplay, href: `https://wa.me/${CONTACT.wa}` },
   { icon: getStore("batanghari-river").icon, label: "Pemesanan sabun", value: BATANGHARI_PHONE, href: `https://wa.me/${BATANGHARI_WA}` },
   { icon: getStore("diocca").icon, label: "Pemesanan Diocca", value: DIOCCA_PHONE, href: `https://wa.me/${DIOCCA_WA}` },
   { icon: Clock, label: "Jam operasional", value: CONTACT.hours.map((h) => `${h.day}: ${h.time}`).join(" · ") },
@@ -68,7 +68,7 @@ export default function ContactPage() {
         chip="Hubungi kami"
         title="Mari"
         accent="bicara."
-        description="Pertanyaan seputar produk, pemesanan dalam jumlah besar, peluang kemitraan, atau pengaduan — tim kami siap membantu lewat WhatsApp."
+        description="Punya pertanyaan soal produk, mau pesan dalam jumlah besar, tertarik bermitra, atau ingin menyampaikan pengaduan? Tim kami siap membantu lewat WhatsApp."
         aside={
           <Stagger className="grid h-full gap-2 sm:grid-cols-2 sm:gap-3">
             {INFO.map(({ wide, ...item }) => (

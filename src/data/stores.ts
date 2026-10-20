@@ -51,7 +51,7 @@ export const STORES: Store[] = [
     category: "Es Kristal",
     tagline: "Es kristal & es serut untuk minuman",
     description:
-      "Es kristal dan es serut untuk minuman: dijamin bersih, tahan lama, dengan harga terbaik. Gratis antar se-Kota Jambi.",
+      "Es kristal dan es serut untuk minuman yang dijamin bersih, tahan lama, dan harganya terbaik. Gratis antar se-Kota Jambi.",
     status: "available",
     icon: Snowflake,
     accent: "#1D7F95",

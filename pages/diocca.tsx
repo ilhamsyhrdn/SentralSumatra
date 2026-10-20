@@ -19,7 +19,7 @@ const DIO_CHIP = "bg-dio-mint text-dio-dark";
 
 const PERKS = [
   { icon: Milk, title: "80% susu murni", description: "Kandungan susu murni hingga 80% (Original) dan 77% (Cokelat)." },
-  { icon: CandyOff, title: "0% sukrosa", description: "Tanpa tambahan gula pasir — tepat untuk yang menjaga asupan gula." },
+  { icon: CandyOff, title: "0% sukrosa", description: "Tanpa tambahan gula pasir, cocok untuk Anda yang sedang menjaga asupan gula." },
   { icon: Leaf, title: "Tanpa perisa & pengawet", description: "Rasa alami dari bahan pilihan, tanpa perisa buatan." },
   { icon: BadgeCheck, title: "Terdaftar BPOM", description: "Diproduksi higienis oleh CV Sentral Produksi Sumatra." },
 ];
@@ -27,7 +27,7 @@ const PERKS = [
 const CHANNELS = [
   { name: "TikTok Shop", description: "Pilih produk langsung dari etalase akun TikTok Diocca.", href: SOCIALS.diocca.tiktok, icon: SiTiktok, cta: "Buka TikTok Shop" },
   { name: "Shopee", description: "Toko resmi Diocca dengan pilihan pengiriman dan pembayaran lengkap.", href: SOCIALS.diocca.shopee, icon: SiShopee, cta: "Buka Shopee" },
-  { name: "WhatsApp", description: `Chat admin di ${DIOCCA_PHONE} — pesan otomatis sudah kami siapkan.`, href: ORDER_WA, icon: SiWhatsapp, cta: "Chat admin" },
+  { name: "WhatsApp", description: `Chat admin di ${DIOCCA_PHONE}, pesan otomatis sudah kami siapkan.`, href: ORDER_WA, icon: SiWhatsapp, cta: "Chat admin" },
 ];
 
 const fadeUp = (delay: number) => ({
@@ -47,8 +47,8 @@ export default function DioccaPage() {
   return (
     <>
       <Seo
-        title="Diocca — Susu Murni Tanpa Tambahan Gula"
-        description="Diocca: susu bubuk dengan 80% susu murni, 0% sukrosa, tanpa perisa dan pengawet. Varian Original & Cokelat, Rp 25.000 per pack."
+        title="Susu Murni Diocca Tanpa Tambahan Gula"
+        description="Diocca adalah susu bubuk dengan 80% susu murni, 0% sukrosa, tanpa perisa dan pengawet. Tersedia varian Original dan Cokelat seharga Rp 25.000 per pack."
       />
 
       {/* Hero */}
@@ -62,7 +62,7 @@ export default function DioccaPage() {
               <WordsReveal text="Lebih banyak susu," /> <WordsReveal text="tanpa tambahan gula." delay={0.18} className="text-dio" />
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed 2xl:max-w-2xl 2xl:text-xl text-dio-dark/85">
-              Beda dengan susu biasa — Diocca jujur: lebih banyak susu, tanpa gula tambahan, dan aman diminum setiap hari oleh
+              Beda dengan susu biasa, Diocca berisi lebih banyak susu, tanpa gula tambahan, dan aman diminum setiap hari oleh
               seluruh keluarga.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
@@ -130,7 +130,7 @@ export default function DioccaPage() {
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-muted">
                 Susu kami dibuat dengan kandungan terpercaya, bebas gula tambahan dan pengawet, lalu dikemas higienis untuk
-                menjaga kebaikannya — agar bisa dinikmati semua kalangan usia.
+                menjaga kualitasnya. Jadi bisa dinikmati semua kalangan usia.
               </p>
             </Reveal>
             <Reveal delay={0.1}>
@@ -275,7 +275,7 @@ function MenuSection({ onOpenImage }: { onOpenImage: (images: string[], index: n
                     transition={{ duration: 0.45, ease: EASE_OUT }}
                     className="absolute inset-0"
                   >
-                    <Image src={v.images[imageIndex]} alt={`${v.name} — foto ${imageIndex + 1}`} fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
+                    <Image src={v.images[imageIndex]} alt={`${v.name} foto ${imageIndex + 1}`} fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
                   </motion.div>
                 </AnimatePresence>
                 <span className="absolute bottom-3 right-3 z-20 grid size-11 place-items-center rounded-full bg-dio-dark text-white shadow-lg transition duration-300 group-hover:scale-110">

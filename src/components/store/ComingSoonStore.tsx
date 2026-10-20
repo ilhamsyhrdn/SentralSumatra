@@ -54,7 +54,7 @@ export function ComingSoonStore({
 
   return (
     <>
-      <Seo title={`${store.name} — Segera Hadir`} description={seoDescription} />
+      <Seo title={`${store.name} Segera Hadir`} description={seoDescription} />
 
       {/* Hero */}
       <Panel tone="ink" className="p-2 sm:p-3">
@@ -187,7 +187,7 @@ export function ComingSoonStore({
             <Chip dark>Kabar terbaru</Chip>
             <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Jadilah yang pertama tahu.</h2>
             <p className="mt-4 max-w-lg text-lg leading-relaxed text-white/85">
-              Kirim pesan dan kami kabari begitu {store.name} resmi dibuka — termasuk info harga perdana.
+              Kirim pesan, nanti kami kabari begitu {store.name} resmi dibuka, termasuk info harga perdananya.
             </p>
             <a href={notifyWa} target="_blank" rel="noopener noreferrer" className="btn press mt-8 bg-mint text-ink hover:bg-white">
               <SiWhatsapp className="size-4" />

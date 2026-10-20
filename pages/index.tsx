@@ -61,7 +61,7 @@ export default function HomePage() {
     <>
       <Seo
         title="Es Kristal, Sabun, Susu, Plastik & Kimia dari Jambi"
-        description="Sentral Sumatra menaungi AJ Kristal, Batanghari River, Diocca, Sentral Plastik, dan Sentral Kimia — produk berkualitas dengan harga terjangkau dari Kota Jambi."
+        description="Sentral Sumatra menaungi AJ Kristal, Batanghari River, Diocca, Sentral Plastik, dan Sentral Kimia. Produk berkualitas dengan harga terjangkau langsung dari Kota Jambi."
       />
 
       {/* Hero */}
@@ -80,8 +80,8 @@ export default function HomePage() {
               <WordsReveal text="dari satu sentral." delay={0.18} className="text-teal" />
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed 2xl:max-w-2xl 2xl:text-xl text-muted">
-              Sentral Sumatra menaungi lima unit usaha — es kristal, sabun, susu, plastik, dan kimia — dengan satu janji:
-              kualitas yang jujur dan harga yang masuk akal.
+              Sentral Sumatra menaungi lima unit usaha, yaitu es kristal, sabun, susu, plastik, dan kimia. Kualitasnya kami
+              jaga, harganya tetap masuk akal.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
               <Link href="/products" className="btn press group bg-ink text-white hover:bg-teal">
@@ -139,7 +139,7 @@ export default function HomePage() {
             dark
             chip="Unit usaha"
             title="Lima unit, satu standar kualitas."
-            description="Setiap unit punya dashboard sendiri — lengkap dengan produk, harga, dan cara pemesanan."
+            description="Setiap unit punya halaman sendiri yang berisi produk, harga, dan cara pemesanan."
             action={
               <Link href="/products" className="btn press group bg-white text-ink hover:bg-mint">
                 Lihat semua produk
@@ -190,7 +190,7 @@ export default function HomePage() {
             <figure className="absolute inset-x-3 bottom-3 rounded-2xl bg-white p-5 shadow-lg sm:inset-x-4 sm:bottom-4">
               <Quote className="size-5 text-leaf" />
               <blockquote className="mt-2 font-semibold leading-snug text-ink">
-                “Susu murni tanpa gula tambahan — aman diminum anak setiap hari.”
+                “Susu murni tanpa gula tambahan, aman diminum anak setiap hari.”
               </blockquote>
               <figcaption className="mt-2 text-sm text-muted">Pelanggan Diocca, Kota Jambi</figcaption>
             </figure>
@@ -253,7 +253,7 @@ export default function HomePage() {
               Butuh pasokan rutin untuk usaha Anda?
             </h2>
             <p className="mt-4 max-w-lg text-lg leading-relaxed text-white/85">
-              Pemesanan dalam jumlah besar, kemitraan reseller, atau sekadar tanya stok — tim kami siap membantu.
+              Mau pesan dalam jumlah besar, jadi reseller, atau sekadar tanya stok? Tim kami siap membantu.
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
               <a

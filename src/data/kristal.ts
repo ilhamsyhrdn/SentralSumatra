@@ -42,6 +42,6 @@ export const ICE_PRODUCTS: IceProduct[] = [
 ];
 
 export function iceOrderText(product: IceProduct, qty: number) {
-  const promo = qty >= AGENT_MIN_QTY ? " (promo agen: beli 10 dapat bonus 1 kantong)" : "";
+  const promo = qty >= AGENT_MIN_QTY ? " (promo agen beli 10 dapat bonus 1 kantong)" : "";
   return `Halo kak, saya ingin memesan ${qty} ${product.unit} ${product.name} AJ Kristal${promo}`;
 }

@@ -8,14 +8,14 @@ export default function SentralKimiaPage() {
     <ComingSoonStore
       store={getStore("sentral-kimia")}
       scene={FlaskScene}
-      seoDescription="Sentral Kimia segera hadir di Kota Jambi: penyedia bahan kimia untuk produksi sabun, kebersihan, dan kebutuhan industri skala kecil hingga menengah."
+      seoDescription="Sentral Kimia segera hadir di Kota Jambi sebagai penyedia bahan kimia untuk produksi sabun, kebersihan, dan kebutuhan industri skala kecil hingga menengah."
       title={["Bahan kimia tepat,", "produksi lebih lancar."]}
-      heroText="Penyedia bahan kimia untuk kebutuhan produksi, kebersihan, dan industri — dengan kualitas terjaga, informasi yang jelas, dan pasokan dari Kota Jambi."
+      heroText="Penyedia bahan kimia untuk kebutuhan produksi, kebersihan, dan industri. Kualitasnya terjaga, informasinya jelas, dan pasokannya langsung dari Kota Jambi."
       aboutTitle="Pemasok bahan kimia yang bisa diandalkan."
       aboutImage={{ src: "/stock/lab-bench.jpg", alt: "Meja laboratorium yang bersih dengan peralatan gelas" }}
       featureImage={{ src: "/stock/lab-beaker.jpg", alt: "Tangan bersarung memegang gelas beaker berisi cairan" }}
       aboutParagraphs={[
-        "Sentral Kimia disiapkan untuk memenuhi kebutuhan bahan kimia bagi pelaku usaha — mulai dari produsen sabun rumahan, usaha laundry, hingga industri skala kecil dan menengah.",
+        "Sentral Kimia disiapkan untuk memenuhi kebutuhan bahan kimia para pelaku usaha, mulai dari produsen sabun rumahan, usaha laundry, sampai industri skala kecil dan menengah.",
         "Berbekal pengalaman memproduksi sabun dan pembersih Batanghari River, kami memahami pentingnya bahan baku yang konsisten kualitasnya dan mudah didapat.",
       ]}
       points={[

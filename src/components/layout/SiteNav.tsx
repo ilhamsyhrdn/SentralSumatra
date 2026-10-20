@@ -25,7 +25,7 @@ export function SiteNav() {
   return (
     <>
       <NavShell label="Navigasi utama">
-        <Link href="/" aria-label="Sentral Sumatra — Beranda" className="group flex items-center gap-2.5 rounded-full py-1 pl-1 pr-3">
+        <Link href="/" aria-label="Beranda Sentral Sumatra" className="group flex items-center gap-2.5 rounded-full py-1 pl-1 pr-3">
           <SentralLogo size={48} priority className="ring-1 ring-black/5 transition duration-500 group-hover:rotate-[-10deg]" />
           <SentralWordmark />
         </Link>
