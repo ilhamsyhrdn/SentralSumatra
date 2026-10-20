@@ -91,8 +91,9 @@ export default function AjKristalPage() {
               <WordsReveal text="Es kristal asli Jambi," /> <WordsReveal text="dingin lebih lama." delay={0.18} className="text-kr" />
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 2xl:max-w-2xl 2xl:text-xl">
-              Didirikan tiga anak asli Jambi pada 2019, kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi. Esnya
-              bersih, harganya termurah di Jambi, dan diantar gratis ke seluruh Kota Jambi.
+              Didirikan pada 2019 oleh seorang lulusan Teknik Industri Universitas Brawijaya asal Jambi, kini AJ Kristal
+              menjadi produsen es kristal nomor 4 di Jambi. Esnya bersih, harganya termurah di Jambi, dan diantar gratis ke
+              seluruh Kota Jambi.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
               <a href="#produk" className="btn press bg-kr text-kr-dark hover:bg-kr-glow">
@@ -170,14 +171,14 @@ export default function AjKristalPage() {
               <KristalLogo size={52} />
               <p className="text-sm leading-snug text-muted">
                 <span className="block font-bold text-kr-dark">Berdiri sejak 2019</span>
-                Didirikan dan dijalankan anak asli Jambi.
+                Didirikan lulusan Teknik Industri Universitas Brawijaya asal Jambi.
               </p>
             </div>
           </Reveal>
           <div className="split-pad py-10 lg:py-14">
             <Reveal>
               <Chip colors="bg-kr-dark text-kr-glow">Cerita kami</Chip>
-              <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Dari tiga anak Jambi, untuk Jambi.</h2>
+              <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Dari anak Jambi, untuk Jambi.</h2>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed">
                 Kami percaya usaha daerah bisa tumbuh besar kalau dikerjakan dengan jujur. Es harus bersih, pasokan harus
                 tepat waktu, dan harganya harus masuk akal untuk pedagang kecil. Prinsip itu yang kami pegang sejak hari

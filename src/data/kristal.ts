@@ -61,8 +61,8 @@ export const ICE_PRODUCTS: IceProduct[] = [
 export const KRISTAL_STORY = [
   {
     mark: "2019",
-    title: "Berawal dari tiga sahabat",
-    text: "AJ Kristal didirikan oleh tiga anak asli Jambi yang melihat banyak kedai dan warung kesulitan mendapat es yang bersih dengan pasokan yang bisa diandalkan.",
+    title: "Pulang untuk membangun Jambi",
+    text: "AJ Kristal didirikan oleh seorang lulusan Teknik Industri Universitas Brawijaya yang berasal dari Jambi, dengan tujuan memajukan perekonomian Provinsi Jambi. Langkah pertamanya dimulai dari kebutuhan kedai dan warung akan es yang bersih.",
   },
   {
     mark: "Tumbuh",
@@ -72,7 +72,7 @@ export const KRISTAL_STORY = [
   {
     mark: "Kini",
     title: "Nomor 4 di Jambi",
-    text: "Sekarang AJ Kristal menjadi produsen es kristal nomor 4 di Jambi, tetap dijalankan anak daerah untuk melayani usaha di daerahnya sendiri.",
+    text: "Sekarang AJ Kristal menjadi produsen es kristal nomor 4 di Jambi, dengan tujuan yang sama sejak awal, yaitu ikut memajukan perekonomian Jambi.",
   },
 ];
 

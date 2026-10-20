@@ -54,7 +54,7 @@ export const STORES: Store[] = [
     category: "Es Kristal",
     tagline: "Es kristal 10 kg, 5 kg & es serut",
     description:
-      "Produsen es kristal nomor 4 di Jambi, didirikan tiga anak asli Jambi sejak 2019. Es kristal 10 kg, 5 kg, dan es serut dengan harga termurah di Jambi serta gratis antar se-Kota Jambi.",
+      "Produsen es kristal nomor 4 di Jambi sejak 2019, didirikan seorang lulusan Teknik Industri Universitas Brawijaya asal Jambi. Es kristal 10 kg, 5 kg, dan es serut dengan harga termurah di Jambi serta gratis antar se-Kota Jambi.",
     status: "available",
     icon: Snowflake,
     accent: "#C2410C",

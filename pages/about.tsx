@@ -29,7 +29,7 @@ const JOURNEY = [
     slug: "aj-kristal",
     mark: "2019",
     title: "AJ Kristal berdiri",
-    text: "Tiga anak asli Jambi mendirikan AJ Kristal untuk menyediakan es kristal yang bersih bagi kedai dan warung. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi.",
+    text: "Seorang lulusan Teknik Industri Universitas Brawijaya asal Jambi mendirikan AJ Kristal untuk memajukan perekonomian Provinsi Jambi. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi.",
   },
   {
     slug: "batanghari-river",
@@ -86,16 +86,17 @@ export default function AboutPage() {
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1.1fr_1fr]">
           <Reveal className="split-pad py-10 lg:py-14">
             <Chip>Cerita kami</Chip>
-            <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari anak-anak Jambi.</h2>
+            <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari anak Jambi, untuk Jambi.</h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <p>
                 Sentral Sumatra lahir dari keyakinan sederhana bahwa kebutuhan sehari-hari orang Jambi bisa dipenuhi oleh
                 usaha milik anak Jambi sendiri, dengan kualitas yang tidak kalah dan harga yang lebih bersahabat.
               </p>
               <p>
-                Tahun 2019 menjadi titik awalnya. Tiga anak asli Jambi mendirikan{" "}
-                <strong className="font-semibold text-ink">AJ Kristal</strong>, yang kini menjadi produsen es kristal nomor 4
-                di Jambi. Di tahun yang sama, <strong className="font-semibold text-ink">Batanghari River</strong> dirintis
+                Tahun 2019 menjadi titik awalnya. Seorang lulusan Teknik Industri Universitas Brawijaya yang berasal dari
+                Jambi mendirikan <strong className="font-semibold text-ink">AJ Kristal</strong> untuk memajukan perekonomian
+                Provinsi Jambi. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi. Di tahun yang sama,{" "}
+                <strong className="font-semibold text-ink">Batanghari River</strong> dirintis
                 oleh anak Teknik Industri Universitas Brawijaya yang pulang membangun produksi sabun dan parfum laundry, kini
                 satu-satunya di Jambi yang sudah berizin dan legal.
               </p>
