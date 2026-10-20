@@ -105,10 +105,13 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          <div className="relative min-h-[26rem] overflow-hidden rounded-[1.25rem] bg-[radial-gradient(80%_70%_at_55%_45%,#ffffff_0%,#dceee7_55%,#c4e3d7_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
-            <EmblemScene className="absolute inset-0" />
+          <div className="flex flex-col overflow-hidden rounded-[1.25rem] bg-[radial-gradient(80%_70%_at_55%_45%,#ffffff_0%,#dceee7_55%,#c4e3d7_100%)] sm:rounded-[1.5rem]">
+            {/* Kartu unit ada di bawah scene (bukan menimpanya), jadi lambang 3D selalu terlihat utuh */}
+            <div className="relative min-h-[17rem] flex-1 sm:min-h-[22rem]">
+              <EmblemScene className="absolute inset-0" />
+            </div>
             {/* 5 unit: 2 di baris atas, 3 di baris bawah (mobile: unit pertama selebar penuh) */}
-            <div className="absolute inset-x-3 bottom-3 grid grid-cols-2 gap-2 sm:inset-x-4 sm:bottom-4 sm:grid-cols-6">
+            <div className="relative grid grid-cols-2 gap-2 p-3 pt-0 sm:grid-cols-6 sm:p-4 sm:pt-0">
               {STORES.map((s, i) => {
                 const Icon = s.icon;
                 return (
@@ -122,7 +125,7 @@ export default function HomePage() {
                   >
                     <IconBadge icon={Icon} size="sm" className="bg-ink text-mint group-hover:bg-white/10" />
                     <span className="min-w-0 leading-tight">
-                      <span className="block truncate text-sm font-bold">{s.name}</span>
+                      <span className="block text-sm font-bold">{s.name}</span>
                       <span className="block text-xs text-muted transition-colors group-hover:text-white/80">
                         {s.status === "available" ? s.category : "Segera hadir"}
                       </span>
@@ -305,9 +308,17 @@ function PhotoTile({ store, large }: { store: Store; large?: boolean }) {
         <span className="absolute right-4 top-4 grid size-11 place-items-center rounded-full bg-white text-ink transition duration-500 group-hover:rotate-45 group-hover:bg-mint">
           <ArrowUpRight className="size-5" />
         </span>
-        <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7">
+        {/* Tile kecil di md hanya selebar ±1/4 layar, jadi judul & padding mengecil di sana */}
+        <div className={cn("absolute inset-x-0 bottom-0 p-5 text-white sm:p-7", !large && "md:p-5 xl:p-7")}>
           <p className="text-sm font-semibold text-mint">{store.category}</p>
-          <h3 className={cn("font-bold tracking-[-0.03em]", large ? "text-4xl sm:text-5xl" : "text-2xl sm:text-3xl")}>{store.name}</h3>
+          <h3
+            className={cn(
+              "mt-1.5 font-bold leading-[1.05] tracking-[-0.03em]",
+              large ? "text-4xl sm:text-5xl" : "text-2xl sm:text-3xl md:text-xl lg:text-2xl xl:text-3xl",
+            )}
+          >
+            {store.name}
+          </h3>
           {large && <p className="mt-3 max-w-md leading-relaxed text-white/85">{store.description}</p>}
         </div>
       </Tilt>

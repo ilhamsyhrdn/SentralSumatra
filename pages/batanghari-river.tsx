@@ -108,18 +108,21 @@ export default function BatanghariRiverPage() {
               <StatGrid items={HERO_STATS} className="max-w-lg" cardClass="bg-white/[0.07] ring-1 ring-white/10" labelClass="text-white/75" />
             </motion.div>
           </div>
-          <div className="relative grid min-h-[26rem] place-items-center overflow-hidden rounded-[1.25rem] bg-[radial-gradient(70%_70%_at_50%_40%,#ffb066_0%,#fb7102_55%,#c2500a_100%)] pb-16 pt-6 sm:min-h-[30rem] sm:rounded-[1.5rem]">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.1, ease: EASE_OUT }}
-              className="relative aspect-square w-[78%] max-w-[30rem] drop-shadow-[0_30px_40px_rgba(11,31,77,0.35)]"
-            >
-              <Image src="/Logo/LogoBatanghariRiver.png" alt="Logo Batanghari River dengan jembatan di tepi sungai saat senja" fill priority sizes="(min-width:1024px) 36vw, 78vw" />
-            </motion.div>
+          <div className="relative flex min-h-[26rem] flex-col overflow-hidden rounded-[1.25rem] bg-[radial-gradient(70%_70%_at_50%_40%,#ffb066_0%,#fb7102_55%,#c2500a_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
+            <div className="grid flex-1 place-items-center px-4 pt-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1.1, ease: EASE_OUT }}
+                className="relative aspect-square w-[78%] max-w-[30rem] drop-shadow-[0_30px_40px_rgba(11,31,77,0.35)]"
+              >
+                <Image src="/Logo/LogoBatanghariRiver.png" alt="Logo Batanghari River dengan jembatan di tepi sungai saat senja" fill priority sizes="(min-width:1024px) 36vw, 78vw" />
+              </motion.div>
+            </div>
             {/* screen: bagian gelap shader gelembung hilang di latar terang, hanya kilaunya yang tampil */}
             <BubblesScene className="absolute inset-0 mix-blend-screen" count={12} />
-            <div className="absolute bottom-3 left-3 flex flex-wrap gap-2 sm:bottom-4 sm:left-4">
+            {/* Pil ada di bawah logo (bukan menimpanya) */}
+            <div className="relative flex flex-wrap gap-2 p-3 sm:p-4">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-sm font-bold text-bh-navy shadow-lg">
                 <ShieldCheck className="size-4 text-bh-deep" />
                 Berizin & legal

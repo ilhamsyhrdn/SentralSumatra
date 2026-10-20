@@ -107,16 +107,17 @@ export default function AjKristalPage() {
               <StatGrid items={HERO_STATS} className="max-w-lg" cardClass="bg-white/[0.07] ring-1 ring-white/10" labelClass="text-white/75" />
             </motion.div>
           </div>
-          <div className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-kr sm:min-h-[30rem] sm:rounded-[1.5rem]">
+          {/* Pil ada di bawah logo (bukan menimpanya) agar teks logo tidak tertutup di layar mana pun */}
+          <div className="flex min-h-[24rem] flex-col overflow-hidden rounded-[1.25rem] bg-kr sm:min-h-[30rem] sm:rounded-[1.5rem]">
             <motion.div
               initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.1, ease: EASE_OUT }}
-              className="absolute inset-x-4 bottom-20 top-4 sm:bottom-24"
+              className="relative mx-4 mt-4 min-h-[17rem] flex-1 sm:min-h-[22rem]"
             >
               <Image src="/Logo/LogoAjKristal.jpeg" alt="Logo AJ Kristal, harimau memegang tabung es kristal" fill priority sizes="(min-width:1024px) 45vw, 100vw" className="object-contain" />
             </motion.div>
-            <div className="absolute bottom-3 left-3 flex flex-wrap gap-2 sm:bottom-4 sm:left-4">
+            <div className="flex flex-wrap gap-2 p-3 sm:p-4">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-sm font-bold text-kr-dark shadow-lg">
                 <BadgePercent className="size-4 text-kr-deep" />
                 Harga termurah di Jambi
@@ -161,9 +162,11 @@ export default function AjKristalPage() {
       {/* Cerita */}
       <Panel tone="kr" id="cerita" className="p-2 sm:p-3">
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_1.15fr]">
-          <Reveal className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-[radial-gradient(75%_70%_at_50%_42%,#ff8a4c_0%,#c2410c_48%,#1f130d_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
-            <IceScene className="absolute inset-0" />
-            <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg sm:inset-x-4 sm:bottom-4">
+          <Reveal className="flex min-h-[24rem] flex-col overflow-hidden rounded-[1.25rem] bg-[radial-gradient(75%_70%_at_50%_42%,#ff8a4c_0%,#c2410c_48%,#1f130d_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
+            <div className="relative min-h-[16rem] flex-1">
+              <IceScene className="absolute inset-0" />
+            </div>
+            <div className="m-3 mt-0 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg sm:m-4 sm:mt-0">
               <KristalLogo size={52} />
               <p className="text-sm leading-snug text-muted">
                 <span className="block font-bold text-kr-dark">Berdiri sejak 2019</span>
@@ -325,11 +328,11 @@ export default function AjKristalPage() {
               </a>
             </div>
           </div>
-          <Reveal delay={0.1} className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-kr sm:rounded-[1.5rem]">
-            <div className="absolute inset-x-6 bottom-36 top-6 sm:bottom-28">
+          <Reveal delay={0.1} className="flex min-h-[24rem] flex-col overflow-hidden rounded-[1.25rem] bg-kr sm:rounded-[1.5rem]">
+            <div className="relative mx-6 mt-6 min-h-[15rem] flex-1">
               <Image src="/Logo/LogoAjKristal.jpeg" alt="" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-contain" />
             </div>
-            <dl className="absolute inset-x-3 bottom-3 grid gap-3 rounded-2xl bg-white p-5 text-kr-dark shadow-lg sm:inset-x-4 sm:bottom-4 sm:grid-cols-2">
+            <dl className="m-3 grid gap-3 rounded-2xl bg-white p-5 text-kr-dark shadow-lg sm:m-4 sm:grid-cols-2">
               <div>
                 <dt className="text-sm text-muted">WhatsApp admin</dt>
                 <dd className="font-bold">{KRISTAL_PHONE}</dd>

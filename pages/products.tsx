@@ -82,7 +82,8 @@ export default function ProductsPage() {
                   <span className="relative">{f.label}</span>
                   <span
                     className={cn(
-                      "relative grid min-w-6 place-items-center rounded-full px-1.5 text-xs tabular-nums",
+                      // Di layar sangat sempit (<380px) angka disembunyikan agar ketiga tab muat
+                      "relative grid min-w-6 place-items-center rounded-full px-1.5 text-xs tabular-nums max-[379px]:hidden",
                       active ? "bg-white/20 text-white" : "bg-white text-ink",
                     )}
                   >

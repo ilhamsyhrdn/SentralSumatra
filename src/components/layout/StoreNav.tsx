@@ -32,7 +32,7 @@ export function StoreNav({ store }: { store: Store }) {
 
   return (
     <div style={{ "--accent": store.accent, "--dark": store.dark, "--glow": store.glow } as CSSProperties} className="contents">
-      <NavShell label={`Navigasi ${store.name}`}>
+      <NavShell label={`Navigasi ${store.name}`} menuOpen={open}>
         <div className="flex min-w-0 items-center gap-1.5">
           <Link
             href="/"

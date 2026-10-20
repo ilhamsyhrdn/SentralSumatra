@@ -4,10 +4,18 @@ import { Menu, X } from "lucide-react";
 import { EASE_OUT } from "@/components/motion/Reveal";
 import { cn } from "@/lib/utils";
 
-/** Bingkai navbar: pil putih solid yang menempel di atas, dipakai navbar utama & navbar sub-toko */
-export function NavShell({ label, children }: { label: string; children: ReactNode }) {
+/** Bingkai navbar: pil putih solid yang menempel di atas, dipakai navbar utama & navbar sub-toko.
+    Pita ::before berwarna latar menutup celah di atas pil (dan area status bar HP) supaya konten
+    yang di-scroll tidak terlihat menembus di atas navbar; disembunyikan saat menu mobile terbuka. */
+export function NavShell({ label, menuOpen = false, children }: { label: string; menuOpen?: boolean; children: ReactNode }) {
   return (
-    <header className="sticky top-0 z-50 px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3">
+    <header
+      className={cn(
+        "sticky top-0 z-50 px-2 pb-2 pt-2 sm:px-3 sm:pb-3 sm:pt-3",
+        "before:pointer-events-none before:absolute before:inset-x-0 before:bottom-[calc(100%-0.5rem)] before:h-40 before:bg-canvas before:transition-opacity sm:before:bottom-[calc(100%-0.75rem)]",
+        menuOpen && "before:opacity-0",
+      )}
+    >
       <nav
         aria-label={label}
         className="flex h-16 items-center justify-between gap-3 rounded-full bg-white px-2 shadow-[0_12px_32px_-14px_rgba(15,42,48,0.35)] ring-1 ring-black/[0.07] sm:h-[4.5rem]"
