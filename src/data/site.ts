@@ -42,13 +42,16 @@ export const CONTACT = {
 };
 
 export const SOCIALS = {
+  /** Toko Shopee resmi Sentral Sumatra (shopee.co.id/sentralsumatra) */
+  sentral: {
+    shopee: "https://s.shopee.co.id/9V2OWUzfEG",
+  },
   kristal: {
     instagram: "https://www.instagram.com/eskristal_aj",
   },
   diocca: {
     instagram: "https://www.instagram.com/diocca.id",
     tiktok: "https://www.tiktok.com/@diocca",
-    shopee: "https://shopee.co.id/diocca.id",
   },
   batanghari: {
     instagram: "https://www.instagram.com/batanghaririver",

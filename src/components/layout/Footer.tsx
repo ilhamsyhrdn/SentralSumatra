@@ -13,10 +13,10 @@ const WA_LINES = [
 ];
 
 const SOCIAL_LINKS = [
+  { label: "Shopee Sentral Sumatra", href: SOCIALS.sentral.shopee, icon: SiShopee },
   { label: "Instagram AJ Kristal", href: SOCIALS.kristal.instagram, icon: SiInstagram },
   { label: "Instagram Diocca", href: SOCIALS.diocca.instagram, icon: SiInstagram },
   { label: "TikTok Diocca", href: SOCIALS.diocca.tiktok, icon: SiTiktok },
-  { label: "Shopee Diocca", href: SOCIALS.diocca.shopee, icon: SiShopee },
   { label: "Instagram Batanghari River", href: SOCIALS.batanghari.instagram, icon: SiInstagram },
   { label: "TikTok Batanghari River", href: SOCIALS.batanghari.tiktok, icon: SiTiktok },
 ];

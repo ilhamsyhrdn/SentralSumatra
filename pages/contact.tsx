@@ -19,10 +19,10 @@ const fieldClass =
   "w-full rounded-2xl border border-black/10 bg-soft px-4 py-3.5 text-ink placeholder:text-muted/80 transition duration-200 focus:border-leaf focus:bg-white focus:outline-none focus:ring-4 focus:ring-leaf/20";
 
 const SOCIAL_PILLS = [
+  { brand: "Sentral Sumatra", label: "Shopee", href: SOCIALS.sentral.shopee, icon: SiShopee },
   { brand: "AJ Kristal", label: "@eskristal_aj", href: SOCIALS.kristal.instagram, icon: SiInstagram },
   { brand: "Diocca", label: "@diocca.id", href: SOCIALS.diocca.instagram, icon: SiInstagram },
   { brand: "Diocca", label: "@diocca", href: SOCIALS.diocca.tiktok, icon: SiTiktok },
-  { brand: "Diocca", label: "Shopee", href: SOCIALS.diocca.shopee, icon: SiShopee },
   { brand: "Batanghari", label: "@batanghaririver", href: SOCIALS.batanghari.instagram, icon: SiInstagram },
   { brand: "Batanghari", label: "@batanghaririver", href: SOCIALS.batanghari.tiktok, icon: SiTiktok },
 ];
