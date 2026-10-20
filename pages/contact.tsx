@@ -1,269 +1,219 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, Instagram, ShoppingBag } from "lucide-react";
-import { useState } from "react";
+import { useState, type ChangeEvent, type ComponentType, type FormEvent, type ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, ChevronDown, CircleCheckBig, Clock, Mail, MapPin, Navigation, Phone, Send } from "lucide-react";
+import { SiInstagram, SiShopee, SiTiktok } from "react-icons/si";
+import { Seo } from "@/components/common/Seo";
+import { PageIntro } from "@/components/common/PageIntro";
+import { Chip, IconBadge, Panel } from "@/components/ui-kit";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { CONTACT, SOCIALS } from "@/data/site";
+import { STORES } from "@/data/stores";
+import { cn, waLink } from "@/lib/utils";
+
+const TOPICS = ["Umum (Sentral Sumatra)", ...STORES.map((s) => s.name)];
+const EMPTY_FORM = { name: "", phone: "", email: "", topic: TOPICS[0], subject: "", message: "" };
+
+const fieldClass =
+  "w-full rounded-2xl border border-black/10 bg-soft px-4 py-3.5 text-ink placeholder:text-muted/80 transition duration-200 focus:border-leaf focus:bg-white focus:outline-none focus:ring-4 focus:ring-leaf/20";
+
+const SOCIAL_PILLS = [
+  { brand: "Diocca", label: "@diocca.id", href: SOCIALS.diocca.instagram, icon: SiInstagram },
+  { brand: "Diocca", label: "@diocca", href: SOCIALS.diocca.tiktok, icon: SiTiktok },
+  { brand: "Diocca", label: "Shopee", href: SOCIALS.diocca.shopee, icon: SiShopee },
+  { brand: "Batanghari", label: "@batanghaririver", href: SOCIALS.batanghari.instagram, icon: SiInstagram },
+];
+
+const INFO = [
+  { icon: MapPin, label: "Alamat", value: CONTACT.addressLines.join(", "), href: CONTACT.mapsLink },
+  { icon: Phone, label: "Telepon / WhatsApp", value: CONTACT.phoneDisplay, href: `https://wa.me/${CONTACT.wa}` },
+  { icon: Mail, label: "Email", value: CONTACT.emails.join(" · "), href: `mailto:${CONTACT.emails[0]}` },
+  { icon: Clock, label: "Jam operasional", value: CONTACT.hours.map((h) => `${h.day}: ${h.time}`).join(" · ") },
+];
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  });
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [sent, setSent] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    });
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setSent(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const waNumber = "6282110004602";
-    const waMessage =
-      `Nama Depan = ${formData.firstName}\n` +
-      `Nama Belakang = ${formData.lastName}\n` +
-      `Email = ${formData.email}\n` +
-      `Nomor Telepon = ${formData.phone}\n` +
-      `Subjek = ${formData.subject}\n` +
-      `Pesan = ${formData.message}`;
-    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
-    window.open(waUrl, "_blank");
+    const text = [
+      `Nama = ${form.name}`,
+      `Nomor Telepon = ${form.phone}`,
+      form.email && `Email = ${form.email}`,
+      `Tujuan = ${form.topic}`,
+      `Subjek = ${form.subject}`,
+      `Pesan = ${form.message}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    window.open(waLink(CONTACT.wa, text), "_blank", "noopener,noreferrer");
+    setSent(true);
   };
 
   return (
-    <section className="py-12 lg:py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div>
-            <h2 className="mb-8">INFORMASI KONTAK</h2>
-            
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <MapPin className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="mb-2">Alamat</h3>
-                  <p className="text-gray-600">
-                    Jl. Sersan Anwar Bay, RT.01/RW.01, Bagan Pete, Kec. Alam Barajo<br />
-                    Kota Jambi, Jambi 36361<br />
-                    Indonesia
-                  </p>
-                </div>
-              </div>
+    <>
+      <Seo
+        title="Hubungi Kami"
+        description="Hubungi Sentral Sumatra di Kota Jambi melalui WhatsApp, email, atau kunjungi lokasi kami. Kami siap membantu pemesanan dan kemitraan."
+      />
 
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <Phone className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="mb-2">Telepon/WhatsApp</h3>
-                  <p className="text-gray-600">
-                    +62 821 1000 4602
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <Mail className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="mb-2">Email</h3>
-                  <p className="text-gray-600">
-                    info@ajproduct.com<br />
-                    sales@ajproduct.com
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <Clock className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="mb-2">Jam Operasional</h3>
-                  <p className="text-gray-600">
-                    Senin - Sabtu: 08.00 - 16.00 WIB<br />
-                    Minggu & Hari Libur: Tutup
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Media Links */}
-            <div className="mt-8 p-6 bg-blue-50 rounded-lg">
-              <h3 className="mb-4">Ikuti Media Sosial Kami</h3>
-              
-              <div className="mb-6">
-                <p className="text-sm font-medium text-gray-700 mb-3">DIOCCA</p>
-                <div className="flex flex-wrap gap-3">
-                  <a 
-                    href="https://www.instagram.com/diocca.id?igsh=OXR4dHA0dThldW9o"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-pink-50 transition-colors border border-gray-200"
-                  >
-                    <Instagram className="h-5 w-5 text-pink-600" />
-                    <span className="text-sm">@diocca.id</span>
-                  </a>
-                  <a 
-                    href="https://www.tiktok.com/@diocca?_r=1&_t=ZS-91ArPyD3XyG"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-gray-50 transition-colors border border-gray-200"
-                  >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                    </svg>
-                    <span className="text-sm">@diocca</span>
-                  </a>
-                  <a 
-                    href="https://shopee.co.id/diocca.id"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-orange-50 transition-colors border border-gray-200"
-                  >
-                    <ShoppingBag className="h-5 w-5 text-orange-600" />
-                    <span className="text-sm">Shopee Store</span>
-                  </a>
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-medium text-gray-700 mb-3">BATANGHARI RIVER</p>
-                <div className="flex flex-wrap gap-3">
-                  <a 
-                    href="https://www.instagram.com/batanghaririver?igsh=MXFtMmdqenlmNjh4cQ=="
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-pink-50 transition-colors border border-gray-200"
-                  >
-                    <Instagram className="h-5 w-5 text-pink-600" />
-                    <span className="text-sm">@batanghaririver</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Map Placeholder */}
-            <div className="mt-8 aspect-video bg-gray-200 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.1981895044096!2d103.56312927501392!3d-1.6328669983519501!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e25876cfb90b0f7%3A0xab74201606701a6f!2sCV.%20Agrotech%20Sumatera%20Mandiri!5e0!3m2!1sid!2sid!4v1762434525450!5m2!1sid!2sid"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Location Map"
-              />
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div>
-            <h2 className="mb-8">KIRIM PESAN</h2>
-            
-            {status && (
-              <div className={`mb-6 p-4 rounded-lg ${
-                status.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
-              }`}>
-                {status.message}
-              </div>
-            )}
-
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">Nama Depan</Label>
-                  <Input 
-                    id="firstName" 
-                    placeholder="Masukkan nama depan" 
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Nama Belakang</Label>
-                  <Input 
-                    id="lastName" 
-                    placeholder="Masukkan nama belakang"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  placeholder="email@example.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="phone">Nomor Telepon</Label>
-                <Input 
-                  id="phone" 
-                  type="tel" 
-                  placeholder="+62 812 3456 7890"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subjek</Label>
-                <Input 
-                  id="subject" 
-                  placeholder="Perihal pesan Anda"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">Pesan</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Tulis pesan Anda di sini..."
-                  rows={6}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <Button 
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                disabled={loading}
-              >
-                {loading ? 'Mengirim...' : 'KIRIM PESAN'}
-              </Button>
-            </form>
-          </div>
+      <PageIntro
+        chip="Hubungi kami"
+        title="Mari"
+        accent="bicara."
+        description="Pertanyaan seputar produk, pemesanan dalam jumlah besar, atau peluang kemitraan — tim kami siap membantu."
+        aside={
+          <Stagger className="grid h-full gap-2 sm:grid-cols-2 sm:gap-3">
+            {INFO.map((item) => (
+              <StaggerItem key={item.label} className="h-full">
+                <InfoCard {...item} />
+              </StaggerItem>
+            ))}
+          </Stagger>
+        }
+      >
+        <div className="mt-8 flex flex-wrap gap-2">
+          {SOCIAL_PILLS.map(({ brand, label, href, icon: Icon }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="press group inline-flex items-center gap-2 rounded-full bg-soft px-4 py-2.5 text-sm font-semibold text-ink ring-1 ring-black/[0.06] transition duration-300 hover:-translate-y-0.5 hover:bg-ink hover:text-white active:scale-95"
+            >
+              <Icon className="size-4" />
+              {label}
+              <span className="font-medium text-muted transition-colors group-hover:text-white">· {brand}</span>
+            </a>
+          ))}
         </div>
-      </div>
-    </section>
+      </PageIntro>
+
+      <Panel tone="soft" className="p-2 sm:p-3">
+        <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1.1fr_1fr]">
+          <Reveal>
+            <form onSubmit={onSubmit} className="h-full rounded-[1.25rem] bg-white p-6 sm:rounded-[1.5rem] sm:p-10">
+              <Chip>Formulir</Chip>
+              <h2 className="mt-5 text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Kirim pesan</h2>
+              <p className="mt-2 text-muted">Pesan Anda langsung diteruskan ke WhatsApp kami.</p>
+
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                <Field label="Nama lengkap" htmlFor="name">
+                  <input id="name" name="name" required value={form.name} onChange={onChange} placeholder="Nama Anda" className={fieldClass} />
+                </Field>
+                <Field label="Nomor WhatsApp" htmlFor="phone">
+                  <input id="phone" name="phone" type="tel" required value={form.phone} onChange={onChange} placeholder="0812 3456 7890" className={fieldClass} />
+                </Field>
+                <Field label="Email" htmlFor="email" hint="Opsional">
+                  <input id="email" name="email" type="email" value={form.email} onChange={onChange} placeholder="email@contoh.com" className={fieldClass} />
+                </Field>
+                <Field label="Tujuan" htmlFor="topic">
+                  <div className="relative">
+                    <select id="topic" name="topic" value={form.topic} onChange={onChange} className={cn(fieldClass, "appearance-none pr-10")}>
+                      {TOPICS.map((t) => (
+                        <option key={t}>{t}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-ink" />
+                  </div>
+                </Field>
+                <Field label="Subjek" htmlFor="subject" className="sm:col-span-2">
+                  <input id="subject" name="subject" required value={form.subject} onChange={onChange} placeholder="Perihal pesan Anda" className={fieldClass} />
+                </Field>
+                <Field label="Pesan" htmlFor="message" className="sm:col-span-2">
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    value={form.message}
+                    onChange={onChange}
+                    placeholder="Tulis pesan Anda di sini..."
+                    className={cn(fieldClass, "resize-none")}
+                  />
+                </Field>
+              </div>
+
+              <AnimatePresence>
+                {sent && (
+                  <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
+                    <span className="mt-6 flex items-start gap-3 rounded-2xl bg-leaf-soft p-4 text-sm font-medium text-leaf-ink">
+                      <CircleCheckBig className="mt-0.5 size-5 shrink-0" />
+                      Pesan sudah disiapkan di WhatsApp. Tekan kirim di WhatsApp untuk menyelesaikannya.
+                    </span>
+                  </motion.p>
+                )}
+              </AnimatePresence>
+
+              <button type="submit" className="btn press group mt-8 w-full bg-ink py-4 text-base text-white hover:bg-teal">
+                Kirim via WhatsApp
+                <Send className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1" />
+              </button>
+            </form>
+          </Reveal>
+
+          <Reveal delay={0.1} className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-canvas sm:rounded-[1.5rem]">
+            <iframe
+              src={CONTACT.mapsEmbed}
+              title="Peta lokasi Sentral Sumatra"
+              className="absolute inset-0 h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <div className="absolute inset-x-3 bottom-3 flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-lg sm:inset-x-4 sm:bottom-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm leading-snug text-muted">
+                <span className="block font-bold text-ink">Lokasi kami</span>
+                {CONTACT.addressLines[1]}
+              </p>
+              <a href={CONTACT.mapsLink} target="_blank" rel="noopener noreferrer" className="btn press shrink-0 bg-ink text-white hover:bg-teal">
+                <Navigation className="size-4" />
+                Buka Google Maps
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </Panel>
+    </>
+  );
+}
+
+function InfoCard({ icon, label, value, href }: { icon: ComponentType<{ className?: string }>; label: string; value: string; href?: string }) {
+  const body = (
+    <>
+      <span className="flex items-start justify-between">
+        <IconBadge icon={icon} className="bg-ink text-mint group-hover:bg-mint group-hover:text-ink" />
+        {href && <ArrowUpRight className="size-5 text-ink transition duration-500 group-hover:rotate-45" />}
+      </span>
+      <span className="mt-auto block pt-6">
+        <span className="block text-sm font-medium text-muted">{label}</span>
+        <span className="mt-1 block font-semibold leading-snug">{value}</span>
+      </span>
+    </>
+  );
+  const cls = "group flex h-full min-h-40 flex-col rounded-[1.25rem] bg-soft p-5 transition duration-300 hover:bg-white hover:shadow-lg sm:rounded-[1.5rem] sm:p-6";
+  return href ? (
+    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className={cn(cls, "press")}>
+      {body}
+    </a>
+  ) : (
+    <div className={cls}>{body}</div>
+  );
+}
+
+function Field({ label, htmlFor, hint, className, children }: { label: string; htmlFor: string; hint?: string; className?: string; children: ReactNode }) {
+  return (
+    <div className={className}>
+      <label htmlFor={htmlFor} className="mb-2 flex items-center justify-between text-sm font-semibold text-ink">
+        {label}
+        {hint && <span className="text-xs font-medium text-muted">{hint}</span>}
+      </label>
+      {children}
+    </div>
   );
 }

@@ -1,173 +1,196 @@
-import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
-import { Heart, Leaf, Sparkles } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Seo } from "@/components/common/Seo";
+import { PageIntro } from "@/components/common/PageIntro";
+import { SentralLogo, SentralWordmark } from "@/components/common/Logos";
+import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Tilt } from "@/components/motion/Tilt";
+import { STORES } from "@/data/stores";
+import { SENTRAL_VALUES } from "@/data/site";
+import { cn } from "@/lib/utils";
 
-const values = [
-  {
-    icon: Heart,
-    title: "Berkualitas Tinggi",
-    description: "Semua produk kami telah tersertifikasi dan melewati quality control yang ketat."
-  },
-  {
-    icon: Leaf,
-    title: "Higienis & Aman",
-    description: "Diproduksi dengan standar kebersihan tinggi dan aman untuk seluruh keluarga."
-  },
-  {
-    icon: Sparkles,
-    title: "Harga Terjangkau",
-    description: "Kualitas premium dengan harga yang ramah di kantong untuk semua kalangan."
-  }
+const MISSIONS = [
+  "Menghadirkan produk berkualitas, higienis, dan aman dengan harga yang terjangkau.",
+  "Mendukung pertumbuhan UMKM melalui pasokan kemasan dan bahan baku yang andal.",
+  "Mengutamakan produksi lokal agar manfaatnya kembali ke masyarakat Jambi.",
+  "Terus berinovasi dengan mendengarkan kebutuhan pelanggan.",
+];
+
+const STATS = [
+  { value: "2020", label: "Mulai berdiri" },
+  { value: "4", label: "Unit usaha" },
+  { value: "14+", label: "Varian produk" },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative flex items-center justify-center min-h-screen overflow-hidden" style={{ backgroundColor: '#036635' }}>
-        <img
-          src="/background/backgroundAbout.jpg"
-          alt="Background About"
-          className="absolute inset-0 w-full h-full object-cover object-center z-0"
-          style={{ minHeight: '100%', height: '100%', maxHeight: '100vh' }}
-        />
-        <div className="absolute inset-0 bg-black/40 z-10" />
-        <div className="relative z-20 w-full flex flex-col items-center justify-center px-4 py-12">
-          <div className="bg-white/80 rounded-lg px-6 py-8 max-w-2xl mx-auto text-center">
-            <h1 className="mb-4 text-2xl md:text-4xl font-bold text-green-900 drop-shadow">TENTANG KAMI</h1>
-            <p className="text-lg md:text-xl text-gray-800 font-semibold drop-shadow mb-2">
-              DIOCCA, susu segar berkualitas untuk keluarga Indonesia. Tersedia varian original dan cokelat, aman dikonsumsi setiap hari, bergizi lengkap, dan sudah bersertifikat. Pilihan tepat untuk kesehatan dan kebahagiaan keluarga Anda.
-            </p>
-          </div>
-        </div>
-      </section>
+    <>
+      <Seo
+        title="Tentang Kami"
+        description="Kenali Sentral Sumatra, induk usaha asal Kota Jambi yang menaungi Diocca, Batanghari River, Sentral Plastik, dan Sentral Kimia."
+      />
 
-      {/* Story Section */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h2>KOMITMEN KAMI UNTUK KUALITAS</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Didirikan pada tahun 2020, AJProduct lahir dari komitmen sederhana: menyediakan 
-              produk berkualitas tinggi yang terjangkau untuk setiap keluarga Indonesia. Kami 
-              memahami pentingnya produk sehari-hari yang aman, higienis, sehat dan dapat diandalkan.
-            </p>
-            <p className="text-gray-600 leading-relaxed">
-              Produk susu kami dibuat dengan kandungan terpercaya yang dimana bebas dari gula dan bahan pengawet.
-              lalu dikemas dengan hiegienis untuk menjaga kebaikan didalamnya dan kualitasnya.
-              kami juga membuat produk ini dengan sepenuh hati agar bisa dinikmati semua kalangan usia.
-            </p>
-            <p className="text-gray-600 leading-relaxed">
-              Saat ini, AJProduct telah menjadi pilihan utama ribuan keluarga di seluruh Indonesia. 
-              Kami terus berinovasi dan meningkatkan kualitas produk untuk memberikan yang terbaik 
-              bagi pelanggan kami.
-            </p>
+      <PageIntro
+        chip="Tentang kami"
+        title="Tumbuh dari Jambi,"
+        accent="melayani Sumatra."
+        description="Sentral Sumatra adalah induk usaha yang menaungi empat unit — dari susu murni hingga bahan kimia — dengan satu komitmen: produk berkualitas yang terjangkau."
+        aside={
+          <div className="grid h-full min-h-[26rem] grid-cols-2 grid-rows-2 gap-2 sm:gap-3">
+            <div className="relative row-span-2 overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+              <Image src="/stock/milk-pour.jpg" alt="Susu dituang ke gelas" fill priority sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
+            </div>
+            <div className="relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+              <Image src="/background/backgroundSabun.jpg" alt="Produk sabun Batanghari River" fill sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
+            </div>
+            <div className="relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+              <Image src="/stock/cups-boba.jpg" alt="Minuman dalam cup plastik" fill sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
+            </div>
           </div>
-        </div>
-      </section>
+        }
+      >
+        <dl className="mt-10 grid max-w-lg grid-cols-3 gap-2">
+          {STATS.map((s) => (
+            <div key={s.label} className="flex flex-col-reverse rounded-2xl bg-soft px-4 py-3.5">
+              <dt className="text-sm text-muted">{s.label}</dt>
+              <dd className="text-2xl font-extrabold tracking-tight sm:text-3xl">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </PageIntro>
 
-      {/* Values Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="mb-4">NILAI-NILAI KAMI</h2>
-            <p className="text-gray-600">
-              Prinsip yang menjadi landasan dalam setiap produk kami
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-black text-white rounded-full mb-4">
-                    <Icon className="h-8 w-8" />
-                  </div>
-                  <h3 className="mb-3">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </div>
-              );
-            })}
-          </div>
+      {/* Cerita */}
+      <Panel tone="soft" className="p-2 sm:p-3">
+        <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1.1fr_1fr]">
+          <Reveal className="split-pad py-10 lg:py-14">
+            <Chip>Cerita kami</Chip>
+            <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari komitmen sederhana.</h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <p>
+                Berdiri sejak 2020 di Kota Jambi, kami lahir dari satu tekad: menyediakan produk berkualitas tinggi yang
+                terjangkau untuk setiap keluarga — produk sehari-hari yang aman, higienis, sehat, dan bisa diandalkan.
+              </p>
+              <p>
+                Melalui <strong className="font-semibold text-ink">Diocca</strong> dan{" "}
+                <strong className="font-semibold text-ink">Batanghari River</strong>, kami menghadirkan susu murni tanpa
+                tambahan gula serta sabun rumah tangga produksi Jambi. Kini{" "}
+                <strong className="font-semibold text-ink">Sentral Plastik</strong> dan{" "}
+                <strong className="font-semibold text-ink">Sentral Kimia</strong> sedang disiapkan untuk kebutuhan kemasan
+                dan bahan kimia bagi UMKM dan industri.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1} className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+            <Image src="/stock/warehouse.jpg" alt="Gudang distribusi" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
+            <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg sm:inset-x-4 sm:bottom-4">
+              <SentralLogo size={52} className="ring-1 ring-black/5" />
+              <p className="text-sm leading-snug text-muted">
+                <span className="block font-bold text-ink">Satu pintu untuk kebutuhan Anda</span>
+                Rumah tangga hingga pelaku usaha.
+              </p>
+            </div>
+          </Reveal>
         </div>
-      </section>
+      </Panel>
 
-      {/* Image Grid */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuCoklat1.jpg"
-                alt="Susu Coklat 1"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
+      {/* Visi & misi */}
+      <Panel tone="ink">
+        <div className="container-x grid gap-10 py-14 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:py-20">
+          <Reveal>
+            <Chip dark>Visi & misi</Chip>
+            <p className="mt-6 text-3xl font-semibold leading-[1.2] tracking-[-0.03em] sm:text-4xl lg:text-[2.75rem]">
+              “Menjadi pusat penyedia kebutuhan rumah tangga dan usaha yang <span className="text-mint">paling dipercaya di Sumatra.</span>”
+            </p>
+          </Reveal>
+          <Stagger className="grid gap-3 sm:grid-cols-2">
+            {MISSIONS.map((m, i) => (
+              <StaggerItem key={m} className="flex h-full flex-col gap-4 rounded-3xl bg-white/[0.07] p-6 ring-1 ring-white/10">
+                <NumberBadge n={i + 1} className="bg-mint text-ink" />
+                <p className="text-lg leading-relaxed text-white/90">{m}</p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </Panel>
+
+      {/* Nilai */}
+      <Panel tone="white">
+        <div className="container-x py-14 lg:py-20">
+          <SectionHead
+            chip="Nilai kami"
+            title="Prinsip di balik setiap produk."
+            description="Empat nilai yang kami pegang di semua unit usaha, dari produksi hingga ke tangan pelanggan."
+          />
+          <Stagger className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {SENTRAL_VALUES.map((v) => (
+              <StaggerItem key={v.title} className="group h-full rounded-3xl bg-soft p-6 transition duration-300 hover:-translate-y-1 hover:bg-ink hover:text-white">
+                <IconBadge icon={v.icon} size="lg" className="bg-ink text-mint group-hover:bg-mint group-hover:text-ink" />
+                <h3 className="mt-6 text-xl font-bold tracking-tight">{v.title}</h3>
+                <p className="mt-2 leading-relaxed text-muted transition-colors group-hover:text-white/80">{v.description}</p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </Panel>
+
+      {/* Struktur usaha */}
+      <Panel tone="soft">
+        <div className="container-x py-14 lg:py-20">
+          <SectionHead chip="Struktur usaha" title="Satu induk, empat unit usaha." />
+
+          <Reveal className="mt-10 flex flex-col items-center">
+            <div className="flex items-center gap-4 rounded-full bg-white py-2.5 pl-2.5 pr-7 shadow-sm ring-1 ring-black/[0.05]">
+              <SentralLogo size={56} className="ring-1 ring-black/5" />
+              <SentralWordmark />
             </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuCoklat2.jpg"
-                alt="Susu Coklat 2"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuCoklat3.jpg"
-                alt="Susu Coklat 3"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuCoklat4.jpg"
-                alt="Susu Coklat 4"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuCoklat5.jpg"
-                alt="Susu Coklat 5"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuPutih1.jpg"
-                alt="Susu Putih 1"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuPutih2.jpg"
-                alt="Susu Putih 2"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/SusuPutih3.jpg"
-                alt="Susu Putih 3"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuPutih4.jpg"
-                alt="Susu Putih 4"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden">
-              <ImageWithFallback
-                src="/gambarProduct/susuPutih5.jpg"
-                alt="Susu Putih 5"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
+            <div className="h-8 w-px bg-ink/25" />
+          </Reveal>
+
+          <div className="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:pt-8">
+            {/* Garis penghubung antar-kolom; memperhitungkan gap 0.75rem */}
+            <div
+              aria-hidden
+              className="absolute left-[calc((100%-2.25rem)/8)] right-[calc((100%-2.25rem)/8)] top-0 hidden h-px bg-ink/25 lg:block"
+            />
+            {STORES.map((s, i) => (
+              <Reveal key={s.slug} delay={i * 0.06} className="relative h-full">
+                <div aria-hidden className="absolute -top-8 left-1/2 hidden h-8 w-px bg-ink/25 lg:block" />
+                <Link href={s.href} className="group block h-full">
+                  <Tilt className="h-full" innerClassName="flex h-full flex-col rounded-3xl bg-white p-2">
+                    <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl">
+                      <Image src={s.image} alt={s.name} fill sizes="(min-width:1024px) 24vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" />
+                      <span
+                        className={cn(
+                          "absolute left-2.5 top-2.5 rounded-full px-2.5 py-1 text-xs font-bold",
+                          s.status === "available" ? "bg-white text-leaf-ink" : "bg-ink text-white",
+                        )}
+                      >
+                        {s.status === "available" ? "Tersedia" : "Segera hadir"}
+                      </span>
+                    </span>
+                    <span className="flex flex-1 flex-col p-4">
+                      <span className="flex items-start justify-between gap-2">
+                        <span className="text-xl font-bold tracking-tight">{s.name}</span>
+                        <ArrowUpRight className="size-5 shrink-0 text-ink transition duration-500 group-hover:rotate-45" />
+                      </span>
+                      <span className="mt-1 text-sm text-muted">{s.tagline}</span>
+                      <span className="mt-4 flex flex-wrap gap-1.5">
+                        {s.products.map((p) => (
+                          <span key={p} className="rounded-full bg-soft px-2.5 py-1 text-xs font-semibold text-ink">
+                            {p}
+                          </span>
+                        ))}
+                      </span>
+                    </span>
+                  </Tilt>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
-      </section>
-    </div>
+      </Panel>
+    </>
   );
 }
