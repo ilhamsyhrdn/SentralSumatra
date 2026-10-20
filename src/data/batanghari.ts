@@ -50,8 +50,8 @@ export const CLEANING_PRODUCTS: CleaningProduct[] = [
 export const BATANGHARI_STORY = [
   {
     mark: "2019",
-    title: "Ilmu kampus dibawa pulang",
-    text: "Batanghari River dirintis oleh anak Teknik Industri Universitas Brawijaya yang memilih pulang untuk membangun usaha produksi di Jambi.",
+    title: "Berkembang dari AJ Kristal",
+    text: "Masih di tahun 2019, pendiri AJ Kristal, seorang anak Jambi lulusan Teknik Industri Universitas Brawijaya, mengembangkan usahanya ke produksi sabun dan parfum laundry.",
   },
   {
     mark: "Proses",

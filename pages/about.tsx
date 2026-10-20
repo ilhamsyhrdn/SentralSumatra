@@ -28,20 +28,20 @@ const JOURNEY = [
   {
     slug: "aj-kristal",
     mark: "2019",
-    title: "AJ Kristal berdiri",
-    text: "Seorang lulusan Teknik Industri Universitas Brawijaya asal Jambi mendirikan AJ Kristal untuk memajukan perekonomian Provinsi Jambi. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi.",
+    title: "Berawal dari AJ Kristal",
+    text: "Seorang anak Jambi lulusan Teknik Industri Universitas Brawijaya memulai semuanya dari es kristal, untuk memajukan perekonomian Provinsi Jambi. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi.",
   },
   {
     slug: "batanghari-river",
     mark: "2019",
-    title: "Batanghari River dirintis",
-    text: "Anak Teknik Industri Universitas Brawijaya pulang ke Jambi dan membangun produksi sabun serta parfum laundry, kini satu-satunya yang berizin dan legal di Jambi.",
+    title: "Berkembang ke Batanghari River",
+    text: "Masih di tahun yang sama, usahanya berkembang ke produksi sabun dan parfum laundry. Kini Batanghari River menjadi satu-satunya produksi sabun di Jambi yang berizin dan legal.",
   },
   {
     slug: "diocca",
-    mark: "Tumbuh",
-    title: "Diocca melengkapi",
-    text: "Susu rendah kalori tanpa tambahan gula, cokelat premium, dan kopi sachet premium untuk kebutuhan keluarga sehari-hari.",
+    mark: "2019",
+    title: "Lalu lahir Diocca",
+    text: "Masih di 2019, hadir Diocca yang kini menyediakan susu rendah kalori tanpa tambahan gula, cokelat premium, dan kopi sachet premium.",
   },
   {
     slug: "sentral-plastik",
@@ -63,7 +63,7 @@ export default function AboutPage() {
         chip="Tentang kami"
         title="Tumbuh dari Jambi,"
         accent="melayani Sumatra."
-        description="Sentral Sumatra adalah induk usaha asal Kota Jambi yang menaungi lima unit, dari es kristal sampai bahan kimia. Semuanya dijalankan anak daerah dengan satu janji yang sama, yaitu produk berkualitas dengan harga termurah di Jambi."
+        description="Sentral Sumatra didirikan pada 2019 oleh seorang anak Jambi lulusan Teknik Industri Universitas Brawijaya. Kini menaungi lima unit, dari es kristal sampai bahan kimia, dengan satu janji yang sama, yaitu produk berkualitas dengan harga termurah di Jambi."
         aside={
           <div className="grid h-full min-h-[26rem] grid-cols-2 grid-rows-2 gap-2 sm:gap-3">
             <div className="relative row-span-2 overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
@@ -89,22 +89,22 @@ export default function AboutPage() {
             <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari anak Jambi, untuk Jambi.</h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                Sentral Sumatra lahir dari keyakinan sederhana bahwa kebutuhan sehari-hari orang Jambi bisa dipenuhi oleh
-                usaha milik anak Jambi sendiri, dengan kualitas yang tidak kalah dan harga yang lebih bersahabat.
+                Sentral Sumatra lahir dari keyakinan seorang anak Jambi lulusan Teknik Industri Universitas Brawijaya, bahwa
+                kebutuhan sehari-hari orang Jambi bisa dipenuhi oleh usaha dari Jambi sendiri. Tujuannya satu, yaitu memajukan
+                perekonomian Provinsi Jambi.
               </p>
               <p>
-                Tahun 2019 menjadi titik awalnya. Seorang lulusan Teknik Industri Universitas Brawijaya yang berasal dari
-                Jambi mendirikan <strong className="font-semibold text-ink">AJ Kristal</strong> untuk memajukan perekonomian
-                Provinsi Jambi. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi. Di tahun yang sama,{" "}
-                <strong className="font-semibold text-ink">Batanghari River</strong> dirintis
-                oleh anak Teknik Industri Universitas Brawijaya yang pulang membangun produksi sabun dan parfum laundry, kini
-                satu-satunya di Jambi yang sudah berizin dan legal.
+                Semuanya dimulai tahun 2019 dari <strong className="font-semibold text-ink">AJ Kristal</strong>, yang kini
+                menjadi produsen es kristal nomor 4 di Jambi. Di tahun yang sama usahanya berkembang ke{" "}
+                <strong className="font-semibold text-ink">Batanghari River</strong>, produksi sabun dan parfum laundry yang
+                kini satu-satunya di Jambi yang sudah berizin dan legal, lalu ke{" "}
+                <strong className="font-semibold text-ink">Diocca</strong> dengan susu rendah kalori, cokelat premium, dan kopi
+                sachet premium.
               </p>
               <p>
-                Setelah itu hadir <strong className="font-semibold text-ink">Diocca</strong> dengan susu rendah kalori, cokelat
-                premium, dan kopi sachet premium. Berikutnya <strong className="font-semibold text-ink">Sentral Plastik</strong>{" "}
-                dan <strong className="font-semibold text-ink">Sentral Kimia</strong> sedang disiapkan untuk kebutuhan kemasan
-                dan bahan kimia bagi UMKM dan industri.
+                Berikutnya <strong className="font-semibold text-ink">Sentral Plastik</strong> dan{" "}
+                <strong className="font-semibold text-ink">Sentral Kimia</strong> sedang disiapkan untuk kebutuhan kemasan dan
+                bahan kimia bagi UMKM dan industri.
               </p>
             </div>
           </Reveal>
@@ -126,8 +126,8 @@ export default function AboutPage() {
         <div className="container-x py-14 lg:py-20">
           <SectionHead
             chip="Perjalanan kami"
-            title="Berawal dari Jambi, kini lima unit."
-            description="Setiap unit punya cerita sendiri, tapi semuanya berangkat dari Jambi dan dijalankan anak daerah."
+            title="Berawal dari es kristal, kini lima unit."
+            description="Semua unit lahir dari satu pendiri, seorang anak Jambi lulusan Teknik Industri Universitas Brawijaya."
           />
           <Stagger className="mt-10 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             {JOURNEY.map((j) => {

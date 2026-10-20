@@ -67,7 +67,7 @@ export const KRISTAL_STORY = [
   {
     mark: "Tumbuh",
     title: "Diantar sendiri, dipercaya pelanggan",
-    text: "Awalnya es diantar sendiri ke kedai di sekitar. Kualitas yang konsisten membuat pelanggan bertahan dan terus bertambah dari mulut ke mulut.",
+    text: "Awalnya es diantar sendiri ke kedai di sekitar. Kualitas yang konsisten membuat pelanggan bertahan, dan di tahun yang sama usahanya berkembang ke Batanghari River lalu Diocca.",
   },
   {
     mark: "Kini",

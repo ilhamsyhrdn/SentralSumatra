@@ -138,6 +138,10 @@ export default function DioccaPage() {
                 Susu kami dibuat dengan kandungan terpercaya, rendah kalori, bebas gula tambahan dan pengawet, lalu dikemas
                 higienis untuk menjaga kualitasnya. Jadi bisa dinikmati semua kalangan usia.
               </p>
+              <p className="mt-4 text-lg leading-relaxed text-muted">
+                Diocca hadir pada 2019 dari pendiri yang sama dengan AJ Kristal dan Batanghari River, seorang anak Jambi
+                lulusan Teknik Industri Universitas Brawijaya.
+              </p>
             </Reveal>
             <Reveal delay={0.1}>
               <Testimonials />
