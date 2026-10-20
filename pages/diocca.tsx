@@ -125,7 +125,7 @@ export default function DioccaPage() {
       {/* Cerita */}
       <Panel tone="white" id="cerita" className="p-2 sm:p-3">
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-2">
-          <Reveal className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal className="side-photo relative min-h-[24rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src="/stock/kid-milk.jpg" alt="Anak kecil tertawa sambil memegang segelas susu" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover object-[50%_30%]" />
           </Reveal>
           <div className="flex flex-col justify-center split-pad py-10 lg:py-14">

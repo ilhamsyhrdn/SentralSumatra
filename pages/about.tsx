@@ -108,7 +108,7 @@ export default function AboutPage() {
               </p>
             </div>
           </Reveal>
-          <Reveal delay={0.1} className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal delay={0.1} className="side-photo relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src="/stock/warehouse.jpg" alt="Gudang distribusi" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
             <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg sm:inset-x-4 sm:bottom-4">
               <SentralLogo size={52} className="ring-1 ring-black/5" />

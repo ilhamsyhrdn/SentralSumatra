@@ -205,7 +205,7 @@ export default function AjKristalPage() {
       {/* Keunggulan */}
       <Panel tone="kr-white" id="keunggulan" className="p-2 sm:p-3">
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_1.35fr]">
-          <Reveal className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] bg-kr-dark sm:rounded-[1.5rem]">
+          <Reveal className="side-photo relative min-h-[22rem] overflow-hidden rounded-[1.25rem] bg-kr-dark sm:rounded-[1.5rem]">
             <Image src="/stock/es-gelas.jpg" alt="Es batu dijatuhkan ke dalam gelas berisi air" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
           </Reveal>
           <div className="split-pad py-10 lg:py-14">
@@ -281,7 +281,7 @@ export default function AjKristalPage() {
               </a>
             </div>
           </div>
-          <Reveal delay={0.1} className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal delay={0.1} className="side-photo relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src="/stock/es-teh.jpg" alt="Segelas es teh dingin dengan irisan jeruk nipis" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
             <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 text-kr-dark shadow-lg sm:inset-x-4 sm:bottom-4">
               <IconBadge icon={Truck} className="bg-kr text-kr-dark" />

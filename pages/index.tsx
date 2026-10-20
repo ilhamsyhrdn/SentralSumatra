@@ -20,15 +20,27 @@ const STATS = [
   { value: "2019", label: "Berdiri sejak" },
 ];
 
+interface Featured {
+  image: string;
+  brand: string;
+  name: string;
+  detail: string;
+  href: string;
+  /** cover = isi penuh (foto stok), contain = logo utuh, blur = foto produk utuh di atas versi buram dirinya */
+  fit: "cover" | "contain" | "blur";
+  position?: string;
+}
+
 /** Harga tidak ditampilkan di situs; setiap kartu mengarah ke halaman unit yang punya tombol WhatsApp */
-const FEATURED = [
-  ...[ICE_PRODUCTS[0], ICE_PRODUCTS[2]].map((p) => ({
+const FEATURED: Featured[] = [
+  ...[ICE_PRODUCTS[0], ICE_PRODUCTS[2]].map((p): Featured => ({
     image: p.image,
     brand: "AJ Kristal",
     name: p.name,
     detail: "Gratis antar se-Kota Jambi",
     href: "/aj-kristal#produk",
-    contain: false,
+    fit: "cover",
+    position: p.imagePosition,
   })),
   {
     image: "/batanghari/parfum-laundry.jpg",
@@ -36,7 +48,7 @@ const FEATURED = [
     name: "Parfum Laundry",
     detail: "Grade A & B · 7 aroma",
     href: "/batanghari-river#parfum",
-    contain: false,
+    fit: "blur",
   },
   {
     image: "/Logo/LogoBatanghariRiver.png",
@@ -44,15 +56,15 @@ const FEATURED = [
     name: "Produk Kebersihan",
     detail: "6 pembersih · jerigen 5 liter",
     href: "/batanghari-river#kebersihan",
-    contain: true,
+    fit: "contain",
   },
-  ...DIOCCA_PRODUCTS.slice(0, 2).map((v) => ({
+  ...DIOCCA_PRODUCTS.slice(0, 2).map((v): Featured => ({
     image: v.images[0],
     brand: "Diocca",
     name: v.name.replace(" Rendah Kalori", ""),
     detail: "Rendah kalori · 0% sukrosa",
     href: "/diocca#menu",
-    contain: false,
+    fit: "cover",
   })),
 ];
 
@@ -185,7 +197,7 @@ export default function HomePage() {
               ))}
             </Stagger>
           </div>
-          <Reveal className="relative min-h-[26rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal className="side-photo relative min-h-[26rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image
               src="/stock/milk-chocolate.jpg"
               alt="Susu cokelat dituang ke dalam gelas"
@@ -223,12 +235,19 @@ export default function HomePage() {
                 <Link href={p.href} className="group block h-full">
                   <Tilt className="h-full" innerClassName="flex h-full flex-col rounded-3xl bg-white p-2">
                     <span className="relative block aspect-square overflow-hidden rounded-2xl bg-soft">
+                      {p.fit === "blur" && (
+                        <Image src={p.image} alt="" aria-hidden fill sizes="(min-width:1536px) 16vw, (min-width:768px) 32vw, 48vw" className="scale-110 object-cover opacity-80 blur-xl" />
+                      )}
                       <Image
                         src={p.image}
                         alt={`${p.brand} ${p.name}`}
                         fill
                         sizes="(min-width:1536px) 16vw, (min-width:768px) 32vw, 48vw"
-                        className={cn("transition duration-700 group-hover:scale-105", p.contain ? "object-contain p-3" : "object-cover")}
+                        className={cn(
+                          "transition duration-700 group-hover:scale-105",
+                          p.fit === "cover" ? "object-cover" : p.fit === "contain" ? "object-contain p-3" : "object-contain",
+                        )}
+                        style={{ objectPosition: p.position }}
                       />
                     </span>
                     <span className="flex flex-1 flex-col p-3 sm:p-4">
@@ -276,7 +295,7 @@ export default function HomePage() {
               </Link>
             </div>
           </Reveal>
-          <Reveal delay={0.1} className="relative min-h-[18rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal delay={0.1} className="side-photo relative min-h-[18rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src="/stock/warehouse.jpg" alt="Gudang distribusi dengan rak penuh barang" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
           </Reveal>
         </div>

@@ -148,13 +148,16 @@ export default function BatanghariRiverPage() {
           <div className="mt-10 grid gap-3 lg:grid-cols-[0.85fr_1.15fr]">
             <Reveal className="flex flex-col rounded-3xl bg-white p-2">
               <Tilt className="flex-1" innerClassName="overflow-hidden rounded-2xl bg-bh-soft" max={3}>
+                {/* Tinggi kotak mengikuti kolom sebelah di desktop, jadi fotonya ditampilkan utuh (contain)
+                    di atas versi buram dirinya sendiri: tidak pernah terpotong dan tidak ada pinggiran kosong */}
                 <div className="relative aspect-[500/680] w-full lg:aspect-auto lg:h-full lg:min-h-[26rem]">
+                  <Image src="/batanghari/parfum-laundry.jpg" alt="" aria-hidden fill sizes="(min-width:1024px) 38vw, 100vw" className="scale-110 object-cover opacity-80 blur-2xl" />
                   <Image
                     src="/batanghari/parfum-laundry.jpg"
                     alt="Parfum laundry Batanghari River Grade A Premium dalam jerigen 5 liter dan botol 1 liter"
                     fill
                     sizes="(min-width:1024px) 38vw, 100vw"
-                    className="object-cover object-top"
+                    className="object-contain"
                   />
                 </div>
               </Tilt>
@@ -239,7 +242,7 @@ export default function BatanghariRiverPage() {
               ))}
             </Stagger>
           </div>
-          <Reveal delay={0.1} className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal delay={0.1} className="side-photo relative min-h-[24rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src="/stock/laundry-folded.jpg" alt="Tumpukan pakaian bersih yang sudah dilipat" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
             <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg sm:inset-x-4 sm:bottom-4">
               <BatanghariLogo size={56} />
@@ -293,7 +296,7 @@ export default function BatanghariRiverPage() {
               </a>
             </div>
           </div>
-          <Reveal delay={0.1} className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal delay={0.1} className="side-photo relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src="/stock/laundry-basket.jpg" alt="Keranjang berisi cucian bersih" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
             <dl className="absolute inset-x-3 bottom-3 grid gap-3 rounded-2xl bg-white p-5 text-bh-navy shadow-lg sm:inset-x-4 sm:bottom-4 sm:grid-cols-2">
               <div>
@@ -314,19 +317,18 @@ export default function BatanghariRiverPage() {
   );
 }
 
-/** Pilih grade, kemasan, dan aroma; lebih dari satu aroma berarti pesanan racikan */
+/** Pilih grade, kemasan, dan aroma; lebih dari satu aroma berarti pesanan racikan.
+    Aroma dimulai kosong; klik untuk memilih, klik lagi untuk membatalkan. */
 function ParfumOrder() {
   const [gradeIndex, setGradeIndex] = useState(0);
   const [sizeIndex, setSizeIndex] = useState(1);
-  const [selected, setSelected] = useState<string[]>([AROMAS[0].id]);
+  const [selected, setSelected] = useState<string[]>([]);
   const grade = PARFUM_GRADES[gradeIndex];
   const size = PARFUM_SIZES[sizeIndex];
   const names = AROMAS.filter((a) => selected.includes(a.id)).map((a) => a.name);
   const blend = names.length > 1;
 
-  // Minimal satu aroma harus tetap terpilih
-  const toggle = (id: string) =>
-    setSelected((s) => (s.includes(id) ? (s.length > 1 ? s.filter((x) => x !== id) : s) : [...s, id]));
+  const toggle = (id: string) => setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
 
   return (
     <div className="flex h-full flex-col rounded-3xl bg-white p-6 sm:p-8">
@@ -383,24 +385,35 @@ function ParfumOrder() {
         </div>
       </LayoutGroup>
 
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-sm font-bold text-bh-navy">Aroma</p>
-        <AnimatePresence initial={false}>
-          {blend && (
-            <motion.span
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="inline-flex items-center gap-1.5 rounded-full bg-bh-navy px-3 py-1 text-xs font-bold text-bh-sun"
-            >
-              <Blend className="size-3.5" />
-              Racikan
-            </motion.span>
+      <div className="mt-6 flex min-h-7 flex-wrap items-center justify-between gap-2">
+        <p className="text-sm font-bold text-bh-navy">
+          Aroma
+          {selected.length > 0 && <span className="ml-1.5 font-semibold text-muted">({selected.length} dipilih)</span>}
+        </p>
+        <div className="flex items-center gap-2">
+          <AnimatePresence initial={false}>
+            {blend && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="inline-flex items-center gap-1.5 rounded-full bg-bh-navy px-3 py-1 text-xs font-bold text-bh-sun"
+              >
+                <Blend className="size-3.5" />
+                Racikan
+              </motion.span>
+            )}
+          </AnimatePresence>
+          {selected.length > 0 && (
+            <button type="button" onClick={() => setSelected([])} className="rounded-full px-2 py-1 text-xs font-semibold text-bh-deep underline-offset-2 hover:underline">
+              Hapus pilihan
+            </button>
           )}
-        </AnimatePresence>
+        </div>
       </div>
-      <p className="mt-1 text-sm text-muted">Pilih satu aroma, atau beberapa sekaligus untuk racikan khas laundry Anda.</p>
-      <div className="mt-4 grid grid-cols-4 gap-x-2 gap-y-4 sm:grid-cols-7">
+      <p className="mt-1 text-sm text-muted">Klik untuk memilih, klik lagi untuk membatalkan. Pilih lebih dari satu untuk racikan khas laundry Anda.</p>
+      {/* auto-fit: jumlah kolom menyesuaikan lebar kartu, bukan lebar layar, jadi ikon tidak pernah berdesakan */}
+      <div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(4rem,1fr))] gap-x-2 gap-y-4">
         {AROMAS.map((a) => {
           const active = selected.includes(a.id);
           return (
@@ -408,8 +421,9 @@ function ParfumOrder() {
               key={a.id}
               type="button"
               aria-pressed={active}
+              aria-label={`Aroma ${a.name}`}
               onClick={() => toggle(a.id)}
-              className="group flex flex-col items-center gap-2 text-center"
+              className="group flex flex-col items-center gap-2 rounded-2xl py-1 text-center"
             >
               <span
                 className={cn(
@@ -434,8 +448,15 @@ function ParfumOrder() {
 
       <div className="mt-auto pt-8">
         <p className="rounded-2xl bg-bh-cream px-4 py-3 text-sm leading-relaxed text-bh-navy">
-          <span className="font-bold">{grade.name}</span>, {size.toLowerCase()}, {blend ? "racikan " : "aroma "}
-          {names.join(" + ")}
+          <span className="font-bold">{grade.name}</span>, {size.toLowerCase()},{" "}
+          {names.length === 0 ? (
+            <span className="text-muted">aroma belum dipilih (admin bisa bantu rekomendasikan)</span>
+          ) : (
+            <>
+              {blend ? "racikan " : "aroma "}
+              {names.join(" + ")}
+            </>
+          )}
         </p>
         <a
           href={waLink(BATANGHARI_WA, parfumOrderText(grade.name, size.toLowerCase(), names))}
@@ -458,8 +479,9 @@ function ParfumOrder() {
 function CleaningCard({ product, index }: { product: CleaningProduct; index: number }) {
   return (
     <article className="flex h-full gap-4 rounded-3xl bg-bh-cream p-2">
-      <div className="relative w-32 shrink-0 overflow-hidden rounded-2xl bg-white sm:w-36">
-        <Image src={product.image} alt={`${product.name} Batanghari River ${CLEANING_SIZE.toLowerCase()}`} fill sizes="144px" className="object-cover object-[68%_50%]" />
+      {/* Rasio kotak = rasio foto (4:5), jadi jerigen tampil utuh tanpa terpotong */}
+      <div className="relative aspect-[4/5] w-32 shrink-0 self-center overflow-hidden rounded-2xl bg-white sm:w-36">
+        <Image src={product.image} alt={`${product.name} Batanghari River ${CLEANING_SIZE.toLowerCase()}`} fill sizes="144px" className="object-cover" />
       </div>
       <div className="flex min-w-0 flex-1 flex-col py-2 pr-2">
         <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-muted">

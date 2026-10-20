@@ -37,20 +37,21 @@ export default function ProductsPage() {
         chip="Produk kami"
         title="Lima unit,"
         accent="beragam kebutuhan."
-        description="Setiap unit punya halaman sendiri berisi detail produk, harga, dan cara pemesanan. Pilih yang Anda butuhkan."
+        description="Setiap unit punya halaman sendiri berisi detail produk, cerita, dan cara pemesanan lewat WhatsApp. Pilih yang Anda butuhkan."
         aside={
-          <div className="grid h-full min-h-[20rem] grid-cols-2 gap-2 sm:gap-3">
+          // Foto pertama setinggi dua baris (bukan selebar dua kolom) supaya tidak jadi pita tipis di layar mana pun
+          <div className="grid h-full min-h-[20rem] auto-rows-[minmax(9rem,1fr)] grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-2">
             {STORES.map((s, i) => (
               <Link
                 key={s.slug}
                 href={s.href}
-                className={cn("group relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]", i === 0 && "col-span-2")}
+                className={cn("group relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]", i === 0 && "row-span-2")}
               >
                 <Image
                   src={s.image}
                   alt={s.name}
                   fill
-                  sizes={i === 0 ? "(min-width:1024px) 44vw, 100vw" : "(min-width:1024px) 22vw, 50vw"}
+                  sizes="(min-width:1024px) 22vw, (min-width:640px) 33vw, 50vw"
                   className="object-cover transition duration-700 group-hover:scale-105"
                 />
                 <span className="absolute inset-0 bg-linear-to-t from-ink/80 via-ink/10 to-transparent" />

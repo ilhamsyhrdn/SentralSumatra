@@ -101,7 +101,7 @@ export function ComingSoonStore({
       {/* Tentang */}
       <Panel tone="white" id="tentang" className="p-2 sm:p-3">
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_1.25fr]">
-          <Reveal className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
+          <Reveal className="side-photo relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src={aboutImage.src} alt={aboutImage.alt} fill sizes="(min-width:1024px) 42vw, 100vw" className="object-cover" />
           </Reveal>
           <div className="split-pad py-10 lg:py-14">
@@ -147,10 +147,12 @@ export function ComingSoonStore({
             title="Produk yang akan tersedia."
             description={`Detail varian, ukuran, dan harga akan kami umumkan saat ${store.name} resmi dibuka.`}
           />
-          <Stagger className="mt-10 grid gap-3 md:grid-cols-3 md:grid-rows-2">
-            <StaggerItem className="h-[24rem] md:row-span-2 md:h-auto">
+          {/* Tablet & laptop: foto selebar penuh di atas, kartu 2 kolom. Bento 3 kolom baru dipakai mulai xl,
+              karena di layar lebih sempit kolom foto jadi sempit dan tinggi sehingga fotonya terpotong parah */}
+          <Stagger className="mt-10 grid gap-3 md:grid-cols-2 xl:grid-cols-3 xl:grid-rows-2">
+            <StaggerItem className="h-[24rem] md:col-span-2 xl:col-span-1 xl:row-span-2 xl:h-auto">
               <Tilt className="h-full" innerClassName="overflow-hidden rounded-3xl bg-ink text-white" max={3}>
-                <Image src={featureImage.src} alt={featureImage.alt} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover" />
+                <Image src={featureImage.src} alt={featureImage.alt} fill sizes="(min-width:1280px) 33vw, 100vw" className="object-cover" />
                 <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/40 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
                   <IconBadge icon={first.icon} className="bg-mint text-ink" />
