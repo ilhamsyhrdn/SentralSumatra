@@ -130,6 +130,39 @@ export function IconBadge({
   );
 }
 
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+/** Deret angka singkat: nilai di atas, label di bawah. Isi kartu rata atas sehingga nilainya
+    tetap sejajar walau ada label yang turun dua baris. */
+export function StatGrid({
+  items,
+  className,
+  cardClass,
+  valueClass,
+  labelClass,
+}: {
+  items: Stat[];
+  className?: string;
+  cardClass: string;
+  valueClass?: string;
+  labelClass: string;
+}) {
+  return (
+    <dl className={cn("grid grid-cols-3 gap-2", className)}>
+      {items.map((s) => (
+        // column-reverse: dt tetap sebelum dd di DOM, tapi nilai tampil di atas; justify-end = rata atas
+        <div key={s.label} className={cn("flex flex-col-reverse justify-end gap-1.5 rounded-2xl px-3.5 py-4 sm:px-4", cardClass)}>
+          <dt className={cn("text-xs font-medium leading-snug sm:text-sm", labelClass)}>{s.label}</dt>
+          <dd className={cn("text-[1.375rem] font-extrabold leading-none tracking-tight sm:text-[1.75rem]", valueClass)}>{s.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
 export function NumberBadge({ n, className }: { n: number; className?: string }) {
   return (
     <span className={cn("grid size-9 shrink-0 place-items-center rounded-full text-sm font-bold tabular-nums", className)}>

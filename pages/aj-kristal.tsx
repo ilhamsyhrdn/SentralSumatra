@@ -21,7 +21,7 @@ import {
 import { SiInstagram, SiWhatsapp } from "react-icons/si";
 import { Seo } from "@/components/common/Seo";
 import { KristalLogo } from "@/components/common/Logos";
-import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
+import { Chip, IconBadge, NumberBadge, Panel, SectionHead, StatGrid } from "@/components/ui-kit";
 import { EASE_OUT, Reveal, Stagger, StaggerItem, WordsReveal } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
 import { IceScene } from "@/components/three";
@@ -33,6 +33,12 @@ const ORDER_WA = waLink(KRISTAL_WA, "Halo kak, saya ingin memesan es AJ Kristal.
 const AGENT_WA = waLink(KRISTAL_WA, "Halo kak, saya ingin menjadi agen AJ Kristal");
 const KR_CHIP = "bg-kr-soft text-kr-ink";
 const KR_CHIP_DARK = "bg-white/10 text-kr-glow";
+
+const HERO_STATS = [
+  { value: "No. 4", label: "Es kristal di Jambi" },
+  { value: "2019", label: "Mulai berdiri" },
+  { value: "Gratis", label: "Antar Kota Jambi" },
+];
 
 const FEATURES = [
   { icon: ShieldCheck, title: "Dijamin bersih", description: "Diproses higienis, aman dicampur langsung ke minuman." },
@@ -97,18 +103,9 @@ export default function AjKristalPage() {
                 Pesan via WhatsApp
               </a>
             </motion.div>
-            <motion.dl {...fadeUp(0.6)} className="mt-10 grid max-w-md grid-cols-3 gap-2">
-              {[
-                ["No. 4", "Es kristal di Jambi"],
-                ["2019", "Mulai berdiri"],
-                ["Gratis", "Antar se-Kota Jambi"],
-              ].map(([v, l]) => (
-                <div key={l} className="flex flex-col-reverse rounded-2xl bg-white/[0.07] px-4 py-3.5 ring-1 ring-white/10">
-                  <dt className="text-sm text-white/75">{l}</dt>
-                  <dd className="text-2xl font-extrabold tracking-tight sm:text-3xl">{v}</dd>
-                </div>
-              ))}
-            </motion.dl>
+            <motion.div {...fadeUp(0.6)} className="mt-10">
+              <StatGrid items={HERO_STATS} className="max-w-lg" cardClass="bg-white/[0.07] ring-1 ring-white/10" labelClass="text-white/75" />
+            </motion.div>
           </div>
           <div className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-kr sm:min-h-[30rem] sm:rounded-[1.5rem]">
             <motion.div

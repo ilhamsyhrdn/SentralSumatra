@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Seo } from "@/components/common/Seo";
 import { PageIntro } from "@/components/common/PageIntro";
 import { STORE_LOGOS, SentralLogo, SentralWordmark } from "@/components/common/Logos";
-import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
+import { Chip, IconBadge, NumberBadge, Panel, SectionHead, StatGrid } from "@/components/ui-kit";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
 import { STORES, getStore } from "@/data/stores";
@@ -78,14 +78,7 @@ export default function AboutPage() {
           </div>
         }
       >
-        <dl className="mt-10 grid max-w-lg grid-cols-3 gap-2">
-          {STATS.map((s) => (
-            <div key={s.label} className="flex flex-col-reverse rounded-2xl bg-soft px-4 py-3.5">
-              <dt className="text-sm text-muted">{s.label}</dt>
-              <dd className="text-2xl font-extrabold tracking-tight sm:text-3xl">{s.value}</dd>
-            </div>
-          ))}
-        </dl>
+        <StatGrid items={STATS} className="mt-10 max-w-lg" cardClass="bg-soft" labelClass="text-muted" />
       </PageIntro>
 
       {/* Cerita */}

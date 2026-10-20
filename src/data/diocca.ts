@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { Stat } from "@/components/ui-kit";
 import { BadgeCheck, CandyOff, Coffee, CupSoda, Flame, HeartPulse, Package, Sparkles, Zap } from "lucide-react";
 
 export const DIOCCA_WA = "6287825984419";
@@ -11,7 +12,7 @@ export interface DioccaProduct {
   label: string;
   tagline: string;
   /** Angka kandungan; hanya untuk varian susu */
-  stats?: [string, string][];
+  stats?: Stat[];
   highlights: { icon: LucideIcon; text: string }[];
   images: string[];
   /** Foto ilustrasi sementara sampai foto kemasan aslinya tersedia */
@@ -27,9 +28,9 @@ export const DIOCCA_PRODUCTS: DioccaProduct[] = [
     label: "Original Milk",
     tagline: "Rasa susu murni yang lembut dan natural, rendah kalori, tanpa perisa tambahan.",
     stats: [
-      ["80%", "Susu murni"],
-      ["0%", "Sukrosa"],
-      ["0%", "Perisa"],
+      { value: "80%", label: "Susu murni" },
+      { value: "0%", label: "Sukrosa" },
+      { value: "0%", label: "Perisa" },
     ],
     highlights: [
       { icon: Package, text: "Isi 4 sachet × 35 g" },
@@ -52,9 +53,9 @@ export const DIOCCA_PRODUCTS: DioccaProduct[] = [
     label: "Chocolate Milk",
     tagline: "Susu murni berpadu cokelat yang kaya rasa, tetap rendah kalori dan tanpa gula tambahan.",
     stats: [
-      ["77%", "Susu murni"],
-      ["0%", "Sukrosa"],
-      ["0%", "Perisa"],
+      { value: "77%", label: "Susu murni" },
+      { value: "0%", label: "Sukrosa" },
+      { value: "0%", label: "Perisa" },
     ],
     highlights: [
       { icon: Package, text: "Isi 4 sachet × 35 g" },

@@ -17,7 +17,7 @@ import {
 import { SiInstagram, SiTiktok, SiWhatsapp } from "react-icons/si";
 import { Seo } from "@/components/common/Seo";
 import { BatanghariLogo } from "@/components/common/Logos";
-import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
+import { Chip, IconBadge, NumberBadge, Panel, SectionHead, StatGrid } from "@/components/ui-kit";
 import { EASE_OUT, Reveal, Stagger, StaggerItem, WordsReveal } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
 import { BubblesScene } from "@/components/three";
@@ -41,6 +41,12 @@ const ORDER_WA = waLink(BATANGHARI_WA, "Halo kak, saya ingin memesan sabun atau 
 const BLEND_WA = waLink(BATANGHARI_WA, "Halo kak, saya ingin konsultasi paket racikan parfum laundry (custom blend) Batanghari River untuk laundry saya.");
 const BH_CHIP = "bg-bh text-bh-navy";
 const BH_CHIP_DARK = "bg-white/10 text-bh-sun";
+
+const HERO_STATS = [
+  { value: "Legal", label: "Berizin resmi" },
+  { value: String(AROMAS.length), label: "Aroma parfum" },
+  { value: "Diskon", label: "Pesan banyak" },
+];
 
 const PARFUM_PERKS = [
   { icon: Flower2, label: "Wangi tahan lama" },
@@ -98,18 +104,9 @@ export default function BatanghariRiverPage() {
                 Pesan via WhatsApp
               </a>
             </motion.div>
-            <motion.dl {...fadeUp(0.6)} className="mt-10 grid max-w-md grid-cols-3 gap-2">
-              {[
-                ["Legal", "Berizin resmi"],
-                [String(AROMAS.length), "Aroma parfum"],
-                ["Diskon", "Pesan banyak"],
-              ].map(([v, l]) => (
-                <div key={l} className="flex flex-col-reverse rounded-2xl bg-white/[0.07] px-4 py-3.5 ring-1 ring-white/10">
-                  <dt className="text-sm text-white/75">{l}</dt>
-                  <dd className="text-2xl font-extrabold tracking-tight sm:text-3xl">{v}</dd>
-                </div>
-              ))}
-            </motion.dl>
+            <motion.div {...fadeUp(0.6)} className="mt-10">
+              <StatGrid items={HERO_STATS} className="max-w-lg" cardClass="bg-white/[0.07] ring-1 ring-white/10" labelClass="text-white/75" />
+            </motion.div>
           </div>
           <div className="relative grid min-h-[26rem] place-items-center overflow-hidden rounded-[1.25rem] bg-[radial-gradient(70%_70%_at_50%_40%,#ffb066_0%,#fb7102_55%,#c2500a_100%)] pb-16 pt-6 sm:min-h-[30rem] sm:rounded-[1.5rem]">
             <motion.div

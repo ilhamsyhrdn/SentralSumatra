@@ -7,7 +7,7 @@ import { Seo } from "@/components/common/Seo";
 import { DioccaLogo } from "@/components/common/Logos";
 import { Accordion } from "@/components/common/Accordion";
 import { Lightbox } from "@/components/common/Lightbox";
-import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
+import { Chip, IconBadge, NumberBadge, Panel, SectionHead, StatGrid } from "@/components/ui-kit";
 import { EASE_OUT, Reveal, Stagger, StaggerItem, WordsReveal } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
 import { DIOCCA_FAQ, DIOCCA_PHONE, DIOCCA_PRODUCTS, DIOCCA_TESTIMONIALS, DIOCCA_WA, dioccaOrderText } from "@/data/diocca";
@@ -16,6 +16,12 @@ import { cn, waLink } from "@/lib/utils";
 
 const ORDER_WA = waLink(DIOCCA_WA, dioccaOrderText());
 const DIO_CHIP = "bg-dio-mint text-dio-dark";
+
+const HERO_STATS = [
+  { value: "80%", label: "Susu murni" },
+  { value: "0%", label: "Sukrosa" },
+  { value: "Rendah", label: "Kalori" },
+];
 
 const PERKS = [
   { icon: Milk, title: "80% susu murni", description: "Kandungan susu murni hingga 80% (Original) dan 77% (Cokelat)." },
@@ -74,18 +80,9 @@ export default function DioccaPage() {
                 Lihat menu
               </a>
             </motion.div>
-            <motion.dl {...fadeUp(0.6)} className="mt-10 grid max-w-md grid-cols-3 gap-2">
-              {[
-                ["80%", "Susu murni"],
-                ["0%", "Sukrosa"],
-                ["Rendah", "Kalori"],
-              ].map(([v, l]) => (
-                <div key={l} className="flex flex-col-reverse rounded-2xl bg-white px-4 py-3.5">
-                  <dt className="text-sm text-dio-dark/80">{l}</dt>
-                  <dd className="text-2xl font-extrabold tracking-tight text-dio sm:text-3xl">{v}</dd>
-                </div>
-              ))}
-            </motion.dl>
+            <motion.div {...fadeUp(0.6)} className="mt-10">
+              <StatGrid items={HERO_STATS} className="max-w-lg" cardClass="bg-white" valueClass="text-dio" labelClass="text-dio-dark/80" />
+            </motion.div>
           </div>
           <div className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] sm:min-h-[30rem] sm:rounded-[1.5rem]">
             <motion.div initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 1.4, ease: EASE_OUT }} className="absolute inset-0">
@@ -354,16 +351,7 @@ function MenuSection({ onOpenImage }: { onOpenImage: (images: string[], index: n
                 <h3 className="mt-4 text-4xl font-extrabold tracking-[-0.035em] text-dio-dark sm:text-5xl">{v.name}</h3>
                 <p className="mt-3 text-lg leading-relaxed text-muted">{v.tagline}</p>
 
-                {v.stats && (
-                  <dl className="mt-7 grid grid-cols-3 gap-2">
-                    {v.stats.map(([val, label]) => (
-                      <div key={label} className="flex flex-col-reverse rounded-2xl bg-dio-mint px-4 py-4">
-                        <dt className="text-sm font-medium text-dio-dark">{label}</dt>
-                        <dd className="text-3xl font-extrabold tracking-tight text-dio">{val}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                )}
+                {v.stats && <StatGrid items={v.stats} className="mt-7" cardClass="bg-dio-mint" valueClass="text-dio" labelClass="text-dio-dark" />}
 
                 <ul className="mt-5 grid gap-2 sm:grid-cols-2">
                   {v.highlights.map(({ icon: Icon, text }) => (

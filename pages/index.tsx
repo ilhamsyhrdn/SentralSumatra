@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Quote } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { Seo } from "@/components/common/Seo";
-import { Chip, IconBadge, Panel, SectionHead } from "@/components/ui-kit";
+import { Chip, IconBadge, Panel, SectionHead, StatGrid } from "@/components/ui-kit";
 import { EASE_OUT, Reveal, Stagger, StaggerItem, WordsReveal } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
 import { EmblemScene } from "@/components/three";
@@ -100,14 +100,9 @@ export default function HomePage() {
                 Tentang kami
               </Link>
             </motion.div>
-            <motion.dl {...fadeUp(0.6)} className="mt-10 grid max-w-lg grid-cols-3 gap-2">
-              {STATS.map((s) => (
-                <div key={s.label} className="flex flex-col-reverse rounded-2xl bg-soft px-4 py-3.5">
-                  <dt className="text-sm text-muted">{s.label}</dt>
-                  <dd className="text-2xl font-extrabold tracking-tight sm:text-3xl">{s.value}</dd>
-                </div>
-              ))}
-            </motion.dl>
+            <motion.div {...fadeUp(0.6)} className="mt-10">
+              <StatGrid items={STATS} className="max-w-lg" cardClass="bg-soft" labelClass="text-muted" />
+            </motion.div>
           </div>
 
           <div className="relative min-h-[26rem] overflow-hidden rounded-[1.25rem] bg-[radial-gradient(80%_70%_at_55%_45%,#ffffff_0%,#dceee7_55%,#c4e3d7_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
