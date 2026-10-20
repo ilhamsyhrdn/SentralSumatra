@@ -10,41 +10,49 @@ import { Tilt } from "@/components/motion/Tilt";
 import { EmblemScene } from "@/components/three";
 import { STORES, type Store } from "@/data/stores";
 import { CONTACT, SENTRAL_VALUES } from "@/data/site";
-import { DIOCCA_VARIANTS } from "@/data/diocca";
-import { SOAP_LINES } from "@/data/batanghari";
+import { DIOCCA_PRODUCTS } from "@/data/diocca";
 import { ICE_PRODUCTS } from "@/data/kristal";
-import { cn, formatRupiah, waLink } from "@/lib/utils";
+import { cn, waLink } from "@/lib/utils";
 
 const STATS = [
   { value: "5", label: "Unit usaha" },
-  { value: "16+", label: "Varian produk" },
+  { value: "20+", label: "Pilihan produk" },
   { value: "2019", label: "Berdiri sejak" },
 ];
 
+/** Harga tidak ditampilkan di situs; setiap kartu mengarah ke halaman unit yang punya tombol WhatsApp */
 const FEATURED = [
-  ...ICE_PRODUCTS.map((p) => ({
+  ...[ICE_PRODUCTS[0], ICE_PRODUCTS[2]].map((p) => ({
     image: p.image,
     brand: "AJ Kristal",
     name: p.name,
-    detail: `Per ${p.unit} · untuk minuman`,
-    price: p.price,
+    detail: "Gratis antar se-Kota Jambi",
     href: "/aj-kristal#produk",
+    contain: false,
   })),
-  ...[SOAP_LINES[0], SOAP_LINES[3]].map((l) => ({
-    image: l.variants[0].image,
+  {
+    image: "/batanghari/parfum-laundry.jpg",
     brand: "Batanghari River",
-    name: l.name,
-    detail: `${l.variants[0].size} · Wangi ${l.aroma}`,
-    price: l.variants[0].price,
-    href: "/batanghari-river#produk",
-  })),
-  ...DIOCCA_VARIANTS.map((v) => ({
+    name: "Parfum Laundry",
+    detail: "Grade A & B · 7 aroma",
+    href: "/batanghari-river#parfum",
+    contain: false,
+  },
+  {
+    image: "/Logo/LogoBatanghariRiver.png",
+    brand: "Batanghari River",
+    name: "Produk Kebersihan",
+    detail: "6 pembersih · jerigen 5 liter",
+    href: "/batanghari-river#kebersihan",
+    contain: true,
+  },
+  ...DIOCCA_PRODUCTS.slice(0, 2).map((v) => ({
     image: v.images[0],
     brand: "Diocca",
-    name: v.name.replace(" Diocca", ""),
-    detail: v.pack,
-    price: v.price,
+    name: v.name.replace(" Rendah Kalori", ""),
+    detail: "Rendah kalori · 0% sukrosa",
     href: "/diocca#menu",
+    contain: false,
   })),
 ];
 
@@ -80,8 +88,8 @@ export default function HomePage() {
               <WordsReveal text="dari satu sentral." delay={0.18} className="text-teal" />
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed 2xl:max-w-2xl 2xl:text-xl text-muted">
-              Sentral Sumatra menaungi lima unit usaha, yaitu es kristal, sabun, susu, plastik, dan kimia. Kualitasnya kami
-              jaga, harganya tetap masuk akal.
+              Sentral Sumatra menaungi lima unit usaha milik anak Jambi, yaitu es kristal, sabun, susu, plastik, dan kimia.
+              Kualitasnya kami jaga, harganya termurah di Jambi.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
               <Link href="/products" className="btn press group bg-ink text-white hover:bg-teal">
@@ -139,7 +147,7 @@ export default function HomePage() {
             dark
             chip="Unit usaha"
             title="Lima unit, satu standar kualitas."
-            description="Setiap unit punya halaman sendiri yang berisi produk, harga, dan cara pemesanan."
+            description="Setiap unit punya halaman sendiri yang berisi produk, cerita, dan cara pemesanan lewat WhatsApp."
             action={
               <Link href="/products" className="btn press group bg-white text-ink hover:bg-mint">
                 Lihat semua produk
@@ -222,7 +230,7 @@ export default function HomePage() {
                         alt={`${p.brand} ${p.name}`}
                         fill
                         sizes="(min-width:1536px) 16vw, (min-width:768px) 32vw, 48vw"
-                        className="object-cover transition duration-700 group-hover:scale-105"
+                        className={cn("transition duration-700 group-hover:scale-105", p.contain ? "object-contain p-3" : "object-cover")}
                       />
                     </span>
                     <span className="flex flex-1 flex-col p-3 sm:p-4">
@@ -230,7 +238,7 @@ export default function HomePage() {
                       <span className="mt-1 text-base font-bold leading-snug tracking-tight sm:text-lg">{p.name}</span>
                       <span className="text-sm text-muted">{p.detail}</span>
                       <span className="mt-auto flex items-center justify-between gap-2 pt-4">
-                        <span className="text-base font-extrabold tracking-tight sm:text-xl">{formatRupiah(p.price)}</span>
+                        <span className="text-sm font-semibold text-leaf-ink">Lihat detail</span>
                         <span className="grid size-9 shrink-0 place-items-center rounded-full bg-ink text-white transition duration-500 group-hover:rotate-45 group-hover:bg-teal sm:size-10">
                           <ArrowUpRight className="size-4" />
                         </span>

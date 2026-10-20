@@ -21,11 +21,30 @@
   --color-leaf-soft: #e1f1ea;
   --color-mint: #7fe0bd;
 
-  /* Diocca — hijau & krem ala kedai kopi */
+  /* Diocca — hijau & krem ala kedai kopi, emas dari logo */
   --color-dio: #00754a;
   --color-dio-dark: #1e3932;
   --color-dio-mint: #d4e9e2;
   --color-dio-cream: #f2f0eb;
+  --color-dio-gold: #d4a72c;
+
+  /* AJ Kristal — oranye & hitam hangat dari logo harimau.
+     Oranye cerah dipakai dengan teks gelap; untuk teks putih pakai kr-deep */
+  --color-kr: #f45303;
+  --color-kr-deep: #c2410c;
+  --color-kr-dark: #1f130d;
+  --color-kr-soft: #ffe7d6;
+  --color-kr-cream: #fff6ef;
+  --color-kr-ink: #7a2e0b;
+  --color-kr-glow: #ff9a5c;
+
+  /* Batanghari River — oranye senja & biru dongker dari logo */
+  --color-bh: #fb7102;
+  --color-bh-deep: #c2500a;
+  --color-bh-navy: #0b1f4d;
+  --color-bh-soft: #ffead5;
+  --color-bh-cream: #fff7ee;
+  --color-bh-sun: #ffc861;
 
   --radius-panel: 2rem;
   --radius-card: 1.5rem;

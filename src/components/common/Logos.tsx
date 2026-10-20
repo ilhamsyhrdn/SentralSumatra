@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ComponentType } from "react";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -7,23 +8,28 @@ interface LogoProps {
   priority?: boolean;
 }
 
-/** Logo bulat Sentral Sumatra; file aslinya punya latar abu di luar lingkaran, jadi diperbesar agar hanya lingkarannya yang tampil. */
-export function SentralLogo({ size = 44, className, priority }: LogoProps) {
+interface RoundLogoProps extends LogoProps {
+  src: string;
+  alt: string;
+  /** Warna latar lingkaran, disamakan dengan latar file logonya */
+  bg: string;
+  imgClass?: string;
+}
+
+function RoundLogo({ src, alt, bg, size = 44, className, priority, imgClass }: RoundLogoProps) {
   return (
     <span
-      className={cn("relative inline-block shrink-0 overflow-hidden rounded-full bg-white", className)}
+      className={cn("relative inline-block shrink-0 overflow-hidden rounded-full", bg, className)}
       style={{ width: size, height: size }}
     >
-      <Image
-        src="/Logo/SentralSumatraBulat.png"
-        alt="Logo Sentral Sumatra"
-        fill
-        sizes={`${size * 2}px`}
-        priority={priority}
-        className="scale-[1.2] object-cover"
-      />
+      <Image src={src} alt={alt} fill sizes={`${size * 2}px`} priority={priority} className={cn("object-cover", imgClass)} />
     </span>
   );
+}
+
+/** Logo bulat Sentral Sumatra; file aslinya punya latar abu di luar lingkaran, jadi diperbesar agar hanya lingkarannya yang tampil. */
+export function SentralLogo(props: LogoProps) {
+  return <RoundLogo {...props} src="/Logo/SentralSumatraBulat.png" alt="Logo Sentral Sumatra" bg="bg-white" imgClass="scale-[1.2]" />;
 }
 
 export function SentralWordmark({ light = false, className }: { light?: boolean; className?: string }) {
@@ -49,21 +55,24 @@ export function SentralWordmark({ light = false, className }: { light?: boolean;
   );
 }
 
-export function DioccaLogo({ size = 44, className, priority }: LogoProps) {
-  return (
-    <span
-      className={cn("relative inline-block shrink-0 overflow-hidden rounded-full bg-dio", className)}
-      style={{ width: size, height: size }}
-    >
-      <Image
-        src="/gambarProduct/Logo.jpg"
-        alt="Logo Diocca"
-        fill
-        sizes={`${size * 2}px`}
-        priority={priority}
-        className="scale-[1.1] object-cover"
-        style={{ objectPosition: "50% 68%" }}
-      />
-    </span>
-  );
+/** Logo persegi harimau AJ Kristal; versi bulat diperbesar ke kepala harimau */
+export function KristalLogo(props: LogoProps) {
+  return <RoundLogo {...props} src="/Logo/LogoAjKristal.jpeg" alt="Logo AJ Kristal" bg="bg-kr" imgClass="origin-[50%_32%] scale-[1.55]" />;
 }
+
+/** Lencana bulat Batanghari River; sudutnya sudah transparan */
+export function BatanghariLogo(props: LogoProps) {
+  return <RoundLogo {...props} src="/Logo/LogoBatanghariRiver.png" alt="Logo Batanghari River" bg="bg-bh" />;
+}
+
+/** Logo emas Diocca di atas hitam; versi bulat hanya menampilkan lambang wajahnya */
+export function DioccaLogo(props: LogoProps) {
+  return <RoundLogo {...props} src="/Logo/LogoDiocca.jpeg" alt="Logo Diocca" bg="bg-black" imgClass="origin-[42%_19%] scale-[1.75]" />;
+}
+
+/** Logo per unit usaha; unit tanpa logo memakai ikon dari data toko */
+export const STORE_LOGOS: Record<string, ComponentType<LogoProps>> = {
+  "aj-kristal": KristalLogo,
+  "batanghari-river": BatanghariLogo,
+  diocca: DioccaLogo,
+};

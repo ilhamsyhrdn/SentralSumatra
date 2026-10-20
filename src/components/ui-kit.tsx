@@ -2,7 +2,23 @@ import type { ComponentType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/Reveal";
 
-export type Tone = "white" | "soft" | "ink" | "teal" | "dio" | "dio-dark" | "dio-mint" | "dio-cream";
+export type Tone =
+  | "white"
+  | "soft"
+  | "ink"
+  | "teal"
+  | "dio"
+  | "dio-dark"
+  | "dio-mint"
+  | "dio-cream"
+  | "kr"
+  | "kr-dark"
+  | "kr-cream"
+  | "kr-white"
+  | "bh"
+  | "bh-navy"
+  | "bh-cream"
+  | "bh-white";
 
 const TONES: Record<Tone, string> = {
   white: "bg-white text-ink",
@@ -13,9 +29,17 @@ const TONES: Record<Tone, string> = {
   "dio-dark": "bg-dio-dark text-white",
   "dio-mint": "bg-dio-mint text-dio-dark",
   "dio-cream": "bg-dio-cream text-dio-dark",
+  kr: "bg-kr text-kr-dark",
+  "kr-dark": "bg-kr-dark text-white",
+  "kr-cream": "bg-kr-cream text-kr-dark",
+  "kr-white": "bg-white text-kr-dark",
+  bh: "bg-bh text-bh-navy",
+  "bh-navy": "bg-bh-navy text-white",
+  "bh-cream": "bg-bh-cream text-bh-navy",
+  "bh-white": "bg-white text-bh-navy",
 };
 
-export const isDark = (tone: Tone) => ["ink", "teal", "dio", "dio-dark"].includes(tone);
+export const isDark = (tone: Tone) => ["ink", "teal", "dio", "dio-dark", "kr-dark", "bh-navy"].includes(tone);
 
 /** Blok halaman berbentuk panel membulat; semua section memakai ini agar radius & jarak seragam */
 export function Panel({
@@ -36,12 +60,23 @@ export function Panel({
   );
 }
 
-export function Chip({ children, dark = false, className }: { children: ReactNode; dark?: boolean; className?: string }) {
+/** `colors` menggantikan warna bawaan (bukan ditambahkan) agar tidak bentrok dengan kelas warna default */
+export function Chip({
+  children,
+  dark = false,
+  colors,
+  className,
+}: {
+  children: ReactNode;
+  dark?: boolean;
+  colors?: string;
+  className?: string;
+}) {
   return (
     <span
       className={cn(
         "inline-flex w-fit items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em]",
-        dark ? "bg-black/25 text-mint" : "bg-leaf-soft text-leaf-ink",
+        colors ?? (dark ? "bg-black/25 text-mint" : "bg-leaf-soft text-leaf-ink"),
         className,
       )}
     >
@@ -64,7 +99,7 @@ export function SectionHead({ chip, title, description, action, dark = false, ch
   return (
     <Reveal className={cn("flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between", className)}>
       <div className="max-w-3xl">
-        <Chip dark={dark} className={chipClass}>
+        <Chip dark={dark} colors={chipClass}>
           {chip}
         </Chip>
         <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">{title}</h2>

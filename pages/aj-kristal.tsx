@@ -20,21 +20,24 @@ import {
 } from "lucide-react";
 import { SiInstagram, SiWhatsapp } from "react-icons/si";
 import { Seo } from "@/components/common/Seo";
+import { KristalLogo } from "@/components/common/Logos";
 import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
 import { EASE_OUT, Reveal, Stagger, StaggerItem, WordsReveal } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
 import { IceScene } from "@/components/three";
-import { AGENT_MIN_QTY, ICE_PRODUCTS, KRISTAL_WA, iceOrderText, type IceProduct } from "@/data/kristal";
+import { AGENT_MIN_QTY, ICE_PRODUCTS, KRISTAL_PHONE, KRISTAL_STORY, KRISTAL_WA, iceOrderText, type IceProduct } from "@/data/kristal";
 import { CONTACT, SOCIALS } from "@/data/site";
-import { formatRupiah, waLink } from "@/lib/utils";
+import { waLink } from "@/lib/utils";
 
-const ORDER_WA = waLink(KRISTAL_WA, "Halo kak, saya ingin memesan es AJ Kristal");
+const ORDER_WA = waLink(KRISTAL_WA, "Halo kak, saya ingin memesan es AJ Kristal. Boleh info harga terbarunya?");
 const AGENT_WA = waLink(KRISTAL_WA, "Halo kak, saya ingin menjadi agen AJ Kristal");
+const KR_CHIP = "bg-kr-soft text-kr-ink";
+const KR_CHIP_DARK = "bg-white/10 text-kr-glow";
 
 const FEATURES = [
-  { icon: ShieldCheck, title: "Dijamin bersih", description: "Kebersihan es kami jamin, aman dicampur langsung ke minuman." },
+  { icon: ShieldCheck, title: "Dijamin bersih", description: "Diproses higienis, aman dicampur langsung ke minuman." },
   { icon: Timer, title: "Tahan lama", description: "Es keras dan tidak cepat cair, minuman tetap dingin lebih lama." },
-  { icon: BadgePercent, title: "Harga terbaik", description: "Es kristal Rp 10.000 dan es serut Rp 11.000 per bungkus." },
+  { icon: BadgePercent, title: "Harga termurah di Jambi", description: "Harga terbaik untuk pedagang. Info harga terbaru langsung dari admin WhatsApp." },
   { icon: Truck, title: "Gratis antar", description: "Pengantaran gratis ke seluruh Kota Jambi, tanpa ongkos kirim." },
 ];
 
@@ -48,13 +51,13 @@ const AUDIENCE = [
 const AGENT_PERKS = [
   "Bonus 1 kantong untuk pembelian 10 bungkus",
   "Gratis antar ke seluruh Kota Jambi",
-  "Harga terbaik untuk usaha Anda",
+  "Harga termurah di Jambi untuk usaha Anda",
 ];
 
 const STEPS = [
-  { icon: ShoppingBasket, title: "Pilih es & jumlah", description: "Es kristal atau es serut. Atur jumlah bungkus langsung di kartu produk." },
-  { icon: MessageCircle, title: "Chat admin", description: `Klik tombol pesan atau chat ${CONTACT.phoneDisplay}. Format pesanan otomatis terisi.` },
-  { icon: Truck, title: "Diantar gratis", description: "Admin mengonfirmasi pesanan, lalu es diantar gratis ke alamat Anda di Kota Jambi." },
+  { icon: ShoppingBasket, title: "Pilih varian & jumlah", description: "Es kristal 10 kg, 5 kg, atau es serut. Atur jumlah bungkus langsung di kartu varian." },
+  { icon: MessageCircle, title: "Chat admin", description: `Klik tombol pesan atau chat ${KRISTAL_PHONE}. Admin membalas dengan harga terbaru.` },
+  { icon: Truck, title: "Diantar gratis", description: "Setelah pesanan dikonfirmasi, es diantar gratis ke alamat Anda di Kota Jambi." },
 ];
 
 const fadeUp = (delay: number) => ({
@@ -67,55 +70,62 @@ export default function AjKristalPage() {
   return (
     <>
       <Seo
-        title="Es Kristal dan Es Serut AJ Kristal"
-        description="AJ Kristal menjual es kristal Rp 10.000 dan es serut Rp 11.000 per bungkus untuk minuman. Dijamin bersih, tahan lama, harga terbaik, dan gratis antar se-Kota Jambi."
+        title="Es Kristal 10 kg, 5 kg, dan Es Serut AJ Kristal"
+        description="AJ Kristal, produsen es kristal nomor 4 di Jambi sejak 2019. Es kristal 10 kg, 5 kg, dan es serut dengan harga termurah di Jambi, dijamin bersih, dan gratis antar se-Kota Jambi."
       />
 
       {/* Hero */}
-      <Panel tone="ink" className="p-2 sm:p-3">
+      <Panel tone="kr-dark" className="p-2 sm:p-3">
         <div className="grid gap-2 sm:gap-3 lg:min-h-[calc(100svh-7.5rem)] lg:grid-cols-[1.05fr_1fr]">
           <div className="flex flex-col justify-center split-pad py-10">
             <motion.div {...fadeUp(0)}>
-              <Chip dark>Es kristal & es serut · Kota Jambi</Chip>
+              <Chip colors={KR_CHIP_DARK}>Sejak 2019 · Kota Jambi</Chip>
             </motion.div>
             <h1 className="mt-6 text-[2.75rem] font-extrabold leading-[1] tracking-[-0.045em] sm:text-6xl xl:text-7xl 2xl:text-[5.4rem]">
-              <WordsReveal text="Es bersih," /> <WordsReveal text="dingin lebih lama." delay={0.18} className="text-mint" />
+              <WordsReveal text="Es kristal asli Jambi," /> <WordsReveal text="dingin lebih lama." delay={0.18} className="text-kr" />
             </h1>
-            <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed 2xl:max-w-2xl 2xl:text-xl text-white/85">
-              AJ Kristal menyediakan es kristal dan es serut untuk minuman. Kebersihannya dijamin, esnya tahan lama, dan
-              harganya terbaik. Pengantaran gratis ke seluruh Kota Jambi.
+            <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 2xl:max-w-2xl 2xl:text-xl">
+              Didirikan tiga anak asli Jambi pada 2019, kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi. Esnya
+              bersih, harganya termurah di Jambi, dan diantar gratis ke seluruh Kota Jambi.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
-              <a href="#produk" className="btn press bg-white text-ink hover:bg-mint">
-                Lihat produk
+              <a href="#produk" className="btn press bg-kr text-kr-dark hover:bg-kr-glow">
+                Lihat varian
               </a>
-              <a href={ORDER_WA} target="_blank" rel="noopener noreferrer" className="btn press bg-teal text-white hover:bg-white hover:text-ink">
+              <a href={ORDER_WA} target="_blank" rel="noopener noreferrer" className="btn press bg-white text-kr-dark hover:bg-kr-soft">
                 <SiWhatsapp className="size-4" />
                 Pesan via WhatsApp
               </a>
             </motion.div>
             <motion.dl {...fadeUp(0.6)} className="mt-10 grid max-w-md grid-cols-3 gap-2">
               {[
-                ["10rb", "Es kristal"],
-                ["11rb", "Es serut"],
+                ["No. 4", "Es kristal di Jambi"],
+                ["2019", "Mulai berdiri"],
                 ["Gratis", "Antar se-Kota Jambi"],
               ].map(([v, l]) => (
-                <div key={l} className="flex flex-col-reverse rounded-2xl bg-white/[0.08] px-4 py-3.5 ring-1 ring-white/10">
-                  <dt className="text-sm text-white/80">{l}</dt>
+                <div key={l} className="flex flex-col-reverse rounded-2xl bg-white/[0.07] px-4 py-3.5 ring-1 ring-white/10">
+                  <dt className="text-sm text-white/75">{l}</dt>
                   <dd className="text-2xl font-extrabold tracking-tight sm:text-3xl">{v}</dd>
                 </div>
               ))}
             </motion.dl>
           </div>
-          <div className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-[radial-gradient(75%_70%_at_50%_45%,#2b8aa0_0%,#17414d_58%,#0b2126_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
-            <IceScene className="absolute inset-0" />
+          <div className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-kr sm:min-h-[30rem] sm:rounded-[1.5rem]">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.1, ease: EASE_OUT }}
+              className="absolute inset-x-4 bottom-20 top-4 sm:bottom-24"
+            >
+              <Image src="/Logo/LogoAjKristal.jpeg" alt="Logo AJ Kristal, harimau memegang tabung es kristal" fill priority sizes="(min-width:1024px) 45vw, 100vw" className="object-contain" />
+            </motion.div>
             <div className="absolute bottom-3 left-3 flex flex-wrap gap-2 sm:bottom-4 sm:left-4">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-sm font-bold text-ink shadow-lg">
-                <ShieldCheck className="size-4 text-teal" />
-                Dijamin bersih
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-sm font-bold text-kr-dark shadow-lg">
+                <BadgePercent className="size-4 text-kr-deep" />
+                Harga termurah di Jambi
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-2 text-sm font-bold text-white shadow-lg">
-                <Truck className="size-4 text-mint" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-kr-dark px-3.5 py-2 text-sm font-bold text-white shadow-lg">
+                <Truck className="size-4 text-kr-glow" />
                 Gratis antar se-Kota Jambi
               </span>
             </div>
@@ -123,55 +133,96 @@ export default function AjKristalPage() {
         </div>
       </Panel>
 
-      {/* Produk */}
-      <Panel tone="soft" id="produk">
+      {/* Varian */}
+      <Panel tone="kr-cream" id="produk">
         <div className="container-x py-14 lg:py-20">
           <SectionHead
-            chip="Produk"
-            title="Dua pilihan es untuk minuman."
-            description="Harga per bungkus. Atur jumlahnya lalu klik pesan, format pesanan langsung terisi di WhatsApp."
+            chip="Varian"
+            chipClass={KR_CHIP}
+            title="Tiga pilihan, satu standar bersih."
+            description="Harga termurah di Jambi. Pilih varian dan jumlahnya, lalu pesan lewat WhatsApp. Admin langsung membalas dengan harga terbaru."
           />
-          <Stagger className="mt-10 grid gap-3 md:grid-cols-2">
+          <Stagger className="mt-10 grid gap-3 md:grid-cols-3">
             {ICE_PRODUCTS.map((p) => (
               <StaggerItem key={p.id} className="h-full">
                 <IceCard product={p} />
               </StaggerItem>
             ))}
           </Stagger>
-          <Reveal className="mt-3 flex flex-col gap-4 rounded-3xl bg-ink p-5 text-white sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <Reveal className="mt-3 flex flex-col gap-4 rounded-3xl bg-kr-dark p-5 text-white sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <span className="flex items-center gap-4">
-              <IconBadge icon={Gift} className="bg-mint text-ink" />
+              <IconBadge icon={Gift} className="bg-kr text-kr-dark" />
               <span className="font-bold leading-relaxed text-white">Ingin bergabung bersama kami menjadi agen?</span>
             </span>
-            <a href="#agen" className="btn press shrink-0 bg-white text-ink hover:bg-mint">
+            <a href="#agen" className="btn press shrink-0 bg-kr text-kr-dark hover:bg-kr-glow">
               Info lebih lanjut
             </a>
           </Reveal>
         </div>
       </Panel>
 
-      {/* Keunggulan */}
-      <Panel tone="white" id="keunggulan" className="p-2 sm:p-3">
-        <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_1.35fr]">
-          <Reveal className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
-            <Image src="/stock/es-bungkus.jpg" alt="Es dimasukkan ke dalam kantong plastik bersih" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover object-[center_70%]" />
+      {/* Cerita */}
+      <Panel tone="kr" id="cerita" className="p-2 sm:p-3">
+        <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_1.15fr]">
+          <Reveal className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-[radial-gradient(75%_70%_at_50%_42%,#ff8a4c_0%,#c2410c_48%,#1f130d_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
+            <IceScene className="absolute inset-0" />
+            <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg sm:inset-x-4 sm:bottom-4">
+              <KristalLogo size={52} />
+              <p className="text-sm leading-snug text-muted">
+                <span className="block font-bold text-kr-dark">Berdiri sejak 2019</span>
+                Didirikan dan dijalankan anak asli Jambi.
+              </p>
+            </div>
           </Reveal>
           <div className="split-pad py-10 lg:py-14">
-            <SectionHead chip="Keunggulan" title="Bersih, tahan lama, harga terbaik." />
+            <Reveal>
+              <Chip colors="bg-kr-dark text-kr-glow">Cerita kami</Chip>
+              <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Dari tiga anak Jambi, untuk Jambi.</h2>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed">
+                Kami percaya usaha daerah bisa tumbuh besar kalau dikerjakan dengan jujur. Es harus bersih, pasokan harus
+                tepat waktu, dan harganya harus masuk akal untuk pedagang kecil. Prinsip itu yang kami pegang sejak hari
+                pertama.
+              </p>
+            </Reveal>
+            <Stagger className="mt-8 grid gap-2">
+              {KRISTAL_STORY.map((s) => (
+                <StaggerItem key={s.mark} className="flex flex-col gap-3 rounded-3xl bg-white p-5 sm:flex-row sm:items-start sm:gap-5">
+                  <span className="w-fit shrink-0 rounded-full bg-kr-dark px-3.5 py-1.5 text-sm font-extrabold text-kr-glow sm:min-w-20 sm:text-center">
+                    {s.mark}
+                  </span>
+                  <span>
+                    <span className="block text-lg font-bold">{s.title}</span>
+                    <span className="mt-1 block leading-relaxed text-muted">{s.text}</span>
+                  </span>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </div>
+      </Panel>
+
+      {/* Keunggulan */}
+      <Panel tone="kr-white" id="keunggulan" className="p-2 sm:p-3">
+        <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_1.35fr]">
+          <Reveal className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] bg-kr-dark sm:rounded-[1.5rem]">
+            <Image src="/stock/es-gelas.jpg" alt="Es batu dijatuhkan ke dalam gelas berisi air" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+          </Reveal>
+          <div className="split-pad py-10 lg:py-14">
+            <SectionHead chip="Keunggulan" chipClass={KR_CHIP} title="Bersih, tahan lama, harga termurah." />
             <Stagger className="mt-8 grid gap-3 sm:grid-cols-2">
               {FEATURES.map((f) => (
-                <StaggerItem key={f.title} className="group h-full rounded-3xl bg-soft p-6 transition duration-300 hover:bg-ink hover:text-white">
-                  <IconBadge icon={f.icon} className="bg-teal text-white group-hover:bg-mint group-hover:text-ink" />
+                <StaggerItem key={f.title} className="group h-full rounded-3xl bg-kr-cream p-6 transition duration-300 hover:bg-kr-dark hover:text-white">
+                  <IconBadge icon={f.icon} className="bg-kr text-kr-dark group-hover:bg-kr-glow" />
                   <h3 className="mt-5 text-lg font-bold tracking-tight">{f.title}</h3>
                   <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted transition-colors group-hover:text-white/80">{f.description}</p>
                 </StaggerItem>
               ))}
             </Stagger>
             <Reveal className="mt-6">
-              <p className="text-sm font-bold text-ink">Cocok untuk</p>
+              <p className="text-sm font-bold text-kr-dark">Cocok untuk</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {AUDIENCE.map((a) => (
-                  <span key={a.label} className="inline-flex items-center gap-2 rounded-full bg-leaf-soft px-4 py-2 text-sm font-semibold text-leaf-ink">
+                  <span key={a.label} className="inline-flex items-center gap-2 rounded-full bg-kr-soft px-4 py-2 text-sm font-semibold text-kr-ink">
                     <a.icon className="size-4" />
                     {a.label}
                   </span>
@@ -183,34 +234,35 @@ export default function AjKristalPage() {
       </Panel>
 
       {/* Jadi agen */}
-      <Panel tone="teal" id="agen" className="p-2 sm:p-3">
+      <Panel tone="kr-dark" id="agen" className="p-2 sm:p-3">
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1.2fr_1fr]">
           <div className="split-pad py-10 lg:py-14">
             <SectionHead
               dark
               chip="Jadi agen"
+              chipClass={KR_CHIP_DARK}
               title="Beli 10, bonus 1 kantong."
               description="Punya warung, kedai minuman, atau ingin berjualan es? Gabung jadi agen AJ Kristal dan dapatkan bonus 1 kantong untuk pembelian 10 bungkus."
             />
-            <Reveal className="mt-8 rounded-3xl bg-black/20 p-5 ring-1 ring-white/10">
+            <Reveal className="mt-8 rounded-3xl bg-white/[0.06] p-5 ring-1 ring-white/10">
               <div aria-hidden className="grid grid-cols-6 gap-2 sm:grid-cols-11">
                 {Array.from({ length: AGENT_MIN_QTY }, (_, i) => (
                   <span key={i} className="grid aspect-square place-items-center rounded-xl bg-white/10 text-white">
                     <Snowflake className="size-4" />
                   </span>
                 ))}
-                <span className="grid aspect-square place-items-center rounded-xl bg-mint text-ink">
+                <span className="grid aspect-square place-items-center rounded-xl bg-kr text-kr-dark">
                   <Gift className="size-4" />
                 </span>
               </div>
               <p className="mt-4 text-sm font-semibold text-white/90">
-                Beli 10 bungkus <span className="text-mint">+ bonus 1 kantong</span>
+                Beli 10 bungkus <span className="text-kr-glow">+ bonus 1 kantong</span>
               </p>
             </Reveal>
             <Stagger className="mt-3 grid gap-2">
               {AGENT_PERKS.map((p) => (
-                <StaggerItem key={p} className="flex items-center gap-3 rounded-2xl bg-black/20 px-4 py-3.5 ring-1 ring-white/10">
-                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-white text-ink">
+                <StaggerItem key={p} className="flex items-center gap-3 rounded-2xl bg-white/[0.06] px-4 py-3.5 ring-1 ring-white/10">
+                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-kr text-kr-dark">
                     <Check className="size-3.5" />
                   </span>
                   <span className="font-semibold">{p}</span>
@@ -218,11 +270,11 @@ export default function AjKristalPage() {
               ))}
             </Stagger>
             <div className="mt-8 flex flex-wrap gap-2">
-              <a href={AGENT_WA} target="_blank" rel="noopener noreferrer" className="btn press bg-white text-ink hover:bg-mint">
+              <a href={AGENT_WA} target="_blank" rel="noopener noreferrer" className="btn press bg-kr text-kr-dark hover:bg-kr-glow">
                 <SiWhatsapp className="size-4" />
                 Daftar jadi agen
               </a>
-              <a href={SOCIALS.kristal.instagram} target="_blank" rel="noopener noreferrer" className="btn press bg-ink text-white hover:bg-black">
+              <a href={SOCIALS.kristal.instagram} target="_blank" rel="noopener noreferrer" className="btn press bg-white/10 text-white ring-1 ring-white/20 hover:bg-white hover:text-kr-dark">
                 <SiInstagram className="size-4" />
                 @eskristal_aj
               </a>
@@ -230,10 +282,10 @@ export default function AjKristalPage() {
           </div>
           <Reveal delay={0.1} className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
             <Image src="/stock/es-teh.jpg" alt="Segelas es teh dingin dengan irisan jeruk nipis" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
-            <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 text-ink shadow-lg sm:inset-x-4 sm:bottom-4">
-              <IconBadge icon={Truck} className="bg-teal text-white" />
+            <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-2xl bg-white p-4 text-kr-dark shadow-lg sm:inset-x-4 sm:bottom-4">
+              <IconBadge icon={Truck} className="bg-kr text-kr-dark" />
               <p className="text-sm leading-snug text-muted">
-                <span className="block font-bold text-ink">Gratis antar se-Kota Jambi</span>
+                <span className="block font-bold text-kr-dark">Gratis antar se-Kota Jambi</span>
                 Stok es untuk usaha Anda diantar sampai tujuan.
               </p>
             </div>
@@ -242,17 +294,17 @@ export default function AjKristalPage() {
       </Panel>
 
       {/* Cara pesan */}
-      <Panel tone="white" id="pesan" className="p-2 sm:p-3">
+      <Panel tone="kr-white" id="pesan" className="p-2 sm:p-3">
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1.2fr_1fr]">
           <div className="split-pad py-10 lg:py-14">
-            <SectionHead chip="Cara pesan" title="Tiga langkah, es sampai." />
+            <SectionHead chip="Cara pesan" chipClass={KR_CHIP} title="Tiga langkah, es sampai." />
             <Stagger className="mt-8 grid gap-2">
               {STEPS.map((s, i) => (
-                <StaggerItem key={s.title} className="flex items-start gap-4 rounded-3xl bg-soft p-5">
-                  <NumberBadge n={i + 1} className="size-11 bg-ink text-white" />
+                <StaggerItem key={s.title} className="flex items-start gap-4 rounded-3xl bg-kr-cream p-5">
+                  <NumberBadge n={i + 1} className="size-11 bg-kr-dark text-white" />
                   <span>
                     <span className="flex items-center gap-2 text-lg font-bold">
-                      <s.icon className="size-5 text-teal" />
+                      <s.icon className="size-5 text-kr-deep" />
                       {s.title}
                     </span>
                     <span className="mt-1 block leading-relaxed text-muted">{s.description}</span>
@@ -261,7 +313,7 @@ export default function AjKristalPage() {
               ))}
             </Stagger>
             <div className="mt-8 flex flex-wrap gap-2">
-              <a href={ORDER_WA} target="_blank" rel="noopener noreferrer" className="btn press bg-ink text-white hover:bg-teal">
+              <a href={ORDER_WA} target="_blank" rel="noopener noreferrer" className="btn press bg-kr-deep text-white hover:bg-kr-dark">
                 <SiWhatsapp className="size-4" />
                 Chat WhatsApp
               </a>
@@ -269,19 +321,21 @@ export default function AjKristalPage() {
                 href={SOCIALS.kristal.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn press bg-soft text-ink ring-1 ring-black/[0.06] hover:bg-canvas"
+                className="btn press bg-kr-cream text-kr-dark ring-1 ring-kr/15 hover:bg-kr-soft"
               >
                 <SiInstagram className="size-4" />
                 @eskristal_aj
               </a>
             </div>
           </div>
-          <Reveal delay={0.1} className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] bg-ink sm:rounded-[1.5rem]">
-            <Image src="/stock/es-gelas.jpg" alt="Es batu dijatuhkan ke dalam gelas berisi air" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
-            <dl className="absolute inset-x-3 bottom-3 grid gap-3 rounded-2xl bg-white p-5 text-ink shadow-lg sm:inset-x-4 sm:bottom-4 sm:grid-cols-2">
+          <Reveal delay={0.1} className="relative min-h-[24rem] overflow-hidden rounded-[1.25rem] bg-kr sm:rounded-[1.5rem]">
+            <div className="absolute inset-x-6 bottom-36 top-6 sm:bottom-28">
+              <Image src="/Logo/LogoAjKristal.jpeg" alt="" fill sizes="(min-width:1024px) 40vw, 100vw" className="object-contain" />
+            </div>
+            <dl className="absolute inset-x-3 bottom-3 grid gap-3 rounded-2xl bg-white p-5 text-kr-dark shadow-lg sm:inset-x-4 sm:bottom-4 sm:grid-cols-2">
               <div>
                 <dt className="text-sm text-muted">WhatsApp admin</dt>
-                <dd className="font-bold">{CONTACT.phoneDisplay}</dd>
+                <dd className="font-bold">{KRISTAL_PHONE}</dd>
               </div>
               <div>
                 <dt className="text-sm text-muted">Jam operasional</dt>
@@ -303,25 +357,20 @@ function IceCard({ product }: { product: IceProduct }) {
   const change = (d: number) => setQty((q) => Math.min(999, Math.max(1, q + d)));
 
   return (
-    <article className="flex h-full flex-col rounded-3xl bg-white p-2">
-      <Tilt innerClassName="overflow-hidden rounded-2xl bg-soft" max={4}>
+    <article className="flex h-full flex-col rounded-3xl bg-white p-2 ring-1 ring-kr/10">
+      <Tilt innerClassName="overflow-hidden rounded-2xl bg-kr-soft" max={4}>
         <div className="relative aspect-[4/3]">
-          <Image src={product.image} alt={product.imageAlt} fill sizes="(min-width:768px) 48vw, 100vw" className="object-cover" />
+          <Image src={product.image} alt={product.imageAlt} fill sizes="(min-width:768px) 32vw, 100vw" className="object-cover" style={{ objectPosition: product.imagePosition }} />
+          <span className="absolute left-3 top-3 rounded-full bg-kr px-3.5 py-1.5 text-sm font-extrabold text-kr-dark shadow-lg">{product.size}</span>
         </div>
       </Tilt>
 
-      <div className="flex flex-1 flex-col p-3 sm:p-5">
-        <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
-          <h3 className="text-2xl font-bold tracking-tight">{product.name}</h3>
-          <p className="text-right">
-            <span className="block text-2xl font-extrabold tracking-tight">{formatRupiah(product.price)}</span>
-            <span className="text-sm text-muted">per {product.unit}</span>
-          </p>
-        </div>
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
+        <h3 className="text-2xl font-bold tracking-tight">{product.name}</h3>
         <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{product.description}</p>
         <div className="mt-4 flex flex-wrap gap-1.5">
           {product.uses.map((u) => (
-            <span key={u} className="rounded-full bg-soft px-3 py-1.5 text-xs font-semibold">
+            <span key={u} className="rounded-full bg-kr-soft px-3 py-1.5 text-xs font-semibold text-kr-ink">
               {u}
             </span>
           ))}
@@ -329,38 +378,38 @@ function IceCard({ product }: { product: IceProduct }) {
 
         <div className="mt-auto pt-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div role="group" aria-label={`Jumlah ${product.name}`} className="flex items-center rounded-full bg-soft p-1">
+            <div role="group" aria-label={`Jumlah ${product.name}`} className="flex items-center rounded-full bg-kr-cream p-1 ring-1 ring-kr/10">
               <button
                 type="button"
                 onClick={() => change(-1)}
                 disabled={qty <= 1}
                 aria-label={`Kurangi ${product.name}`}
-                className="grid size-10 place-items-center rounded-full bg-white text-ink transition hover:bg-ink hover:text-white disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-ink"
+                className="grid size-9 place-items-center rounded-full bg-white text-kr-dark transition hover:bg-kr-dark hover:text-white disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-kr-dark"
               >
                 <Minus className="size-4" />
               </button>
-              <span aria-live="polite" className="min-w-20 text-center text-sm font-bold tabular-nums">
+              <span aria-live="polite" className="min-w-[4.5rem] text-center text-sm font-bold tabular-nums">
                 {qty} {product.unit}
               </span>
               <button
                 type="button"
                 onClick={() => change(1)}
                 aria-label={`Tambah ${product.name}`}
-                className="grid size-10 place-items-center rounded-full bg-white text-ink transition hover:bg-ink hover:text-white"
+                className="grid size-9 place-items-center rounded-full bg-white text-kr-dark transition hover:bg-kr-dark hover:text-white"
               >
                 <Plus className="size-4" />
               </button>
             </div>
-            <p className="text-right">
-              <span className="block text-xs font-medium text-muted">Total</span>
-              <span className="text-xl font-extrabold tracking-tight">{formatRupiah(product.price * qty)}</span>
-            </p>
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-kr-ink">
+              <BadgePercent className="size-4" />
+              Termurah di Jambi
+            </span>
           </div>
 
           <AnimatePresence initial={false}>
             {agent && (
               <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
-                <span className="mt-3 flex items-center gap-2 rounded-2xl bg-leaf-soft px-4 py-3 text-sm font-semibold text-leaf-ink">
+                <span className="mt-3 flex items-center gap-2 rounded-2xl bg-kr-soft px-4 py-3 text-sm font-semibold text-kr-ink">
                   <Gift className="size-4 shrink-0" />
                   Beli 10 bungkus dapat bonus 1 kantong
                 </span>
@@ -372,10 +421,11 @@ function IceCard({ product }: { product: IceProduct }) {
             href={waLink(KRISTAL_WA, iceOrderText(product, qty))}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn press mt-4 w-full bg-ink text-white hover:bg-teal"
+            aria-label={`Pesan ${qty} ${product.unit} ${product.name} via WhatsApp`}
+            className="btn press mt-4 w-full bg-kr-deep px-4 text-white hover:bg-kr-dark"
           >
             <SiWhatsapp className="size-4" />
-            Pesan {qty} {product.unit} via WhatsApp
+            Pesan via WhatsApp
           </a>
         </div>
       </div>

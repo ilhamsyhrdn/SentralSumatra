@@ -13,13 +13,13 @@ export const SENTRAL_VALUES = [
   },
   {
     icon: BadgePercent,
-    title: "Harga Terjangkau",
-    description: "Kualitas premium dengan harga bersahabat, baik untuk rumah tangga maupun usaha.",
+    title: "Harga Termurah di Jambi",
+    description: "Kualitas premium dengan harga termurah di Jambi, plus diskon untuk pemesanan dalam jumlah banyak.",
   },
   {
     icon: Factory,
     title: "Produksi Lokal",
-    description: "Diproduksi di Jambi untuk mendukung ekonomi daerah dan lebih dekat dengan pelanggan di Sumatra.",
+    description: "Diproduksi anak daerah di Jambi untuk mendukung ekonomi lokal dan lebih dekat dengan pelanggan di Sumatra.",
   },
 ];
 
@@ -52,6 +52,7 @@ export const SOCIALS = {
   },
   batanghari: {
     instagram: "https://www.instagram.com/batanghaririver",
+    tiktok: "https://www.tiktok.com/@batanghaririver",
   },
 };
 

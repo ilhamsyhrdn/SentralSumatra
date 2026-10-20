@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { EASE_OUT } from "@/components/motion/Reveal";
+import { cn } from "@/lib/utils";
 
 /** Bingkai navbar: pil putih solid yang menempel di atas, dipakai navbar utama & navbar sub-toko */
 export function NavShell({ label, children }: { label: string; children: ReactNode }) {
@@ -41,8 +42,8 @@ export function MenuToggle({ open, onToggle }: { open: boolean; onToggle: () => 
   );
 }
 
-/** Menu layar penuh di mobile; dibuka dengan efek lingkaran dari tombol menu */
-export function MobileSheet({ open, children }: { open: boolean; children: ReactNode }) {
+/** Menu layar penuh di mobile; dibuka dengan efek lingkaran dari tombol menu. `className` mengganti warna latarnya. */
+export function MobileSheet({ open, children, className }: { open: boolean; children: ReactNode; className?: string }) {
   return (
     <AnimatePresence>
       {open && (
@@ -52,7 +53,7 @@ export function MobileSheet({ open, children }: { open: boolean; children: React
           exit={{ clipPath: "circle(0% at calc(100% - 2.75rem) 2.75rem)" }}
           transition={{ duration: 0.55, ease: EASE_OUT }}
           data-lenis-prevent
-          className="fixed inset-0 z-40 overflow-y-auto bg-ink px-5 pb-8 pt-28 text-white lg:hidden"
+          className={cn("fixed inset-0 z-40 overflow-y-auto px-5 pb-8 pt-28 text-white lg:hidden", className ?? "bg-ink")}
         >
           {children}
         </motion.div>

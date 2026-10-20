@@ -1,34 +1,42 @@
-export interface DioccaVariant {
-  id: "original" | "cokelat";
-  name: string;
-  short: string;
-  label: string;
-  tagline: string;
-  milk: number;
-  price: number;
-  pack: string;
-  weight: string;
-  shopee: string;
-  tiktok: string;
-  images: string[];
-}
+import type { LucideIcon } from "lucide-react";
+import { BadgeCheck, CandyOff, Coffee, CupSoda, Flame, HeartPulse, Package, Sparkles, Zap } from "lucide-react";
 
 export const DIOCCA_WA = "6287825984419";
 export const DIOCCA_PHONE = "0878-2598-4419";
 
-export const DIOCCA_VARIANTS: DioccaVariant[] = [
+export interface DioccaProduct {
+  id: string;
+  name: string;
+  short: string;
+  label: string;
+  tagline: string;
+  /** Angka kandungan; hanya untuk varian susu */
+  stats?: [string, string][];
+  highlights: { icon: LucideIcon; text: string }[];
+  images: string[];
+  /** Foto ilustrasi sementara sampai foto kemasan aslinya tersedia */
+  illustrative?: boolean;
+}
+
+/** Harga sengaja tidak ditampilkan; semua pemesanan diarahkan ke WhatsApp Diocca */
+export const DIOCCA_PRODUCTS: DioccaProduct[] = [
   {
     id: "original",
-    name: "Susu Original Diocca",
+    name: "Susu Original Rendah Kalori",
     short: "Original",
     label: "Original Milk",
-    tagline: "Rasa susu murni yang lembut dan natural, tanpa perisa tambahan.",
-    milk: 80,
-    price: 25000,
-    pack: "4 sachet × 35 g",
-    weight: "140 g",
-    shopee: "https://s.shopee.co.id/7Kp1JFSEl1",
-    tiktok: "https://vt.tokopedia.com/t/ZSHccSXLd57H9-qKxKP/",
+    tagline: "Rasa susu murni yang lembut dan natural, rendah kalori, tanpa perisa tambahan.",
+    stats: [
+      ["80%", "Susu murni"],
+      ["0%", "Sukrosa"],
+      ["0%", "Perisa"],
+    ],
+    highlights: [
+      { icon: Package, text: "Isi 4 sachet × 35 g" },
+      { icon: Zap, text: "Rendah kalori" },
+      { icon: BadgeCheck, text: "Terdaftar BPOM RI" },
+      { icon: CandyOff, text: "Tanpa gula tambahan" },
+    ],
     images: [
       "/gambarProduct/susuPutih1.jpg",
       "/gambarProduct/susuPutih2.jpg",
@@ -39,16 +47,21 @@ export const DIOCCA_VARIANTS: DioccaVariant[] = [
   },
   {
     id: "cokelat",
-    name: "Susu Cokelat Diocca",
+    name: "Susu Cokelat Rendah Kalori",
     short: "Cokelat",
     label: "Chocolate Milk",
-    tagline: "Susu murni berpadu cokelat yang kaya rasa, tetap tanpa gula tambahan.",
-    milk: 77,
-    price: 25000,
-    pack: "4 sachet × 35 g",
-    weight: "140 g",
-    shopee: "https://s.shopee.co.id/8fKOtmGbWF",
-    tiktok: "https://vt.tokopedia.com/t/ZSHccSpLH7R1K-npT2t/",
+    tagline: "Susu murni berpadu cokelat yang kaya rasa, tetap rendah kalori dan tanpa gula tambahan.",
+    stats: [
+      ["77%", "Susu murni"],
+      ["0%", "Sukrosa"],
+      ["0%", "Perisa"],
+    ],
+    highlights: [
+      { icon: Package, text: "Isi 4 sachet × 35 g" },
+      { icon: Zap, text: "Rendah kalori" },
+      { icon: BadgeCheck, text: "Terdaftar BPOM RI" },
+      { icon: HeartPulse, text: "Aman diminum setiap hari" },
+    ],
     images: [
       "/gambarProduct/susuCoklat1.jpg",
       "/gambarProduct/susuCoklat2.jpg",
@@ -57,7 +70,43 @@ export const DIOCCA_VARIANTS: DioccaVariant[] = [
       "/gambarProduct/susuCoklat5.jpg",
     ],
   },
+  {
+    id: "cokelat-premium",
+    name: "Cokelat Premium",
+    short: "Cokelat Premium",
+    label: "Premium Chocolate",
+    tagline: "Cokelat bubuk premium untuk minuman cokelat yang kental dan pekat, nikmat disajikan panas maupun dingin.",
+    highlights: [
+      { icon: Sparkles, text: "Cokelat bubuk premium" },
+      { icon: CupSoda, text: "Rasa pekat dan kaya" },
+      { icon: Flame, text: "Enak panas atau dingin" },
+      { icon: Package, text: "Mudah diseduh" },
+    ],
+    images: ["/stock/cokelat-premium.jpg"],
+    illustrative: true,
+  },
+  {
+    id: "kopi",
+    name: "Kopi Sachet Premium",
+    short: "Kopi",
+    label: "Premium Coffee",
+    tagline: "Kopi bubuk premium dalam kemasan sachet. Praktis diseduh kapan saja, di rumah maupun di kantor.",
+    highlights: [
+      { icon: Coffee, text: "Kopi bubuk premium" },
+      { icon: Package, text: "Kemasan sachet praktis" },
+      { icon: Sparkles, text: "Aroma kopi yang harum" },
+      { icon: Flame, text: "Tinggal seduh air panas" },
+    ],
+    images: ["/stock/kopi.jpg"],
+    illustrative: true,
+  },
 ];
+
+export function dioccaOrderText(product?: DioccaProduct) {
+  return product
+    ? `Halo kak, saya mau memesan ${product.name} DIOCCA. Boleh info harga terbarunya?`
+    : "Halo kak, saya mau memesan produk DIOCCA. Boleh info harga terbarunya?";
+}
 
 export const DIOCCA_TESTIMONIALS = [
   {
@@ -77,7 +126,11 @@ export const DIOCCA_TESTIMONIALS = [
 export const DIOCCA_FAQ = [
   {
     q: "Apa keunggulan susu Diocca dibandingkan susu lain?",
-    a: "Susu Diocca diproduksi dari susu murni tanpa tambahan gula, pengawet, atau perisa buatan. Kandungan susunya mencapai 80% (Original) dan 77% (Cokelat), dan kami menjaga kualitas serta kesegarannya dari bahan pilihan.",
+    a: "Susu Diocca rendah kalori dan diproduksi dari susu murni tanpa tambahan gula, pengawet, atau perisa buatan. Kandungan susunya mencapai 80% (Original) dan 77% (Cokelat), dan kami menjaga kualitas serta kesegarannya dari bahan pilihan.",
+  },
+  {
+    q: "Berapa harga produk Diocca?",
+    a: `Harga Diocca termurah di Jambi. Karena sering ada promo dan diskon pembelian banyak, harga terbaru selalu kami berikan langsung lewat WhatsApp admin Diocca di ${DIOCCA_PHONE}.`,
   },
   {
     q: "Apakah susu Diocca aman untuk bayi dan penderita diabetes?",
@@ -85,11 +138,11 @@ export const DIOCCA_FAQ = [
   },
   {
     q: "Apakah produk Diocca sudah tersertifikasi?",
-    a: "Ya. Semua produk Diocca telah melalui proses sertifikasi dan uji kualitas serta terdaftar di BPOM RI, sehingga aman dan terpercaya untuk dikonsumsi sehari-hari.",
+    a: "Ya. Susu Diocca telah melalui proses sertifikasi dan uji kualitas serta terdaftar di BPOM RI, sehingga aman dan terpercaya untuk dikonsumsi sehari-hari.",
   },
   {
     q: "Bagaimana cara pemesanan produk Diocca?",
-    a: "Anda dapat memesan melalui TikTok Shop, Shopee, Instagram, atau WhatsApp. Semua tautan tersedia di bagian Cara Pesan pada halaman ini.",
+    a: `Pemesanan dilayani lewat WhatsApp admin Diocca di ${DIOCCA_PHONE}. Pilih produk, tekan tombol pesan, lalu admin membalas dengan harga terbaru dan info pengirimannya.`,
   },
   {
     q: "Apakah susu Diocca aman dikonsumsi semua orang?",

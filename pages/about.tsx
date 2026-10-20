@@ -3,25 +3,52 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Seo } from "@/components/common/Seo";
 import { PageIntro } from "@/components/common/PageIntro";
-import { SentralLogo, SentralWordmark } from "@/components/common/Logos";
+import { STORE_LOGOS, SentralLogo, SentralWordmark } from "@/components/common/Logos";
 import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
-import { STORES } from "@/data/stores";
+import { STORES, getStore } from "@/data/stores";
 import { SENTRAL_VALUES } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const MISSIONS = [
-  "Menghadirkan produk berkualitas, higienis, dan aman dengan harga yang terjangkau.",
-  "Mendukung pertumbuhan UMKM melalui pasokan kemasan dan bahan baku yang andal.",
-  "Mengutamakan produksi lokal agar manfaatnya kembali ke masyarakat Jambi.",
+  "Menghadirkan produk berkualitas, higienis, dan legal dengan harga termurah di Jambi.",
+  "Mendukung pertumbuhan UMKM melalui pasokan es, kemasan, dan bahan baku yang andal.",
+  "Mengutamakan produksi lokal oleh anak daerah agar manfaatnya kembali ke masyarakat Jambi.",
   "Terus berinovasi dengan mendengarkan kebutuhan pelanggan.",
 ];
 
 const STATS = [
   { value: "2019", label: "Mulai berdiri" },
   { value: "5", label: "Unit usaha" },
-  { value: "16+", label: "Varian produk" },
+  { value: "20+", label: "Pilihan produk" },
+];
+
+const JOURNEY = [
+  {
+    slug: "aj-kristal",
+    mark: "2019",
+    title: "AJ Kristal berdiri",
+    text: "Tiga anak asli Jambi mendirikan AJ Kristal untuk menyediakan es kristal yang bersih bagi kedai dan warung. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi.",
+  },
+  {
+    slug: "batanghari-river",
+    mark: "2019",
+    title: "Batanghari River dirintis",
+    text: "Anak Teknik Industri Universitas Brawijaya pulang ke Jambi dan membangun produksi sabun serta parfum laundry, kini satu-satunya yang berizin dan legal di Jambi.",
+  },
+  {
+    slug: "diocca",
+    mark: "Tumbuh",
+    title: "Diocca melengkapi",
+    text: "Susu rendah kalori tanpa tambahan gula, cokelat premium, dan kopi sachet premium untuk kebutuhan keluarga sehari-hari.",
+  },
+  {
+    slug: "sentral-plastik",
+    mark: "Segera",
+    title: "Plastik & kimia",
+    text: "Sentral Plastik dan Sentral Kimia sedang disiapkan untuk kebutuhan kemasan serta bahan kimia UMKM dan industri.",
+  },
 ];
 
 export default function AboutPage() {
@@ -29,14 +56,14 @@ export default function AboutPage() {
     <>
       <Seo
         title="Tentang Kami"
-        description="Kenali Sentral Sumatra, induk usaha asal Kota Jambi sejak 2019 yang menaungi AJ Kristal, Batanghari River, Diocca, Sentral Plastik, dan Sentral Kimia."
+        description="Kenali Sentral Sumatra, induk usaha milik anak Jambi sejak 2019 yang menaungi AJ Kristal, Batanghari River, Diocca, Sentral Plastik, dan Sentral Kimia."
       />
 
       <PageIntro
         chip="Tentang kami"
         title="Tumbuh dari Jambi,"
         accent="melayani Sumatra."
-        description="Sentral Sumatra adalah induk usaha yang menaungi lima unit, mulai dari es kristal sampai bahan kimia. Komitmen kami tetap sama, yaitu menghadirkan produk berkualitas dengan harga terjangkau."
+        description="Sentral Sumatra adalah induk usaha asal Kota Jambi yang menaungi lima unit, dari es kristal sampai bahan kimia. Semuanya dijalankan anak daerah dengan satu janji yang sama, yaitu produk berkualitas dengan harga termurah di Jambi."
         aside={
           <div className="grid h-full min-h-[26rem] grid-cols-2 grid-rows-2 gap-2 sm:gap-3">
             <div className="relative row-span-2 overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
@@ -66,20 +93,23 @@ export default function AboutPage() {
         <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1.1fr_1fr]">
           <Reveal className="split-pad py-10 lg:py-14">
             <Chip>Cerita kami</Chip>
-            <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari komitmen sederhana.</h2>
+            <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari anak-anak Jambi.</h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                Kami berdiri sejak 2019 di Kota Jambi dengan tekad sederhana, yaitu menyediakan produk berkualitas yang
-                harganya terjangkau untuk setiap keluarga. Produk yang dipakai sehari-hari harus aman, higienis, dan bisa
-                diandalkan.
+                Sentral Sumatra lahir dari keyakinan sederhana bahwa kebutuhan sehari-hari orang Jambi bisa dipenuhi oleh
+                usaha milik anak Jambi sendiri, dengan kualitas yang tidak kalah dan harga yang lebih bersahabat.
               </p>
               <p>
-                Melalui <strong className="font-semibold text-ink">AJ Kristal</strong>,{" "}
-                <strong className="font-semibold text-ink">Batanghari River</strong>, dan{" "}
-                <strong className="font-semibold text-ink">Diocca</strong>, kami menghadirkan es kristal dan es serut yang
-                bersih, sabun rumah tangga produksi Jambi, serta susu murni tanpa tambahan gula. Kini{" "}
-                <strong className="font-semibold text-ink">Sentral Plastik</strong> dan{" "}
-                <strong className="font-semibold text-ink">Sentral Kimia</strong> sedang disiapkan untuk kebutuhan kemasan
+                Tahun 2019 menjadi titik awalnya. Tiga anak asli Jambi mendirikan{" "}
+                <strong className="font-semibold text-ink">AJ Kristal</strong>, yang kini menjadi produsen es kristal nomor 4
+                di Jambi. Di tahun yang sama, <strong className="font-semibold text-ink">Batanghari River</strong> dirintis
+                oleh anak Teknik Industri Universitas Brawijaya yang pulang membangun produksi sabun dan parfum laundry, kini
+                satu-satunya di Jambi yang sudah berizin dan legal.
+              </p>
+              <p>
+                Setelah itu hadir <strong className="font-semibold text-ink">Diocca</strong> dengan susu rendah kalori, cokelat
+                premium, dan kopi sachet premium. Berikutnya <strong className="font-semibold text-ink">Sentral Plastik</strong>{" "}
+                dan <strong className="font-semibold text-ink">Sentral Kimia</strong> sedang disiapkan untuk kebutuhan kemasan
                 dan bahan kimia bagi UMKM dan industri.
               </p>
             </div>
@@ -94,6 +124,43 @@ export default function AboutPage() {
               </p>
             </div>
           </Reveal>
+        </div>
+      </Panel>
+
+      {/* Perjalanan */}
+      <Panel tone="white">
+        <div className="container-x py-14 lg:py-20">
+          <SectionHead
+            chip="Perjalanan kami"
+            title="Berawal dari Jambi, kini lima unit."
+            description="Setiap unit punya cerita sendiri, tapi semuanya berangkat dari Jambi dan dijalankan anak daerah."
+          />
+          <Stagger className="mt-10 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {JOURNEY.map((j) => {
+              const store = getStore(j.slug);
+              const Logo = STORE_LOGOS[j.slug];
+              return (
+                <StaggerItem key={j.slug} className="h-full">
+                  <Link href={store.href} className="group flex h-full flex-col rounded-3xl bg-soft p-6 transition duration-300 hover:-translate-y-1 hover:bg-ink hover:text-white">
+                    <span className="flex items-center justify-between gap-3">
+                      {Logo ? (
+                        <Logo size={56} className="ring-1 ring-black/5" />
+                      ) : (
+                        <IconBadge icon={store.icon} size="lg" className="bg-ink text-mint group-hover:bg-mint group-hover:text-ink" />
+                      )}
+                      <span className="rounded-full bg-white px-3.5 py-1.5 text-sm font-extrabold text-ink">{j.mark}</span>
+                    </span>
+                    <span className="mt-6 text-xl font-bold tracking-tight">{j.title}</span>
+                    <span className="mt-2 leading-relaxed text-muted transition-colors group-hover:text-white/80">{j.text}</span>
+                    <span className="mt-auto flex items-center gap-1.5 pt-6 text-sm font-semibold text-leaf-ink transition-colors group-hover:text-mint">
+                      Kunjungi {store.name}
+                      <ArrowUpRight className="size-4 transition duration-500 group-hover:rotate-45" />
+                    </span>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
         </div>
       </Panel>
 

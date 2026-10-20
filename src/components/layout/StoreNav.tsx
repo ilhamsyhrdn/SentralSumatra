@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ChevronDown, LayoutGrid } from "lucide-react";
-import { DioccaLogo, SentralLogo } from "@/components/common/Logos";
+import { STORE_LOGOS, SentralLogo } from "@/components/common/Logos";
 import { STORES, type Store } from "@/data/stores";
 import { cn } from "@/lib/utils";
 import { EASE_OUT } from "@/components/motion/Reveal";
@@ -11,7 +11,8 @@ import { MenuToggle, MobileSheet, NavShell, sheetItem } from "./NavShell";
 import { useActiveSection, useMobileMenu } from "./useNavState";
 
 function StoreMark({ store }: { store: Store }) {
-  if (store.slug === "diocca") return <DioccaLogo size={44} priority />;
+  const Logo = STORE_LOGOS[store.slug];
+  if (Logo) return <Logo size={44} priority />;
   const Icon = store.icon;
   return (
     <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[var(--accent)] text-white">
@@ -30,7 +31,7 @@ export function StoreNav({ store }: { store: Store }) {
   const ctaProps = store.cta.external ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
   return (
-    <div style={{ "--accent": store.accent } as CSSProperties} className="contents">
+    <div style={{ "--accent": store.accent, "--dark": store.dark, "--glow": store.glow } as CSSProperties} className="contents">
       <NavShell label={`Navigasi ${store.name}`}>
         <div className="flex min-w-0 items-center gap-1.5">
           <Link
@@ -130,24 +131,24 @@ export function StoreNav({ store }: { store: Store }) {
         </div>
       </NavShell>
 
-      <MobileSheet open={open}>
+      <MobileSheet open={open} className="bg-[var(--dark)]">
         <ul>
           {store.sections.map((l, i) => (
             <motion.li key={l.href} {...sheetItem(i)} className="border-b border-white/15">
-              <a href={l.href} onClick={() => setOpen(false)} className={cn("block py-4 text-3xl font-bold tracking-tight", active === l.href && "text-mint")}>
+              <a href={l.href} onClick={() => setOpen(false)} className={cn("block py-4 text-3xl font-bold tracking-tight", active === l.href && "text-[var(--glow)]")}>
                 {l.label}
               </a>
             </motion.li>
           ))}
         </ul>
         <motion.div {...sheetItem(6)} className="mt-8">
-          <a href={store.cta.href} {...ctaProps} onClick={() => setOpen(false)} className="btn press w-full bg-leaf text-ink">
+          <a href={store.cta.href} {...ctaProps} onClick={() => setOpen(false)} className="btn press w-full bg-[var(--glow)] text-[var(--dark)]">
             {store.cta.label}
           </a>
           <p className="mt-8 text-sm font-semibold text-white/75">Unit lain</p>
           <div className="mt-3 grid grid-cols-2 gap-2">
             <Link href="/" className="press col-span-2 flex h-20 items-center gap-3 rounded-2xl bg-white/10 p-3 active:scale-95">
-              <ArrowLeft className="size-5 shrink-0 text-mint" />
+              <ArrowLeft className="size-5 shrink-0 text-[var(--glow)]" />
               <span className="text-sm font-bold leading-tight">Sentral Sumatra</span>
             </Link>
             {others.map((s) => (

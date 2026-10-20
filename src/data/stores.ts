@@ -2,7 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import { CupSoda, Droplets, FlaskConical, Milk, Snowflake } from "lucide-react";
 import { waLink } from "@/lib/utils";
 import { BATANGHARI_WA } from "./batanghari";
-import { DIOCCA_WA } from "./diocca";
+import { DIOCCA_WA, dioccaOrderText } from "./diocca";
 import { CONTACT } from "./site";
 import { KRISTAL_WA } from "./kristal";
 
@@ -22,8 +22,10 @@ export interface Store {
   description: string;
   status: StoreStatus;
   icon: LucideIcon;
-  /** Satu warna aksen per unit, semuanya dari keluarga teal–hijau logo */
+  /** Warna dari logo tiap unit. accent untuk latar bertulisan putih, dark untuk menu mobile, glow untuk sorotan di atas dark */
   accent: string;
+  dark: string;
+  glow: string;
   image: string;
   products: string[];
   wa: string;
@@ -38,7 +40,8 @@ const SOON_SECTIONS: NavLink[] = [
   { label: "Kabar Terbaru", href: "#kabar" },
 ];
 
-const kristalWa = "Halo kak, saya ingin memesan es AJ Kristal";
+const kristalWa = "Halo kak, saya ingin memesan es AJ Kristal. Boleh info harga terbarunya?";
+const batanghariWa = "Halo kak, saya ingin memesan sabun atau parfum laundry Batanghari River. Boleh info harga dan diskonnya?";
 const plastikWa = "Halo kak, saya tertarik dengan produk Sentral Plastik. Mohon kabari saya saat sudah tersedia.";
 const kimiaWa = "Halo kak, saya tertarik dengan produk Sentral Kimia. Mohon kabari saya saat sudah tersedia.";
 
@@ -49,19 +52,21 @@ export const STORES: Store[] = [
     href: "/aj-kristal",
     name: "AJ Kristal",
     category: "Es Kristal",
-    tagline: "Es kristal & es serut untuk minuman",
+    tagline: "Es kristal 10 kg, 5 kg & es serut",
     description:
-      "Es kristal dan es serut untuk minuman yang dijamin bersih, tahan lama, dan harganya terbaik. Gratis antar se-Kota Jambi.",
+      "Produsen es kristal nomor 4 di Jambi, didirikan tiga anak asli Jambi sejak 2019. Es kristal 10 kg, 5 kg, dan es serut dengan harga termurah di Jambi serta gratis antar se-Kota Jambi.",
     status: "available",
     icon: Snowflake,
-    accent: "#1D7F95",
+    accent: "#C2410C",
+    dark: "#1F130D",
+    glow: "#FF9A5C",
     image: "/stock/es-kristal.jpg",
-    products: ["Es Kristal", "Es Serut"],
+    products: ["Es Kristal 10 kg", "Es Kristal 5 kg", "Es Serut"],
     wa: KRISTAL_WA,
     waText: kristalWa,
     sections: [
-      { label: "Produk", href: "#produk" },
-      { label: "Keunggulan", href: "#keunggulan" },
+      { label: "Varian", href: "#produk" },
+      { label: "Cerita", href: "#cerita" },
       { label: "Jadi Agen", href: "#agen" },
       { label: "Cara Pesan", href: "#pesan" },
     ],
@@ -71,26 +76,28 @@ export const STORES: Store[] = [
     slug: "batanghari-river",
     href: "/batanghari-river",
     name: "Batanghari River",
-    category: "Sabun",
-    tagline: "Sabun & pembersih rumah tangga",
+    category: "Sabun & Parfum Laundry",
+    tagline: "Parfum laundry & sabun rumah tangga",
     description:
-      "Sabun cuci baju, sabun cuci piring, pembersih lantai, dan pewangi pakaian produksi Jambi dengan harga hemat.",
+      "Parfum laundry dan sabun rumah tangga asli Jambi sejak 2019, satu-satunya produksi sabun di Jambi yang sudah berizin dan legal. Harga termurah di Jambi dengan diskon untuk pemesanan banyak.",
     status: "available",
     icon: Droplets,
-    accent: "#2B6D7C",
+    accent: "#C2500A",
+    dark: "#0B1F4D",
+    glow: "#FFC861",
     image: "/background/backgroundSabun.jpg",
-    products: ["Sabun Cuci Baju", "Sabun Cuci Piring", "Pembersih Lantai", "Pewangi Baju"],
+    products: ["Parfum Laundry", "Detergen Cair", "Sabun Cuci Piring", "Pel Lantai", "Pewangi Konsentrat", "Pembersih Kaca", "Sabun Cuci Tangan"],
     wa: BATANGHARI_WA,
-    waText: "Halo kak, saya ingin memesan sabun Batanghari River",
+    waText: batanghariWa,
     sections: [
-      { label: "Keunggulan", href: "#keunggulan" },
-      { label: "Produk", href: "#produk" },
-      { label: "Daftar Harga", href: "#harga" },
+      { label: "Parfum Laundry", href: "#parfum" },
+      { label: "Kebersihan", href: "#kebersihan" },
+      { label: "Cerita", href: "#cerita" },
       { label: "Cara Pesan", href: "#pesan" },
     ],
     cta: {
       label: "Pesan via WhatsApp",
-      href: waLink(BATANGHARI_WA, "Halo kak, saya ingin memesan sabun Batanghari River"),
+      href: waLink(BATANGHARI_WA, batanghariWa),
       external: true,
     },
   },
@@ -98,17 +105,19 @@ export const STORES: Store[] = [
     slug: "diocca",
     href: "/diocca",
     name: "Diocca",
-    category: "Susu",
-    tagline: "Susu murni tanpa tambahan gula",
+    category: "Susu, Cokelat & Kopi",
+    tagline: "Susu rendah kalori, cokelat & kopi premium",
     description:
-      "Susu bubuk dengan 80% susu murni, 0% sukrosa, tanpa perisa dan pengawet. Tersedia varian Original dan Cokelat.",
+      "Susu original dan cokelat rendah kalori dengan 80% susu murni dan 0% sukrosa, ditambah cokelat premium dan kopi sachet premium. Harga termurah di Jambi.",
     status: "available",
     icon: Milk,
     accent: "#00754A",
+    dark: "#1E3932",
+    glow: "#D4A72C",
     image: "/stock/milk-pour.jpg",
-    products: ["Susu Original", "Susu Cokelat"],
+    products: ["Susu Original", "Susu Cokelat", "Cokelat Premium", "Kopi Sachet Premium"],
     wa: DIOCCA_WA,
-    waText: "Halo kak, saya mau memesan produk susu DIOCCA",
+    waText: dioccaOrderText(),
     sections: [
       { label: "Menu", href: "#menu" },
       { label: "Keunggulan", href: "#keunggulan" },
@@ -116,7 +125,7 @@ export const STORES: Store[] = [
       { label: "Cara Pesan", href: "#cara-pesan" },
       { label: "FAQ", href: "#faq" },
     ],
-    cta: { label: "Pesan Sekarang", href: "#cara-pesan" },
+    cta: { label: "Pesan via WhatsApp", href: waLink(DIOCCA_WA, dioccaOrderText()), external: true },
   },
   {
     slug: "sentral-plastik",
@@ -129,6 +138,8 @@ export const STORES: Store[] = [
     status: "soon",
     icon: CupSoda,
     accent: "#17414D",
+    dark: "#0F2A30",
+    glow: "#7FE0BD",
     image: "/stock/cups-business.jpg",
     products: ["Cup Gelas", "Tutup Gelas", "Pipet", "Plastik Laundry"],
     wa: CONTACT.wa,
@@ -147,6 +158,8 @@ export const STORES: Store[] = [
     status: "soon",
     icon: FlaskConical,
     accent: "#17414D",
+    dark: "#0F2A30",
+    glow: "#7FE0BD",
     image: "/stock/lab-beaker.jpg",
     products: ["Bahan Baku Sabun", "Kimia Kebersihan", "Kimia Industri", "Pewangi & Aditif"],
     wa: CONTACT.wa,

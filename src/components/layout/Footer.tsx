@@ -3,6 +3,14 @@ import { SiInstagram, SiShopee, SiTiktok } from "react-icons/si";
 import { SentralLogo, SentralWordmark } from "@/components/common/Logos";
 import { CONTACT, SENTRAL_NAV, SOCIALS } from "@/data/site";
 import { STORES } from "@/data/stores";
+import { BATANGHARI_PHONE, BATANGHARI_WA } from "@/data/batanghari";
+import { DIOCCA_PHONE, DIOCCA_WA } from "@/data/diocca";
+
+const WA_LINES = [
+  { phone: CONTACT.phoneDisplay, wa: CONTACT.wa, note: "Es kristal, pengaduan & lainnya" },
+  { phone: BATANGHARI_PHONE, wa: BATANGHARI_WA, note: "Sabun & parfum laundry" },
+  { phone: DIOCCA_PHONE, wa: DIOCCA_WA, note: "Diocca" },
+];
 
 const SOCIAL_LINKS = [
   { label: "Instagram AJ Kristal", href: SOCIALS.kristal.instagram, icon: SiInstagram },
@@ -10,6 +18,7 @@ const SOCIAL_LINKS = [
   { label: "TikTok Diocca", href: SOCIALS.diocca.tiktok, icon: SiTiktok },
   { label: "Shopee Diocca", href: SOCIALS.diocca.shopee, icon: SiShopee },
   { label: "Instagram Batanghari River", href: SOCIALS.batanghari.instagram, icon: SiInstagram },
+  { label: "TikTok Batanghari River", href: SOCIALS.batanghari.tiktok, icon: SiTiktok },
 ];
 
 export function Footer() {
@@ -47,12 +56,14 @@ export function Footer() {
           <div className="col-span-2 sm:col-span-1">
             <p className="font-bold text-mint">Kontak</p>
             <ul className="mt-3 space-y-2.5 text-white/85">
-              <li>
-                <a href={`https://wa.me/${CONTACT.wa}`} target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
-                  WhatsApp {CONTACT.phoneDisplay}
-                </a>
-                <span className="block text-xs text-white/70">Pemesanan es, pengaduan & lainnya</span>
-              </li>
+              {WA_LINES.map((l) => (
+                <li key={l.wa}>
+                  <a href={`https://wa.me/${l.wa}`} target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
+                    WhatsApp {l.phone}
+                  </a>
+                  <span className="block text-xs text-white/70">{l.note}</span>
+                </li>
+              ))}
               <li>
                 {CONTACT.hours[0].day}, {CONTACT.hours[0].time}
               </li>

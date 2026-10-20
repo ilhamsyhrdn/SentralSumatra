@@ -24,12 +24,13 @@ const SOCIAL_PILLS = [
   { brand: "Diocca", label: "@diocca", href: SOCIALS.diocca.tiktok, icon: SiTiktok },
   { brand: "Diocca", label: "Shopee", href: SOCIALS.diocca.shopee, icon: SiShopee },
   { brand: "Batanghari", label: "@batanghaririver", href: SOCIALS.batanghari.instagram, icon: SiInstagram },
+  { brand: "Batanghari", label: "@batanghaririver", href: SOCIALS.batanghari.tiktok, icon: SiTiktok },
 ];
 
 const INFO = [
   { icon: MapPin, label: "Alamat", value: CONTACT.addressLines.join(", "), href: CONTACT.mapsLink, wide: true },
-  { icon: Phone, label: "WhatsApp utama (es, pengaduan, dan lainnya)", value: CONTACT.phoneDisplay, href: `https://wa.me/${CONTACT.wa}` },
-  { icon: getStore("batanghari-river").icon, label: "Pemesanan sabun", value: BATANGHARI_PHONE, href: `https://wa.me/${BATANGHARI_WA}` },
+  { icon: Phone, label: "WhatsApp utama (es kristal, pengaduan, dan lainnya)", value: CONTACT.phoneDisplay, href: `https://wa.me/${CONTACT.wa}` },
+  { icon: getStore("batanghari-river").icon, label: "Pemesanan sabun & parfum laundry", value: BATANGHARI_PHONE, href: `https://wa.me/${BATANGHARI_WA}` },
   { icon: getStore("diocca").icon, label: "Pemesanan Diocca", value: DIOCCA_PHONE, href: `https://wa.me/${DIOCCA_WA}` },
   { icon: Clock, label: "Jam operasional", value: CONTACT.hours.map((h) => `${h.day}: ${h.time}`).join(" · ") },
 ];
@@ -53,7 +54,9 @@ export default function ContactPage() {
       `Pesan = ${form.message}`,
     ]
       .join("\n");
-    window.open(waLink(CONTACT.wa, text), "_blank", "noopener,noreferrer");
+    // Pesan untuk unit tertentu langsung ke WhatsApp unit itu; umum & pengaduan ke WhatsApp utama
+    const target = STORES.find((s) => s.name === form.topic)?.wa ?? CONTACT.wa;
+    window.open(waLink(target, text), "_blank", "noopener,noreferrer");
     setSent(true);
   };
 
@@ -103,15 +106,16 @@ export default function ContactPage() {
               <Chip>Formulir</Chip>
               <h2 className="mt-5 text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Kirim pesan</h2>
               <p className="mt-2 text-muted">
-                Pesan dan pengaduan Anda langsung diteruskan ke WhatsApp utama kami ({CONTACT.phoneDisplay}).
+                Pesan untuk unit usaha diteruskan ke WhatsApp unit tersebut. Pertanyaan umum dan pengaduan diteruskan ke
+                WhatsApp utama kami ({CONTACT.phoneDisplay}).
               </p>
 
               <div className="mt-8 grid gap-5 sm:grid-cols-2">
                 <Field label="Nama lengkap" htmlFor="name">
-                  <input id="name" name="name" required value={form.name} onChange={onChange} placeholder="Nama Anda" className={fieldClass} />
+                  <input id="name" name="name" required maxLength={80} autoComplete="name" value={form.name} onChange={onChange} placeholder="Nama Anda" className={fieldClass} />
                 </Field>
                 <Field label="Nomor WhatsApp" htmlFor="phone">
-                  <input id="phone" name="phone" type="tel" required value={form.phone} onChange={onChange} placeholder="0812 3456 7890" className={fieldClass} />
+                  <input id="phone" name="phone" type="tel" required maxLength={20} autoComplete="tel" value={form.phone} onChange={onChange} placeholder="0812 3456 7890" className={fieldClass} />
                 </Field>
                 <Field label="Tujuan" htmlFor="topic" className="sm:col-span-2">
                   <div className="relative">
@@ -124,13 +128,14 @@ export default function ContactPage() {
                   </div>
                 </Field>
                 <Field label="Subjek" htmlFor="subject" className="sm:col-span-2">
-                  <input id="subject" name="subject" required value={form.subject} onChange={onChange} placeholder="Perihal pesan Anda" className={fieldClass} />
+                  <input id="subject" name="subject" required maxLength={120} value={form.subject} onChange={onChange} placeholder="Perihal pesan Anda" className={fieldClass} />
                 </Field>
                 <Field label="Pesan" htmlFor="message" className="sm:col-span-2">
                   <textarea
                     id="message"
                     name="message"
                     required
+                    maxLength={1000}
                     rows={5}
                     value={form.message}
                     onChange={onChange}
