@@ -307,7 +307,6 @@ function IceCard({ product }: { product: IceProduct }) {
       <Tilt innerClassName="overflow-hidden rounded-2xl bg-soft" max={4}>
         <div className="relative aspect-[4/3]">
           <Image src={product.image} alt={product.imageAlt} fill sizes="(min-width:768px) 48vw, 100vw" className="object-cover" />
-          <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-ink shadow-sm">Untuk minuman</span>
         </div>
       </Tilt>
 
