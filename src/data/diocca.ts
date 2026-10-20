@@ -13,7 +13,8 @@ export interface DioccaVariant {
   images: string[];
 }
 
-export const DIOCCA_WA = "6282110004601";
+export const DIOCCA_WA = "6287825984419";
+export const DIOCCA_PHONE = "0878-2598-4419";
 
 export const DIOCCA_VARIANTS: DioccaVariant[] = [
   {

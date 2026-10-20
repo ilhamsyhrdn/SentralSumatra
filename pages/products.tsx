@@ -30,19 +30,29 @@ export default function ProductsPage() {
     <>
       <Seo
         title="Produk & Unit Usaha"
-        description="Jelajahi produk Sentral Sumatra: susu Diocca, sabun Batanghari River, serta Sentral Plastik dan Sentral Kimia yang segera hadir."
+        description="Jelajahi produk Sentral Sumatra: es kristal & es serut AJ Kristal, sabun Batanghari River, susu Diocca, serta Sentral Plastik dan Sentral Kimia yang segera hadir."
       />
 
       <PageIntro
         chip="Produk kami"
-        title="Empat unit,"
+        title="Lima unit,"
         accent="beragam kebutuhan."
         description="Setiap unit memiliki dashboard sendiri berisi detail produk, harga, dan cara pemesanan. Pilih yang Anda butuhkan."
         aside={
           <div className="grid h-full min-h-[20rem] grid-cols-2 gap-2 sm:gap-3">
-            {STORES.map((s) => (
-              <Link key={s.slug} href={s.href} className="group relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
-                <Image src={s.image} alt={s.name} fill sizes="(min-width:1024px) 22vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" />
+            {STORES.map((s, i) => (
+              <Link
+                key={s.slug}
+                href={s.href}
+                className={cn("group relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]", i === 0 && "col-span-2")}
+              >
+                <Image
+                  src={s.image}
+                  alt={s.name}
+                  fill
+                  sizes={i === 0 ? "(min-width:1024px) 44vw, 100vw" : "(min-width:1024px) 22vw, 50vw"}
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
                 <span className="absolute inset-0 bg-linear-to-t from-ink/80 via-ink/10 to-transparent" />
                 <span className="absolute inset-x-3 bottom-3 text-sm font-bold text-white sm:text-base">{s.name}</span>
               </Link>

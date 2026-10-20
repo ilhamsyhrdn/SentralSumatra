@@ -1,4 +1,5 @@
-export const BATANGHARI_WA = "6282110004602";
+export const BATANGHARI_WA = "6285113836877";
+export const BATANGHARI_PHONE = "0851-1383-6877";
 
 export interface SoapVariant {
   size: string;

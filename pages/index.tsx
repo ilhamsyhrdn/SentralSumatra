@@ -12,22 +12,23 @@ import { STORES, type Store } from "@/data/stores";
 import { CONTACT, SENTRAL_VALUES } from "@/data/site";
 import { DIOCCA_VARIANTS } from "@/data/diocca";
 import { SOAP_LINES } from "@/data/batanghari";
+import { ICE_PRODUCTS } from "@/data/kristal";
 import { cn, formatRupiah, waLink } from "@/lib/utils";
 
 const STATS = [
-  { value: "4", label: "Unit usaha" },
-  { value: "14+", label: "Varian produk" },
-  { value: "2020", label: "Berdiri sejak" },
+  { value: "5", label: "Unit usaha" },
+  { value: "16+", label: "Varian produk" },
+  { value: "2019", label: "Berdiri sejak" },
 ];
 
 const FEATURED = [
-  ...DIOCCA_VARIANTS.map((v) => ({
-    image: v.images[0],
-    brand: "Diocca",
-    name: v.name.replace(" Diocca", ""),
-    detail: v.pack,
-    price: v.price,
-    href: "/diocca#menu",
+  ...ICE_PRODUCTS.map((p) => ({
+    image: p.image,
+    brand: "AJ Kristal",
+    name: p.name,
+    detail: `Per ${p.unit} · untuk minuman`,
+    price: p.price,
+    href: "/aj-kristal#produk",
   })),
   ...[SOAP_LINES[0], SOAP_LINES[3]].map((l) => ({
     image: l.variants[0].image,
@@ -36,6 +37,14 @@ const FEATURED = [
     detail: `${l.variants[0].size} · Wangi ${l.aroma}`,
     price: l.variants[0].price,
     href: "/batanghari-river#produk",
+  })),
+  ...DIOCCA_VARIANTS.map((v) => ({
+    image: v.images[0],
+    brand: "Diocca",
+    name: v.name.replace(" Diocca", ""),
+    detail: v.pack,
+    price: v.price,
+    href: "/diocca#menu",
   })),
 ];
 
@@ -46,13 +55,13 @@ const fadeUp = (delay: number) => ({
 });
 
 export default function HomePage() {
-  const [diocca, batanghari, plastik, kimia] = STORES;
+  const [lead, ...others] = STORES;
 
   return (
     <>
       <Seo
-        title="Susu, Sabun, Plastik & Kimia dari Jambi"
-        description="Sentral Sumatra menaungi Diocca, Batanghari River, Sentral Plastik, dan Sentral Kimia — produk berkualitas dengan harga terjangkau dari Kota Jambi."
+        title="Es Kristal, Sabun, Susu, Plastik & Kimia dari Jambi"
+        description="Sentral Sumatra menaungi AJ Kristal, Batanghari River, Diocca, Sentral Plastik, dan Sentral Kimia — produk berkualitas dengan harga terjangkau dari Kota Jambi."
       />
 
       {/* Hero */}
@@ -62,7 +71,7 @@ export default function HomePage() {
             <motion.div {...fadeUp(0)}>
               <Chip>
                 <span className="size-1.5 rounded-full bg-leaf" />
-                Kota Jambi · sejak 2020
+                Kota Jambi · sejak 2019
               </Chip>
             </motion.div>
             <h1 className="mt-6 text-[2.75rem] font-extrabold leading-[1] tracking-[-0.045em] sm:text-6xl xl:text-7xl 2xl:text-[5.4rem]">
@@ -71,8 +80,8 @@ export default function HomePage() {
               <WordsReveal text="dari satu sentral." delay={0.18} className="text-teal" />
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed 2xl:max-w-2xl 2xl:text-xl text-muted">
-              Sentral Sumatra menaungi empat unit usaha — susu, sabun, plastik, dan kimia — dengan satu janji: kualitas yang
-              jujur dan harga yang masuk akal.
+              Sentral Sumatra menaungi lima unit usaha — es kristal, sabun, susu, plastik, dan kimia — dengan satu janji:
+              kualitas yang jujur dan harga yang masuk akal.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
               <Link href="/products" className="btn press group bg-ink text-white hover:bg-teal">
@@ -93,16 +102,20 @@ export default function HomePage() {
             </motion.dl>
           </div>
 
-          <div className="relative min-h-[22rem] overflow-hidden rounded-[1.25rem] bg-[radial-gradient(80%_70%_at_55%_45%,#ffffff_0%,#dceee7_55%,#c4e3d7_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
+          <div className="relative min-h-[26rem] overflow-hidden rounded-[1.25rem] bg-[radial-gradient(80%_70%_at_55%_45%,#ffffff_0%,#dceee7_55%,#c4e3d7_100%)] sm:min-h-[30rem] sm:rounded-[1.5rem]">
             <EmblemScene className="absolute inset-0" />
-            <div className="absolute inset-x-3 bottom-3 grid grid-cols-2 gap-2 sm:inset-x-4 sm:bottom-4 2xl:grid-cols-4">
-              {STORES.map((s) => {
+            {/* 5 unit: 2 di baris atas, 3 di baris bawah (mobile: unit pertama selebar penuh) */}
+            <div className="absolute inset-x-3 bottom-3 grid grid-cols-2 gap-2 sm:inset-x-4 sm:bottom-4 sm:grid-cols-6">
+              {STORES.map((s, i) => {
                 const Icon = s.icon;
                 return (
                   <Link
                     key={s.slug}
                     href={s.href}
-                    className="press group flex items-center gap-2.5 rounded-2xl bg-white p-2.5 shadow-sm ring-1 ring-black/[0.05] transition duration-300 hover:bg-ink hover:text-white active:scale-95"
+                    className={cn(
+                      "press group flex items-center gap-2.5 rounded-2xl bg-white p-2.5 shadow-sm ring-1 ring-black/[0.05] transition duration-300 hover:bg-ink hover:text-white active:scale-95",
+                      i === 0 ? "col-span-2 sm:col-span-3" : i === 1 ? "sm:col-span-3" : "sm:col-span-2",
+                    )}
                   >
                     <IconBadge icon={Icon} size="sm" className="bg-ink text-mint group-hover:bg-white/10" />
                     <span className="min-w-0 leading-tight">
@@ -125,7 +138,7 @@ export default function HomePage() {
           <SectionHead
             dark
             chip="Unit usaha"
-            title="Empat unit, satu standar kualitas."
+            title="Lima unit, satu standar kualitas."
             description="Setiap unit punya dashboard sendiri — lengkap dengan produk, harga, dan cara pemesanan."
             action={
               <Link href="/products" className="btn press group bg-white text-ink hover:bg-mint">
@@ -136,17 +149,13 @@ export default function HomePage() {
           />
           <Stagger className="mt-10 grid gap-3 md:grid-cols-4 md:grid-rows-[repeat(2,minmax(15rem,1fr))] lg:mt-12">
             <StaggerItem className="h-[26rem] md:col-span-2 md:row-span-2 md:h-auto">
-              <PhotoTile store={diocca} large />
+              <PhotoTile store={lead} large />
             </StaggerItem>
-            <StaggerItem className="h-72 md:col-span-2 md:h-auto">
-              <PhotoTile store={batanghari} />
-            </StaggerItem>
-            <StaggerItem className="h-72 md:h-auto">
-              <PhotoTile store={plastik} />
-            </StaggerItem>
-            <StaggerItem className="h-72 md:h-auto">
-              <PhotoTile store={kimia} />
-            </StaggerItem>
+            {others.map((s) => (
+              <StaggerItem key={s.slug} className="h-72 md:h-auto">
+                <PhotoTile store={s} />
+              </StaggerItem>
+            ))}
           </Stagger>
         </div>
       </Panel>
@@ -202,7 +211,7 @@ export default function HomePage() {
               </Link>
             }
           />
-          <Stagger className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <Stagger className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 2xl:grid-cols-6">
             {FEATURED.map((p) => (
               <StaggerItem key={p.name} className="h-full">
                 <Link href={p.href} className="group block h-full">
@@ -212,7 +221,7 @@ export default function HomePage() {
                         src={p.image}
                         alt={`${p.brand} ${p.name}`}
                         fill
-                        sizes="(min-width:1024px) 24vw, 48vw"
+                        sizes="(min-width:1536px) 16vw, (min-width:768px) 32vw, 48vw"
                         className="object-cover transition duration-700 group-hover:scale-105"
                       />
                     </span>

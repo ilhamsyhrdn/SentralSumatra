@@ -1,6 +1,10 @@
 import type { LucideIcon } from "lucide-react";
-import { CupSoda, Droplets, FlaskConical, Milk } from "lucide-react";
+import { CupSoda, Droplets, FlaskConical, Milk, Snowflake } from "lucide-react";
 import { waLink } from "@/lib/utils";
+import { BATANGHARI_WA } from "./batanghari";
+import { DIOCCA_WA } from "./diocca";
+import { CONTACT } from "./site";
+import { KRISTAL_WA } from "./kristal";
 
 export type StoreStatus = "available" | "soon";
 
@@ -34,33 +38,34 @@ const SOON_SECTIONS: NavLink[] = [
   { label: "Kabar Terbaru", href: "#kabar" },
 ];
 
+const kristalWa = "Halo kak, saya ingin memesan es AJ Kristal";
 const plastikWa = "Halo kak, saya tertarik dengan produk Sentral Plastik. Mohon kabari saya saat sudah tersedia.";
 const kimiaWa = "Halo kak, saya tertarik dengan produk Sentral Kimia. Mohon kabari saya saat sudah tersedia.";
 
+/** Urutan di sini menentukan urutan unit di seluruh situs */
 export const STORES: Store[] = [
   {
-    slug: "diocca",
-    href: "/diocca",
-    name: "Diocca",
-    category: "Susu",
-    tagline: "Susu murni tanpa tambahan gula",
+    slug: "aj-kristal",
+    href: "/aj-kristal",
+    name: "AJ Kristal",
+    category: "Es Kristal",
+    tagline: "Es kristal & es serut untuk minuman",
     description:
-      "Susu bubuk dengan 80% susu murni, 0% sukrosa, tanpa perisa dan pengawet. Tersedia varian Original dan Cokelat.",
+      "Es kristal dan es serut untuk minuman: dijamin bersih, tahan lama, dengan harga terbaik. Gratis antar se-Kota Jambi.",
     status: "available",
-    icon: Milk,
-    accent: "#00754A",
-    image: "/stock/milk-pour.jpg",
-    products: ["Susu Original", "Susu Cokelat"],
-    wa: "6282110004601",
-    waText: "Halo kak, saya mau memesan produk susu DIOCCA",
+    icon: Snowflake,
+    accent: "#1D7F95",
+    image: "/stock/es-kristal.jpg",
+    products: ["Es Kristal", "Es Serut"],
+    wa: KRISTAL_WA,
+    waText: kristalWa,
     sections: [
-      { label: "Menu", href: "#menu" },
+      { label: "Produk", href: "#produk" },
       { label: "Keunggulan", href: "#keunggulan" },
-      { label: "Cerita", href: "#cerita" },
-      { label: "Cara Pesan", href: "#cara-pesan" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Jadi Agen", href: "#agen" },
+      { label: "Cara Pesan", href: "#pesan" },
     ],
-    cta: { label: "Pesan Sekarang", href: "#cara-pesan" },
+    cta: { label: "Pesan via WhatsApp", href: waLink(KRISTAL_WA, kristalWa), external: true },
   },
   {
     slug: "batanghari-river",
@@ -75,7 +80,7 @@ export const STORES: Store[] = [
     accent: "#2B6D7C",
     image: "/background/backgroundSabun.jpg",
     products: ["Sabun Cuci Baju", "Sabun Cuci Piring", "Pembersih Lantai", "Pewangi Baju"],
-    wa: "6282110004602",
+    wa: BATANGHARI_WA,
     waText: "Halo kak, saya ingin memesan sabun Batanghari River",
     sections: [
       { label: "Keunggulan", href: "#keunggulan" },
@@ -85,9 +90,33 @@ export const STORES: Store[] = [
     ],
     cta: {
       label: "Pesan via WhatsApp",
-      href: waLink("6282110004602", "Halo kak, saya ingin memesan sabun Batanghari River"),
+      href: waLink(BATANGHARI_WA, "Halo kak, saya ingin memesan sabun Batanghari River"),
       external: true,
     },
+  },
+  {
+    slug: "diocca",
+    href: "/diocca",
+    name: "Diocca",
+    category: "Susu",
+    tagline: "Susu murni tanpa tambahan gula",
+    description:
+      "Susu bubuk dengan 80% susu murni, 0% sukrosa, tanpa perisa dan pengawet. Tersedia varian Original dan Cokelat.",
+    status: "available",
+    icon: Milk,
+    accent: "#00754A",
+    image: "/stock/milk-pour.jpg",
+    products: ["Susu Original", "Susu Cokelat"],
+    wa: DIOCCA_WA,
+    waText: "Halo kak, saya mau memesan produk susu DIOCCA",
+    sections: [
+      { label: "Menu", href: "#menu" },
+      { label: "Keunggulan", href: "#keunggulan" },
+      { label: "Cerita", href: "#cerita" },
+      { label: "Cara Pesan", href: "#cara-pesan" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    cta: { label: "Pesan Sekarang", href: "#cara-pesan" },
   },
   {
     slug: "sentral-plastik",
@@ -102,10 +131,10 @@ export const STORES: Store[] = [
     accent: "#17414D",
     image: "/stock/cups-business.jpg",
     products: ["Cup Gelas", "Tutup Gelas", "Pipet", "Plastik Laundry"],
-    wa: "6282110004602",
+    wa: CONTACT.wa,
     waText: plastikWa,
     sections: SOON_SECTIONS,
-    cta: { label: "Kabari Saya", href: waLink("6282110004602", plastikWa), external: true },
+    cta: { label: "Kabari Saya", href: waLink(CONTACT.wa, plastikWa), external: true },
   },
   {
     slug: "sentral-kimia",
@@ -120,10 +149,10 @@ export const STORES: Store[] = [
     accent: "#17414D",
     image: "/stock/lab-beaker.jpg",
     products: ["Bahan Baku Sabun", "Kimia Kebersihan", "Kimia Industri", "Pewangi & Aditif"],
-    wa: "6282110004602",
+    wa: CONTACT.wa,
     waText: kimiaWa,
     sections: SOON_SECTIONS,
-    cta: { label: "Kabari Saya", href: waLink("6282110004602", kimiaWa), external: true },
+    cta: { label: "Kabari Saya", href: waLink(CONTACT.wa, kimiaWa), external: true },
   },
 ];
 

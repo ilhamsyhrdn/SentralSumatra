@@ -29,9 +29,9 @@ export const CONTACT = {
     "Jl. Sersan Anwar Bay, RT.01/RW.01, Bagan Pete",
     "Kec. Alam Barajo, Kota Jambi, Jambi 36361",
   ],
-  phoneDisplay: "+62 821 1000 4602",
-  wa: "6282110004602",
-  emails: ["info@ajproduct.com", "sales@ajproduct.com"],
+  /** WhatsApp utama: pembelian es, pengaduan, dan keperluan lainnya */
+  phoneDisplay: "0819-0534-1580",
+  wa: "6281905341580",
   hours: [
     { day: "Senin – Sabtu", time: "08.00 – 16.00 WIB" },
     { day: "Minggu & Hari Libur", time: "Tutup" },
@@ -42,6 +42,9 @@ export const CONTACT = {
 };
 
 export const SOCIALS = {
+  kristal: {
+    instagram: "https://www.instagram.com/eskristal_aj",
+  },
   diocca: {
     instagram: "https://www.instagram.com/diocca.id",
     tiktok: "https://www.tiktok.com/@diocca",

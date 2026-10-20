@@ -74,4 +74,5 @@ const LOGO: Fallback = { src: "/Logo/SentralSumatraBulat.png", alt: "Logo Sentra
 export const EmblemScene = withFallback(lazy(() => import("./EmblemScene")), LOGO);
 export const CupScene = withFallback(lazy(() => import("./CupScene")), LOGO);
 export const FlaskScene = withFallback(lazy(() => import("./FlaskScene")), LOGO);
+export const IceScene = withFallback(lazy(() => import("./IceScene")), LOGO);
 export const BubblesScene = withFallback(lazy(() => import("./BubblesScene")), null);

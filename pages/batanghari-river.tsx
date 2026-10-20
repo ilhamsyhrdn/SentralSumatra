@@ -8,7 +8,7 @@ import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/u
 import { EASE_OUT, Reveal, Stagger, StaggerItem, WordsReveal } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
 import { BubblesScene } from "@/components/three";
-import { BATANGHARI_WA, SOAP_LINES, soapOrderText, type SoapLine } from "@/data/batanghari";
+import { BATANGHARI_PHONE, BATANGHARI_WA, SOAP_LINES, soapOrderText, type SoapLine } from "@/data/batanghari";
 import { CONTACT, SOCIALS } from "@/data/site";
 import { cn, formatRupiah, waLink } from "@/lib/utils";
 
@@ -235,7 +235,7 @@ export default function BatanghariRiverPage() {
             <dl className="absolute inset-x-3 bottom-3 grid gap-3 rounded-2xl bg-white p-5 text-ink shadow-lg sm:inset-x-4 sm:bottom-4 sm:grid-cols-2">
               <div>
                 <dt className="text-sm text-muted">WhatsApp admin</dt>
-                <dd className="font-bold">0821-1000-4602</dd>
+                <dd className="font-bold">{BATANGHARI_PHONE}</dd>
               </div>
               <div>
                 <dt className="text-sm text-muted">Jam operasional</dt>

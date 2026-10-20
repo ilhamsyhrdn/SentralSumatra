@@ -1,22 +1,25 @@
 import { useState, type ChangeEvent, type ComponentType, type FormEvent, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, ChevronDown, CircleCheckBig, Clock, Mail, MapPin, Navigation, Phone, Send } from "lucide-react";
+import { ArrowUpRight, ChevronDown, CircleCheckBig, Clock, MapPin, Navigation, Phone, Send } from "lucide-react";
 import { SiInstagram, SiShopee, SiTiktok } from "react-icons/si";
 import { Seo } from "@/components/common/Seo";
 import { PageIntro } from "@/components/common/PageIntro";
 import { Chip, IconBadge, Panel } from "@/components/ui-kit";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { CONTACT, SOCIALS } from "@/data/site";
-import { STORES } from "@/data/stores";
+import { BATANGHARI_PHONE, BATANGHARI_WA } from "@/data/batanghari";
+import { DIOCCA_PHONE, DIOCCA_WA } from "@/data/diocca";
+import { STORES, getStore } from "@/data/stores";
 import { cn, waLink } from "@/lib/utils";
 
-const TOPICS = ["Umum (Sentral Sumatra)", ...STORES.map((s) => s.name)];
-const EMPTY_FORM = { name: "", phone: "", email: "", topic: TOPICS[0], subject: "", message: "" };
+const TOPICS = ["Umum (Sentral Sumatra)", "Pengaduan", ...STORES.map((s) => s.name)];
+const EMPTY_FORM = { name: "", phone: "", topic: TOPICS[0], subject: "", message: "" };
 
 const fieldClass =
   "w-full rounded-2xl border border-black/10 bg-soft px-4 py-3.5 text-ink placeholder:text-muted/80 transition duration-200 focus:border-leaf focus:bg-white focus:outline-none focus:ring-4 focus:ring-leaf/20";
 
 const SOCIAL_PILLS = [
+  { brand: "AJ Kristal", label: "@eskristal_aj", href: SOCIALS.kristal.instagram, icon: SiInstagram },
   { brand: "Diocca", label: "@diocca.id", href: SOCIALS.diocca.instagram, icon: SiInstagram },
   { brand: "Diocca", label: "@diocca", href: SOCIALS.diocca.tiktok, icon: SiTiktok },
   { brand: "Diocca", label: "Shopee", href: SOCIALS.diocca.shopee, icon: SiShopee },
@@ -24,9 +27,10 @@ const SOCIAL_PILLS = [
 ];
 
 const INFO = [
-  { icon: MapPin, label: "Alamat", value: CONTACT.addressLines.join(", "), href: CONTACT.mapsLink },
-  { icon: Phone, label: "Telepon / WhatsApp", value: CONTACT.phoneDisplay, href: `https://wa.me/${CONTACT.wa}` },
-  { icon: Mail, label: "Email", value: CONTACT.emails.join(" · "), href: `mailto:${CONTACT.emails[0]}` },
+  { icon: MapPin, label: "Alamat", value: CONTACT.addressLines.join(", "), href: CONTACT.mapsLink, wide: true },
+  { icon: Phone, label: "WhatsApp utama · es, pengaduan & lainnya", value: CONTACT.phoneDisplay, href: `https://wa.me/${CONTACT.wa}` },
+  { icon: getStore("batanghari-river").icon, label: "Pemesanan sabun", value: BATANGHARI_PHONE, href: `https://wa.me/${BATANGHARI_WA}` },
+  { icon: getStore("diocca").icon, label: "Pemesanan Diocca", value: DIOCCA_PHONE, href: `https://wa.me/${DIOCCA_WA}` },
   { icon: Clock, label: "Jam operasional", value: CONTACT.hours.map((h) => `${h.day}: ${h.time}`).join(" · ") },
 ];
 
@@ -44,12 +48,10 @@ export default function ContactPage() {
     const text = [
       `Nama = ${form.name}`,
       `Nomor Telepon = ${form.phone}`,
-      form.email && `Email = ${form.email}`,
       `Tujuan = ${form.topic}`,
       `Subjek = ${form.subject}`,
       `Pesan = ${form.message}`,
     ]
-      .filter(Boolean)
       .join("\n");
     window.open(waLink(CONTACT.wa, text), "_blank", "noopener,noreferrer");
     setSent(true);
@@ -59,18 +61,18 @@ export default function ContactPage() {
     <>
       <Seo
         title="Hubungi Kami"
-        description="Hubungi Sentral Sumatra di Kota Jambi melalui WhatsApp, email, atau kunjungi lokasi kami. Kami siap membantu pemesanan dan kemitraan."
+        description="Hubungi Sentral Sumatra di Kota Jambi melalui WhatsApp atau kunjungi lokasi kami. Kami siap membantu pemesanan, kemitraan, dan pengaduan."
       />
 
       <PageIntro
         chip="Hubungi kami"
         title="Mari"
         accent="bicara."
-        description="Pertanyaan seputar produk, pemesanan dalam jumlah besar, atau peluang kemitraan — tim kami siap membantu."
+        description="Pertanyaan seputar produk, pemesanan dalam jumlah besar, peluang kemitraan, atau pengaduan — tim kami siap membantu lewat WhatsApp."
         aside={
           <Stagger className="grid h-full gap-2 sm:grid-cols-2 sm:gap-3">
-            {INFO.map((item) => (
-              <StaggerItem key={item.label} className="h-full">
+            {INFO.map(({ wide, ...item }) => (
+              <StaggerItem key={item.label} className={cn("h-full", wide && "sm:col-span-2")}>
                 <InfoCard {...item} />
               </StaggerItem>
             ))}
@@ -100,7 +102,9 @@ export default function ContactPage() {
             <form onSubmit={onSubmit} className="h-full rounded-[1.25rem] bg-white p-6 sm:rounded-[1.5rem] sm:p-10">
               <Chip>Formulir</Chip>
               <h2 className="mt-5 text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Kirim pesan</h2>
-              <p className="mt-2 text-muted">Pesan Anda langsung diteruskan ke WhatsApp kami.</p>
+              <p className="mt-2 text-muted">
+                Pesan dan pengaduan Anda langsung diteruskan ke WhatsApp utama kami ({CONTACT.phoneDisplay}).
+              </p>
 
               <div className="mt-8 grid gap-5 sm:grid-cols-2">
                 <Field label="Nama lengkap" htmlFor="name">
@@ -109,10 +113,7 @@ export default function ContactPage() {
                 <Field label="Nomor WhatsApp" htmlFor="phone">
                   <input id="phone" name="phone" type="tel" required value={form.phone} onChange={onChange} placeholder="0812 3456 7890" className={fieldClass} />
                 </Field>
-                <Field label="Email" htmlFor="email" hint="Opsional">
-                  <input id="email" name="email" type="email" value={form.email} onChange={onChange} placeholder="email@contoh.com" className={fieldClass} />
-                </Field>
-                <Field label="Tujuan" htmlFor="topic">
+                <Field label="Tujuan" htmlFor="topic" className="sm:col-span-2">
                   <div className="relative">
                     <select id="topic" name="topic" value={form.topic} onChange={onChange} className={cn(fieldClass, "appearance-none pr-10")}>
                       {TOPICS.map((t) => (

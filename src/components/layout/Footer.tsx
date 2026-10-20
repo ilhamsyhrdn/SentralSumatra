@@ -5,6 +5,7 @@ import { CONTACT, SENTRAL_NAV, SOCIALS } from "@/data/site";
 import { STORES } from "@/data/stores";
 
 const SOCIAL_LINKS = [
+  { label: "Instagram AJ Kristal", href: SOCIALS.kristal.instagram, icon: SiInstagram },
   { label: "Instagram Diocca", href: SOCIALS.diocca.instagram, icon: SiInstagram },
   { label: "TikTok Diocca", href: SOCIALS.diocca.tiktok, icon: SiTiktok },
   { label: "Shopee Diocca", href: SOCIALS.diocca.shopee, icon: SiShopee },
@@ -21,9 +22,9 @@ export function Footer() {
             <SentralWordmark light />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/80">
-            Susu, sabun, plastik, dan kimia — dari Kota Jambi untuk Sumatra.
+            Es kristal, sabun, susu, plastik, dan kimia — dari Kota Jambi untuk Sumatra.
           </p>
-          <div className="mt-5 flex gap-2">
+          <div className="mt-5 flex flex-wrap gap-2">
             {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
               <a
                 key={label}
@@ -48,13 +49,9 @@ export function Footer() {
             <ul className="mt-3 space-y-2.5 text-white/85">
               <li>
                 <a href={`https://wa.me/${CONTACT.wa}`} target="_blank" rel="noopener noreferrer" className="transition hover:text-white">
-                  {CONTACT.phoneDisplay}
+                  WhatsApp {CONTACT.phoneDisplay}
                 </a>
-              </li>
-              <li>
-                <a href={`mailto:${CONTACT.emails[0]}`} className="transition hover:text-white">
-                  {CONTACT.emails[0]}
-                </a>
+                <span className="block text-xs text-white/70">Pemesanan es, pengaduan & lainnya</span>
               </li>
               <li>
                 {CONTACT.hours[0].day}, {CONTACT.hours[0].time}

@@ -146,7 +146,7 @@ export function StoreNav({ store }: { store: Store }) {
           </a>
           <p className="mt-8 text-sm font-semibold text-white/75">Unit lain</p>
           <div className="mt-3 grid grid-cols-2 gap-2">
-            <Link href="/" className="press flex h-20 items-center gap-3 rounded-2xl bg-white/10 p-3 active:scale-95">
+            <Link href="/" className="press col-span-2 flex h-20 items-center gap-3 rounded-2xl bg-white/10 p-3 active:scale-95">
               <ArrowLeft className="size-5 shrink-0 text-mint" />
               <span className="text-sm font-bold leading-tight">Sentral Sumatra</span>
             </Link>

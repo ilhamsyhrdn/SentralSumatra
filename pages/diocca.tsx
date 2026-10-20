@@ -10,7 +10,7 @@ import { Lightbox } from "@/components/common/Lightbox";
 import { Chip, IconBadge, NumberBadge, Panel, SectionHead } from "@/components/ui-kit";
 import { EASE_OUT, Reveal, Stagger, StaggerItem, WordsReveal } from "@/components/motion/Reveal";
 import { Tilt } from "@/components/motion/Tilt";
-import { DIOCCA_FAQ, DIOCCA_TESTIMONIALS, DIOCCA_VARIANTS, DIOCCA_WA, type DioccaVariant } from "@/data/diocca";
+import { DIOCCA_FAQ, DIOCCA_PHONE, DIOCCA_TESTIMONIALS, DIOCCA_VARIANTS, DIOCCA_WA, type DioccaVariant } from "@/data/diocca";
 import { SOCIALS } from "@/data/site";
 import { cn, formatRupiah, waLink } from "@/lib/utils";
 
@@ -27,7 +27,7 @@ const PERKS = [
 const CHANNELS = [
   { name: "TikTok Shop", description: "Pilih produk langsung dari etalase akun TikTok Diocca.", href: SOCIALS.diocca.tiktok, icon: SiTiktok, cta: "Buka TikTok Shop" },
   { name: "Shopee", description: "Toko resmi Diocca dengan pilihan pengiriman dan pembayaran lengkap.", href: SOCIALS.diocca.shopee, icon: SiShopee, cta: "Buka Shopee" },
-  { name: "WhatsApp", description: "Chat admin di 0821-1000-4601 — pesan otomatis sudah kami siapkan.", href: ORDER_WA, icon: SiWhatsapp, cta: "Chat admin" },
+  { name: "WhatsApp", description: `Chat admin di ${DIOCCA_PHONE} — pesan otomatis sudah kami siapkan.`, href: ORDER_WA, icon: SiWhatsapp, cta: "Chat admin" },
 ];
 
 const fadeUp = (delay: number) => ({

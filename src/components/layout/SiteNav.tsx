@@ -89,8 +89,12 @@ export function SiteNav() {
           <motion.div {...sheetItem(5)} className="mt-8">
             <p className="text-sm font-semibold text-white/75">Unit usaha</p>
             <div className="mt-3 grid grid-cols-2 gap-2">
-              {STORES.map((s) => (
-                <Link key={s.slug} href={s.href} className="press relative h-24 overflow-hidden rounded-2xl active:scale-95">
+              {STORES.map((s, i) => (
+                <Link
+                  key={s.slug}
+                  href={s.href}
+                  className={cn("press relative h-24 overflow-hidden rounded-2xl active:scale-95", i === 0 && "col-span-2")}
+                >
                   <Image src={s.image} alt="" fill sizes="45vw" className="object-cover" />
                   <span className="absolute inset-0 bg-ink/55" />
                   <span className="absolute inset-x-3 bottom-2.5 text-sm font-bold leading-tight">{s.name}</span>

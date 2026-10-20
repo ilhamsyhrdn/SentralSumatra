@@ -19,9 +19,9 @@ const MISSIONS = [
 ];
 
 const STATS = [
-  { value: "2020", label: "Mulai berdiri" },
-  { value: "4", label: "Unit usaha" },
-  { value: "14+", label: "Varian produk" },
+  { value: "2019", label: "Mulai berdiri" },
+  { value: "5", label: "Unit usaha" },
+  { value: "16+", label: "Varian produk" },
 ];
 
 export default function AboutPage() {
@@ -29,24 +29,24 @@ export default function AboutPage() {
     <>
       <Seo
         title="Tentang Kami"
-        description="Kenali Sentral Sumatra, induk usaha asal Kota Jambi yang menaungi Diocca, Batanghari River, Sentral Plastik, dan Sentral Kimia."
+        description="Kenali Sentral Sumatra, induk usaha asal Kota Jambi sejak 2019 yang menaungi AJ Kristal, Batanghari River, Diocca, Sentral Plastik, dan Sentral Kimia."
       />
 
       <PageIntro
         chip="Tentang kami"
         title="Tumbuh dari Jambi,"
         accent="melayani Sumatra."
-        description="Sentral Sumatra adalah induk usaha yang menaungi empat unit — dari susu murni hingga bahan kimia — dengan satu komitmen: produk berkualitas yang terjangkau."
+        description="Sentral Sumatra adalah induk usaha yang menaungi lima unit — dari es kristal hingga bahan kimia — dengan satu komitmen: produk berkualitas yang terjangkau."
         aside={
           <div className="grid h-full min-h-[26rem] grid-cols-2 grid-rows-2 gap-2 sm:gap-3">
             <div className="relative row-span-2 overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
-              <Image src="/stock/milk-pour.jpg" alt="Susu dituang ke gelas" fill priority sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
+              <Image src="/stock/es-kristal.jpg" alt="Es kristal AJ Kristal" fill priority sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
             </div>
             <div className="relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
               <Image src="/background/backgroundSabun.jpg" alt="Produk sabun Batanghari River" fill sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
             </div>
             <div className="relative overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem]">
-              <Image src="/stock/cups-boba.jpg" alt="Minuman dalam cup plastik" fill sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
+              <Image src="/stock/milk-pour.jpg" alt="Susu dituang ke gelas" fill sizes="(min-width:1024px) 22vw, 50vw" className="object-cover" />
             </div>
           </div>
         }
@@ -69,13 +69,14 @@ export default function AboutPage() {
             <h2 className="mt-5 text-[2rem] font-bold leading-[1.06] tracking-[-0.035em] sm:text-5xl">Berawal dari komitmen sederhana.</h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
               <p>
-                Berdiri sejak 2020 di Kota Jambi, kami lahir dari satu tekad: menyediakan produk berkualitas tinggi yang
+                Berdiri sejak 2019 di Kota Jambi, kami lahir dari satu tekad: menyediakan produk berkualitas tinggi yang
                 terjangkau untuk setiap keluarga — produk sehari-hari yang aman, higienis, sehat, dan bisa diandalkan.
               </p>
               <p>
-                Melalui <strong className="font-semibold text-ink">Diocca</strong> dan{" "}
-                <strong className="font-semibold text-ink">Batanghari River</strong>, kami menghadirkan susu murni tanpa
-                tambahan gula serta sabun rumah tangga produksi Jambi. Kini{" "}
+                Melalui <strong className="font-semibold text-ink">AJ Kristal</strong>,{" "}
+                <strong className="font-semibold text-ink">Batanghari River</strong>, dan{" "}
+                <strong className="font-semibold text-ink">Diocca</strong>, kami menghadirkan es kristal dan es serut yang
+                bersih, sabun rumah tangga produksi Jambi, serta susu murni tanpa tambahan gula. Kini{" "}
                 <strong className="font-semibold text-ink">Sentral Plastik</strong> dan{" "}
                 <strong className="font-semibold text-ink">Sentral Kimia</strong> sedang disiapkan untuk kebutuhan kemasan
                 dan bahan kimia bagi UMKM dan industri.
@@ -138,7 +139,7 @@ export default function AboutPage() {
       {/* Struktur usaha */}
       <Panel tone="soft">
         <div className="container-x py-14 lg:py-20">
-          <SectionHead chip="Struktur usaha" title="Satu induk, empat unit usaha." />
+          <SectionHead chip="Struktur usaha" title="Satu induk, lima unit usaha." />
 
           <Reveal className="mt-10 flex flex-col items-center">
             <div className="flex items-center gap-4 rounded-full bg-white py-2.5 pl-2.5 pr-7 shadow-sm ring-1 ring-black/[0.05]">
@@ -148,19 +149,24 @@ export default function AboutPage() {
             <div className="h-8 w-px bg-ink/25" />
           </Reveal>
 
-          <div className="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:pt-8">
-            {/* Garis penghubung antar-kolom; memperhitungkan gap 0.75rem */}
+          {/* Flex agar baris sisa di layar sedang tetap di tengah; 5 kolom sejajar mulai xl */}
+          <div className="relative flex flex-wrap justify-center gap-3 xl:pt-8">
+            {/* Garis penghubung antar-kolom; memperhitungkan 4 gap 0.75rem */}
             <div
               aria-hidden
-              className="absolute left-[calc((100%-2.25rem)/8)] right-[calc((100%-2.25rem)/8)] top-0 hidden h-px bg-ink/25 lg:block"
+              className="absolute left-[calc((100%-3rem)/10)] right-[calc((100%-3rem)/10)] top-0 hidden h-px bg-ink/25 xl:block"
             />
             {STORES.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 0.06} className="relative h-full">
-                <div aria-hidden className="absolute -top-8 left-1/2 hidden h-8 w-px bg-ink/25 lg:block" />
+              <Reveal
+                key={s.slug}
+                delay={i * 0.06}
+                className="relative w-full sm:w-[calc((100%-0.75rem)/2)] lg:w-[calc((100%-1.5rem)/3)] xl:w-[calc((100%-3rem)/5)]"
+              >
+                <div aria-hidden className="absolute -top-8 left-1/2 hidden h-8 w-px bg-ink/25 xl:block" />
                 <Link href={s.href} className="group block h-full">
                   <Tilt className="h-full" innerClassName="flex h-full flex-col rounded-3xl bg-white p-2">
                     <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl">
-                      <Image src={s.image} alt={s.name} fill sizes="(min-width:1024px) 24vw, 50vw" className="object-cover transition duration-700 group-hover:scale-105" />
+                      <Image src={s.image} alt={s.name} fill sizes="(min-width:1280px) 19vw, (min-width:1024px) 32vw, (min-width:640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />
                       <span
                         className={cn(
                           "absolute left-2.5 top-2.5 rounded-full px-2.5 py-1 text-xs font-bold",
