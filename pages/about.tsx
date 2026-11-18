@@ -29,7 +29,7 @@ const JOURNEY = [
     slug: "aj-kristal",
     mark: "2019",
     title: "Berawal dari AJ Kristal",
-    text: "Seorang anak Jambi lulusan Teknik Industri Universitas Brawijaya memulai semuanya dari es kristal, untuk memajukan perekonomian Provinsi Jambi. Kini AJ Kristal menjadi produsen es kristal nomor 4 di Jambi.",
+    text: "Seorang anak Jambi lulusan Teknik Industri Universitas Brawijaya memulai semuanya dari es kristal, untuk memajukan perekonomian Provinsi Jambi. Kini AJ Kristal menjadi produsen es kristal nomor 2 di Jambi.",
   },
   {
     slug: "batanghari-river",
@@ -95,7 +95,7 @@ export default function AboutPage() {
               </p>
               <p>
                 Semuanya dimulai tahun 2019 dari <strong className="font-semibold text-ink">AJ Kristal</strong>, yang kini
-                menjadi produsen es kristal nomor 4 di Jambi. Di tahun yang sama usahanya berkembang ke{" "}
+                menjadi produsen es kristal nomor 2 di Jambi. Di tahun yang sama usahanya berkembang ke{" "}
                 <strong className="font-semibold text-ink">Batanghari River</strong>, produksi sabun dan parfum laundry yang
                 kini satu-satunya di Jambi yang sudah berizin dan legal, lalu ke{" "}
                 <strong className="font-semibold text-ink">Diocca</strong> dengan susu rendah kalori, cokelat premium, dan kopi

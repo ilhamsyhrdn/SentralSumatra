@@ -28,19 +28,17 @@ interface Featured {
   href: string;
   /** cover = isi penuh (foto stok), contain = logo utuh, blur = foto produk utuh di atas versi buram dirinya */
   fit: "cover" | "contain" | "blur";
-  position?: string;
 }
 
 /** Harga tidak ditampilkan di situs; setiap kartu mengarah ke halaman unit yang punya tombol WhatsApp */
 const FEATURED: Featured[] = [
-  ...[ICE_PRODUCTS[0], ICE_PRODUCTS[2]].map((p): Featured => ({
+  ...ICE_PRODUCTS.map((p): Featured => ({
     image: p.image,
     brand: "AJ Kristal",
     name: p.name,
     detail: "Gratis antar se-Kota Jambi",
     href: "/aj-kristal#produk",
     fit: "cover",
-    position: p.imagePosition,
   })),
   {
     image: "/batanghari/parfum-laundry.jpg",
@@ -247,7 +245,6 @@ export default function HomePage() {
                           "transition duration-700 group-hover:scale-105",
                           p.fit === "cover" ? "object-cover" : p.fit === "contain" ? "object-contain p-3" : "object-contain",
                         )}
-                        style={{ objectPosition: p.position }}
                       />
                     </span>
                     <span className="flex flex-1 flex-col p-3 sm:p-4">

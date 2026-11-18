@@ -35,7 +35,7 @@ const KR_CHIP = "bg-kr-soft text-kr-ink";
 const KR_CHIP_DARK = "bg-white/10 text-kr-glow";
 
 const HERO_STATS = [
-  { value: "No. 4", label: "Es kristal di Jambi" },
+  { value: "No. 2", label: "Es kristal di Jambi" },
   { value: "2019", label: "Mulai berdiri" },
   { value: "Gratis", label: "Antar Kota Jambi" },
 ];
@@ -55,13 +55,13 @@ const AUDIENCE = [
 ];
 
 const AGENT_PERKS = [
-  "Bonus 1 kantong untuk pembelian 10 bungkus",
+  "Bonus 1 kantong untuk pembelian 10 kantong",
   "Gratis antar ke seluruh Kota Jambi",
   "Harga termurah di Jambi untuk usaha Anda",
 ];
 
 const STEPS = [
-  { icon: ShoppingBasket, title: "Pilih varian & jumlah", description: "Es kristal 10 kg, 5 kg, atau es serut. Atur jumlah bungkus langsung di kartu varian." },
+  { icon: ShoppingBasket, title: "Pilih varian & jumlah", description: "Es kristal atau es serut, dijual per kantong. Atur jumlah kantong langsung di kartu varian." },
   { icon: MessageCircle, title: "Chat admin", description: `Klik tombol pesan atau chat ${KRISTAL_PHONE}. Admin membalas dengan harga terbaru.` },
   { icon: Truck, title: "Diantar gratis", description: "Setelah pesanan dikonfirmasi, es diantar gratis ke alamat Anda di Kota Jambi." },
 ];
@@ -76,8 +76,8 @@ export default function AjKristalPage() {
   return (
     <>
       <Seo
-        title="Es Kristal 10 kg, 5 kg, dan Es Serut AJ Kristal"
-        description="AJ Kristal, produsen es kristal nomor 4 di Jambi sejak 2019. Es kristal 10 kg, 5 kg, dan es serut dengan harga termurah di Jambi, dijamin bersih, dan gratis antar se-Kota Jambi."
+        title="Es Kristal dan Es Serut per Kantong AJ Kristal"
+        description="AJ Kristal, produsen es kristal nomor 2 di Jambi sejak 2019. Es kristal dan es serut per kantong dengan harga termurah di Jambi, dijamin bersih, dan gratis antar se-Kota Jambi."
       />
 
       {/* Hero */}
@@ -92,7 +92,7 @@ export default function AjKristalPage() {
             </h1>
             <motion.p {...fadeUp(0.4)} className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 2xl:max-w-2xl 2xl:text-xl">
               Didirikan pada 2019 oleh seorang lulusan Teknik Industri Universitas Brawijaya asal Jambi, kini AJ Kristal
-              menjadi produsen es kristal nomor 4 di Jambi. Esnya bersih, harganya termurah di Jambi, dan diantar gratis ke
+              menjadi produsen es kristal nomor 2 di Jambi. Esnya bersih, harganya termurah di Jambi, dan diantar gratis ke
               seluruh Kota Jambi.
             </motion.p>
             <motion.div {...fadeUp(0.5)} className="mt-8 flex flex-wrap gap-2">
@@ -138,10 +138,10 @@ export default function AjKristalPage() {
           <SectionHead
             chip="Varian"
             chipClass={KR_CHIP}
-            title="Tiga pilihan, satu standar bersih."
+            title="Dua pilihan, satu standar bersih."
             description="Harga termurah di Jambi. Pilih varian dan jumlahnya, lalu pesan lewat WhatsApp. Admin langsung membalas dengan harga terbaru."
           />
-          <Stagger className="mt-10 grid gap-3 md:grid-cols-3">
+          <Stagger className="mt-10 grid gap-3 md:grid-cols-2">
             {ICE_PRODUCTS.map((p) => (
               <StaggerItem key={p.id} className="h-full">
                 <IceCard product={p} />
@@ -243,7 +243,7 @@ export default function AjKristalPage() {
               chip="Jadi agen"
               chipClass={KR_CHIP_DARK}
               title="Beli 10, bonus 1 kantong."
-              description="Punya warung, kedai minuman, atau ingin berjualan es? Gabung jadi agen AJ Kristal dan dapatkan bonus 1 kantong untuk pembelian 10 bungkus."
+              description="Punya warung, kedai minuman, atau ingin berjualan es? Gabung jadi agen AJ Kristal dan dapatkan bonus 1 kantong untuk pembelian 10 kantong."
             />
             <Reveal className="mt-8 rounded-3xl bg-white/[0.06] p-5 ring-1 ring-white/10">
               <div aria-hidden className="grid grid-cols-6 gap-2 sm:grid-cols-11">
@@ -257,7 +257,7 @@ export default function AjKristalPage() {
                 </span>
               </div>
               <p className="mt-4 text-sm font-semibold text-white/90">
-                Beli 10 bungkus <span className="text-kr-glow">+ bonus 1 kantong</span>
+                Beli 10 kantong <span className="text-kr-glow">+ bonus 1 kantong</span>
               </p>
             </Reveal>
             <Stagger className="mt-3 grid gap-2">
@@ -361,7 +361,7 @@ function IceCard({ product }: { product: IceProduct }) {
     <article className="flex h-full flex-col rounded-3xl bg-white p-2 ring-1 ring-kr/10">
       <Tilt innerClassName="overflow-hidden rounded-2xl bg-kr-soft" max={4}>
         <div className="relative aspect-[4/3]">
-          <Image src={product.image} alt={product.imageAlt} fill sizes="(min-width:768px) 32vw, 100vw" className="object-cover" style={{ objectPosition: product.imagePosition }} />
+          <Image src={product.image} alt={product.imageAlt} fill sizes="(min-width:768px) 48vw, 100vw" className="object-cover" />
           <span className="absolute left-3 top-3 rounded-full bg-kr px-3.5 py-1.5 text-sm font-extrabold text-kr-dark shadow-lg">{product.size}</span>
         </div>
       </Tilt>
@@ -412,7 +412,7 @@ function IceCard({ product }: { product: IceProduct }) {
               <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
                 <span className="mt-3 flex items-center gap-2 rounded-2xl bg-kr-soft px-4 py-3 text-sm font-semibold text-kr-ink">
                   <Gift className="size-4 shrink-0" />
-                  Beli 10 bungkus dapat bonus 1 kantong
+                  Beli 10 kantong dapat bonus 1 kantong
                 </span>
               </motion.p>
             )}
